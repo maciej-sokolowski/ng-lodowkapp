@@ -2,27 +2,24 @@ import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-color-component',
-  templateUrl: './color-component.component.html',
-  styleUrls: ['./color-component.component.scss']
+  selector: 'app-color',
+  templateUrl: './color.component.html',
+  styleUrls: ['./color.component.scss']
 })
-
-export class ColorComponentComponent implements OnInit {
-
+export class ColorComponent implements OnInit {
   @Output() onColorChoose = new EventEmitter<string>();
 
   colors = ['blue', 'lightblue', 'green', 'orange', 'purple', 'pink']
 
-  constructor() {
-  }
+  constructor() { }
 
   ngOnInit() {
-
   }
 
-  chooseColor(color: string): void {
-    this.chosenColor = color;
+  chooseColor(color) {
+    this.chooseColor = color;
     this.onColorChoose.emit(color);
+    console.log(color);
   }
 
 }
