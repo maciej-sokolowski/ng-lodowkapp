@@ -2,12 +2,14 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {StartComponent} from './components/start/start.component';
 import {RegisterComponent} from './components/register/register.component';
+import {FridgeComponent} from './components/fridge/fridge.component';
+
 
 const routes: Routes = [
   {path: '', redirectTo: 'start', pathMatch: 'full'},
   {path: 'start', component: StartComponent},
   {path: 'register', component: RegisterComponent},
-
+  {path: 'fridge', component: FridgeComponent},
 ];
 
 @NgModule({
