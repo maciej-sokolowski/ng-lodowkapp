@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StartComponent } from './components/start/start.component';
 import { RegisterComponent } from './components/register/register.component';
+import { RegisterinputComponent } from './components/registerinput/registerinput.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StartComponent,
-    RegisterComponent
+    RegisterComponent,
+    RegisterinputComponent
   ],
   imports: [
     BrowserModule,

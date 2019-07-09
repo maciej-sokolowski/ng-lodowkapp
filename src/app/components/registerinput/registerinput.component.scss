@@ -1,0 +1,20 @@
+.input-wrapper {
+
+  &__header {
+    font-size: 46px;
+    margin-bottom: 10px;
+  }
+
+  &__input {
+    margin-top: 35px;
+    color: #5F7891;
+    font-size: 24px;
+    padding: 0 20px 0;
+    border-color: #5F7891;
+    border-radius: 10px;
+    border-style: solid;
+    width: 330px;
+    height: 60px;
+    outline: none;
+  }
+}
