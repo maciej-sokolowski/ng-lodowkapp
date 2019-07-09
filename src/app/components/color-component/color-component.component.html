@@ -4,11 +4,12 @@
     <div class="colors__text">You will be able to log in by tapping your avatar.</div>
   </div>
   <div class="colors__buttons-container">
-    <button class="colors__btn colors__btn--blue"></button>
-    <button class="colors__btn colors__btn--lightblue"></button>
-    <button class="colors__btn colors__btn--green"></button>
-    <button class="colors__btn colors__btn--orange"></button>
-    <button class="colors__btn colors__btn--purple"></button>
-    <button class="colors__btn colors__btn--pink"></button>
+    <button 
+      *ngFor="let color of colors" 
+      class="colors__btn colors__btn--{{color}}"
+      (click)="chooseColor(color)"
+      [class.opacity]="chosenColor && (chosenColor !== color)"
+      >
+    </button>
   </div>
 </div>

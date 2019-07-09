@@ -1,2 +1,3 @@
 <p>start works!</p>
-<app-color-component></app-color-component>
+{{value}}
+<app-color-component (onColorChoose)="changed($event)"></app-color-component>
