@@ -3,10 +3,24 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { StartComponent } from './components/start/start.component';
+import { RegisterComponent } from './components/register/register.component';
+import { StartBackgroundComponent } from './components/start-background/start-background.component';
+import { FridgeComponent } from './components/fridge/fridge.component';
+import { ProductsComponent } from './components/products/products.component';
+import { MainComponent } from './components/main/main.component';
+import { VideoComponent } from './components/video/video.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    StartComponent,
+    RegisterComponent,
+    StartBackgroundComponent,
+    FridgeComponent,
+    ProductsComponent,
+    MainComponent,
+    VideoComponent
   ],
   imports: [
     BrowserModule,
