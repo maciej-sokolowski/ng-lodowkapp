@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-avatar',
@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AvatarComponent implements OnInit {
 
+  @Input()
+  chosenAvatar: string;
+  @Output() emitAvatar = new EventEmitter<string>();
+
   avatars = ['eagle', 'badger', 'parrot', 'cat', 'owl']
 
   constructor() { }
@@ -14,10 +18,10 @@ export class AvatarComponent implements OnInit {
   ngOnInit() {
   }
 
-  private chosenAvatar: string;
 
   chooseAvatar(avatar: string): void {
     this.chosenAvatar = avatar;
+    this.emitAvatar.emit(avatar);
   }
 
 }
