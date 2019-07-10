@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {User} from 'src/app/interfaces/Models/user';
+import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/interfaces/Models/user';
 
 
 @Component({
@@ -9,7 +9,7 @@ import {User} from 'src/app/interfaces/Models/user';
 })
 export class RegisterComponent implements OnInit {
 
-  public registerStep: number = 1;
+  public registerStep: number = 0;
   userInfo: User;
   btnIsDisabled: boolean = true;
 
@@ -17,8 +17,6 @@ export class RegisterComponent implements OnInit {
   userNamee = '';
   userColor: string;
   userAvatar: string;
-
-  logicArray: Array<boolean>;
 
   constructor() {
 
@@ -29,25 +27,26 @@ export class RegisterComponent implements OnInit {
   }
 
   setButtonStatus() {
-    if (this.registerStep) {
+    let array = [this.userNamee, this.userColor, this.userAvatar];
+    console.log(array[this.registerStep], this.registerStep);
+    if (array[this.registerStep] == undefined) {
       this.btnIsDisabled = true;
-    }
-    console.log(this.btnIsDisabled);
 
+    } else {
+      this.btnIsDisabled = false;
+    }
   }
 
   onClickPrev() {
-
     this.registerStep--;
-    console.log('prev', this.registerStep, this.userNamee, this.userColor, this.userAvatar);
-
-  }
-
-  onClickNext() {
+    if (this.registerStep < 0) {
+      this.registerStep = 0;
+    }
     this.setButtonStatus();
+  }
+  onClickNext() {
     this.registerStep++;
-    console.log('next', this.registerStep, this.userNamee, this.userColor, this.userAvatar);
-
+    this.setButtonStatus();
   }
 
   getName(user: string) {
