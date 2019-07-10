@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {Note} from '../interfaces/note';
+import {filter, find} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,29 @@ export class NoteService {
       return element.id !== note.id;
     });
     this.notes.next([...newStore]);
+  }
 
+  public getItemById(id: string) {
+    return this.notes.pipe(
+      find(notes => notes === notes.filter(element => {
+        return element.id === id;
+      }))
+    );
+  }
+
+  public getItemsByUserId(userId: string) {
+    return this.notes.pipe(
+      filter(notes => notes === notes.filter(element => {
+        return element.userId === userId;
+      }))
+    );
+  }
+
+  public getItemsByDate(date: Date) {
+    return this.notes.pipe(
+      filter(notes => notes === notes.filter(element => {
+        return element.date === date;
+      }))
+    );
   }
 }
