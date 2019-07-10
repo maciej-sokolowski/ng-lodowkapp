@@ -11,6 +11,7 @@ import { FridgeComponent } from './components/fridge/fridge.component';
 import { ProductsComponent } from './components/products/products.component';
 import { MainComponent } from './components/main/main.component';
 import { VideoComponent } from './components/video/video.component';
+import { ColorComponent } from './components/color/color.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { VideoComponent } from './components/video/video.component';
     FridgeComponent,
     ProductsComponent,
     MainComponent,
-    VideoComponent
+    VideoComponent,
+    ColorComponent
   ],
   imports: [
     BrowserModule,
