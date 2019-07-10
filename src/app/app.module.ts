@@ -13,6 +13,7 @@ import { MainComponent } from './components/main/main.component';
 import { VideoComponent } from './components/video/video.component';
 import { ColorComponent } from './components/color/color.component';
 import { AvatarComponent } from './components/avatar/avatar.component';
+import { TopBarComponent } from './components/top-bar/top-bar.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AvatarComponent } from './components/avatar/avatar.component';
     MainComponent,
     VideoComponent,
     ColorComponent,
-    AvatarComponent
+    AvatarComponent,
+    TopBarComponent,
   ],
   imports: [
     BrowserModule,
