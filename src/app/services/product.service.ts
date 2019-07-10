@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {Product} from '../interfaces/product';
-import {element} from 'protractor';
+import {filter, find} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -36,4 +36,60 @@ export class ProductService {
     });
     this.products.next([...newStore]);
   }
+
+  public getItemById(id: string) {
+    return this.products.pipe(
+      // tslint:disable-next-line:no-shadowed-variable
+      find(products => products === products.filter(element => {
+        return element.id === id;
+      }))
+    );
+  }
+
+  public getItemByName(name: string) {
+    return this.products.pipe(
+      // tslint:disable-next-line:no-shadowed-variable
+      filter(products => products === products.filter(element => {
+        return element.name === name;
+      }))
+    );
+  }
+
+
+  public getItemsBeforeExpiry() {
+    return this.products.pipe(
+      // tslint:disable-next-line:no-shadowed-variable
+      filter(products => products === products.filter(element => {
+        return element.expiryDate.valueOf() >= Date.now().valueOf();
+      }))
+    );
+  }
+
+  public getItemsAfterExpiry(date: Date) {
+    return this.products.pipe(
+      // tslint:disable-next-line:no-shadowed-variable
+      filter(products => products === products.filter(element => {
+        return element.expiryDate.valueOf() < Date.now().valueOf();
+      }))
+    );
+  }
+
+  public getItemsByPriority(priority: number) {
+    return this.products.pipe(
+      // tslint:disable-next-line:no-shadowed-variable
+      filter(products => products === products.filter(element => {
+        return element.priority === priority;
+      }))
+    );
+  }
+
+  public getItemsByNeed(need: boolean) {
+    return this.products.pipe(
+      // tslint:disable-next-line:no-shadowed-variable
+      filter(products => products === products.filter(element => {
+        return element.needToBuy === need;
+      }))
+    );
+  }
+
 }
