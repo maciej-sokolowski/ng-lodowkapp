@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {filter, find} from 'rxjs/operators';
-import {Image} from '../interfaces/image';
+import {Image} from '../interfaces/Models/image';
 import {BehaviorSubject} from 'rxjs';
 
 @Injectable({
