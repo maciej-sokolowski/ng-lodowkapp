@@ -18,13 +18,13 @@ import { ColorComponent } from './components/color/color.component';
     AppComponent,
     StartComponent,
     RegisterComponent,
-    RegisterinputComponent
+    RegisterinputComponent,
     StartBackgroundComponent,
     FridgeComponent,
     ProductsComponent,
     MainComponent,
     VideoComponent,
-    ColorComponent
+    ColorComponent,
   ],
   imports: [
     BrowserModule,
