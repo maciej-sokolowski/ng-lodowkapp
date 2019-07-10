@@ -7,7 +7,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  font-family: sans-serif;
+  font-family: 'Open Sans';
   width: 800px;
   height: 1660px;
 
@@ -23,6 +23,7 @@
       margin-bottom: 4px;
       font-size: 68px;
       letter-spacing: -5px;
+      font-weight: 300;
     }
 
     &__paragraph {
@@ -60,6 +61,13 @@
         background-color: #00C3FF;
         color: #fff;
       }
+
+      &:disabled {
+        color: rgb(255, 255, 255);
+        background-color: #E9E9E9;
+        border-color: #E9E9E9;
+      }
     }
+
   }
 }
