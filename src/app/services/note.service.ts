@@ -58,4 +58,20 @@ export class NoteService {
       }))
     );
   }
+
+  public getItemsBefore(date: Date) {
+    return this.notes.pipe(
+      filter(notes => notes === notes.filter(element => {
+        return element.date.valueOf() < date.valueOf();
+      }))
+    );
+  }
+
+  public getItemsAfter(date: Date) {
+    return this.notes.pipe(
+      filter(notes => notes === notes.filter(element => {
+        return element.date.valueOf() >= date.valueOf();
+      }))
+    );
+  }
 }
