@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-registerinput',
@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterinputComponent implements OnInit {
 
+  @Input()
+  userName = "";
+
+  @Output()
+  emitName = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  emitUserName(event) {
+    this.userName = event.target.value;
+    this.emitName.emit(this.userName);
+  }
 }
