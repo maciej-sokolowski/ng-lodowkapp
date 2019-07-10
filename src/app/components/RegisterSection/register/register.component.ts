@@ -12,7 +12,7 @@ export class RegisterComponent implements OnInit {
   public registerStep: number = 0;
   userInfo: User;
   btnIsDisabled: boolean = true;
-
+  nextBtnText: string = "Next";
   // tu zbiera dane
   userNamee = '';
   userColor: string;
@@ -27,12 +27,12 @@ export class RegisterComponent implements OnInit {
   }
 
   setButtonStatus() {
-    let array = [this.userNamee, this.userColor, this.userAvatar];
+    let array = [this.userNamee, this.userAvatar, this.userColor, "summary"];
     console.log(array[this.registerStep], this.registerStep);
     if (array[this.registerStep] == undefined) {
       this.btnIsDisabled = true;
-
-    } else {
+    }
+    else {
       this.btnIsDisabled = false;
     }
   }
@@ -41,11 +41,19 @@ export class RegisterComponent implements OnInit {
     this.registerStep--;
     if (this.registerStep < 0) {
       this.registerStep = 0;
+      console.log('out');
+      //tu należy wywołać funkcję do wyjścia do głównego widoku.
+      return;
+    } else if (this.registerStep == 2) {
+      this.nextBtnText = "Next";
     }
     this.setButtonStatus();
   }
   onClickNext() {
     this.registerStep++;
+    if (this.registerStep == 3) {
+      this.nextBtnText = "Confirm and add family member"
+    }
     this.setButtonStatus();
   }
 

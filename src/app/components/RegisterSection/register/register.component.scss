@@ -44,10 +44,11 @@
       color: #00C3FF;
       margin: 0 10px 0;
       font-size: 24px;
+      padding: 0 15px;
       border-radius: 10px 10px 10px 10px;
       border-color: #00C3FF;
       border-style: solid;
-      width: 163px;
+      min-width: 163px;
       height: 70px;
       transition: .3s;
       outline: none;
