@@ -22,7 +22,6 @@ export class ProductService {
   }
 
   public updateItem(product: Product) {
-    // tslint:disable-next-line:no-shadowed-variable
     const newStore = this.products.getValue().filter((element) => {
       return element.id !== product.id;
     });
@@ -30,7 +29,6 @@ export class ProductService {
   }
 
   public deleteItem(product: Product) {
-    // tslint:disable-next-line:no-shadowed-variable
     const newStore = this.products.getValue().filter((element) => {
       return element.id !== product.id;
     });
@@ -39,7 +37,6 @@ export class ProductService {
 
   public getItemById(id: string) {
     return this.products.pipe(
-      // tslint:disable-next-line:no-shadowed-variable
       find(products => products === products.filter(element => {
         return element.id === id;
       }))
@@ -48,7 +45,6 @@ export class ProductService {
 
   public getItemByName(name: string) {
     return this.products.pipe(
-      // tslint:disable-next-line:no-shadowed-variable
       filter(products => products === products.filter(element => {
         return element.name === name;
       }))
@@ -58,7 +54,6 @@ export class ProductService {
 
   public getItemsBeforeExpiry() {
     return this.products.pipe(
-      // tslint:disable-next-line:no-shadowed-variable
       filter(products => products === products.filter(element => {
         return element.expiryDate.valueOf() >= Date.now().valueOf();
       }))
@@ -67,7 +62,6 @@ export class ProductService {
 
   public getItemsAfterExpiry(date: Date) {
     return this.products.pipe(
-      // tslint:disable-next-line:no-shadowed-variable
       filter(products => products === products.filter(element => {
         return element.expiryDate.valueOf() < Date.now().valueOf();
       }))
@@ -76,7 +70,6 @@ export class ProductService {
 
   public getItemsByPriority(priority: number) {
     return this.products.pipe(
-      // tslint:disable-next-line:no-shadowed-variable
       filter(products => products === products.filter(element => {
         return element.priority === priority;
       }))
@@ -85,7 +78,6 @@ export class ProductService {
 
   public getItemsByNeed(need: boolean) {
     return this.products.pipe(
-      // tslint:disable-next-line:no-shadowed-variable
       filter(products => products === products.filter(element => {
         return element.needToBuy === need;
       }))
