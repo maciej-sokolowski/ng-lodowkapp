@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,8 @@ import { MainComponent } from './components/main/main.component';
 import { VideoComponent } from './components/video/video.component';
 import { ColorComponent } from './components/color/color.component';
 import { AvatarComponent } from './components/avatar/avatar.component';
+import { WeatherComponent } from './components/weather/weather.component';
+import { WeatherService } from './components/weather/weather.service';
 
 @NgModule({
   declarations: [
@@ -26,13 +29,14 @@ import { AvatarComponent } from './components/avatar/avatar.component';
     MainComponent,
     VideoComponent,
     ColorComponent,
-    AvatarComponent
+    AvatarComponent,
+    WeatherComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
-  providers: [],
+  providers: [WeatherService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
