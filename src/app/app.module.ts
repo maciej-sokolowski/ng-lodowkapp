@@ -20,7 +20,6 @@ import { AvatarComponent } from './components/avatar/avatar.component';
     StartComponent,
     RegisterComponent,
     RegisterinputComponent,
-    StartBackgroundComponent,
     MembersContainer,
     FridgeComponent,
     ProductsComponent,
