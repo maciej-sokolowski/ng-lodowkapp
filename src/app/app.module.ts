@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StartComponent } from './components/start/start.component';
+import { StartBackgroundComponent } from './components/start-background/start-background.component';
 import { RegisterComponent } from './components/register/register.component';
 import { RegisterinputComponent } from './components/registerinput/registerinput.component';
 import { MembersContainer } from './components/members-container/members-container.component';
@@ -22,6 +23,7 @@ import { RegistersummComponent } from './components/registersumm/registersumm.co
     StartComponent,
     RegisterComponent,
     RegisterinputComponent,
+    StartBackgroundComponent,
     StartComponent,
     MembersContainer,
     FridgeComponent,
