@@ -1,5 +1,5 @@
 <div class="input-wrapper">
   <h2 class="input-wrapper__header">What is your name?</h2>
   <p class="input-wprapper__paragraph">How should the fridge adddress you?</p>
-  <input class="input-wrapper__input" type="text" placeholder="enter your name">
+  <input [value]="userName" (input)="emitUserName($event)" class="input-wrapper__input" type="text">
 </div>
