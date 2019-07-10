@@ -17,6 +17,9 @@ export class RegisterComponent implements OnInit {
   // tu zbiera dane
   userNamee = "";
   userColor: string;
+  userAvatar: string;
+
+  logicArray: Array<boolean>;
 
   constructor() {
 
@@ -27,28 +30,26 @@ export class RegisterComponent implements OnInit {
   }
 
   setButtonStatus() {
-    if (this.userNamee == undefined || this.userColor == undefined) {
+    if (this.registerStep)
       this.btnIsDisabled = true;
-    } else {
-      this.btnIsDisabled = false;
-    }
+    console.log(this.btnIsDisabled);
+
   }
 
   onClickPrev() {
-    this.setButtonStatus();
+
     this.registerStep--;
-    console.log('prev', this.registerStep, this.userNamee, this.userColor);
+    console.log('prev', this.registerStep, this.userNamee, this.userColor, this.userAvatar);
 
   }
   onClickNext() {
     this.setButtonStatus();
     this.registerStep++;
-    console.log('next', this.registerStep, this.userNamee, this.userColor);
+    console.log('next', this.registerStep, this.userNamee, this.userColor, this.userAvatar);
 
   }
 
   getName(user: string) {
-
     console.log(user.length, "z emmitera");
     if (user.length > 0) {
       this.btnIsDisabled = false;
@@ -57,11 +58,14 @@ export class RegisterComponent implements OnInit {
       this.btnIsDisabled = true;
     }
   }
-
   getColor(color: string) {
     this.userColor = color;
     console.log(color, 'z emmitera');
-    this.setButtonStatus();
+    this.btnIsDisabled = false;
   }
-
+  getAvatar(avatar: string) {
+    this.userAvatar = avatar;
+    console.log(avatar, 'z emmitera');
+    this.btnIsDisabled = false;
+  }
 }
