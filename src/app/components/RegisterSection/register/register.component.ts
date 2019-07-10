@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/interfaces/user'
-
+import {Component, OnInit} from '@angular/core';
+import {User} from 'src/app/interfaces/Models/user';
 
 
 @Component({
@@ -15,7 +14,7 @@ export class RegisterComponent implements OnInit {
   btnIsDisabled: boolean = true;
 
   // tu zbiera dane
-  userNamee = "";
+  userNamee = '';
   userColor: string;
   userAvatar: string;
 
@@ -30,8 +29,9 @@ export class RegisterComponent implements OnInit {
   }
 
   setButtonStatus() {
-    if (this.registerStep)
+    if (this.registerStep) {
       this.btnIsDisabled = true;
+    }
     console.log(this.btnIsDisabled);
 
   }
@@ -42,6 +42,7 @@ export class RegisterComponent implements OnInit {
     console.log('prev', this.registerStep, this.userNamee, this.userColor, this.userAvatar);
 
   }
+
   onClickNext() {
     this.setButtonStatus();
     this.registerStep++;
@@ -50,7 +51,7 @@ export class RegisterComponent implements OnInit {
   }
 
   getName(user: string) {
-    console.log(user.length, "z emmitera");
+    console.log(user.length, 'z emmitera');
     if (user.length > 0) {
       this.btnIsDisabled = false;
       this.userNamee = user;
@@ -58,11 +59,13 @@ export class RegisterComponent implements OnInit {
       this.btnIsDisabled = true;
     }
   }
+
   getColor(color: string) {
     this.userColor = color;
     console.log(color, 'z emmitera');
     this.btnIsDisabled = false;
   }
+
   getAvatar(avatar: string) {
     this.userAvatar = avatar;
     console.log(avatar, 'z emmitera');

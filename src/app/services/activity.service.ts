@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {filter, find} from 'rxjs/operators';
 import {BehaviorSubject} from 'rxjs';
-import {Activity} from '../interfaces/activity';
+import {Activity} from '../interfaces/Models/activity';
 
 @Injectable({
   providedIn: 'root'
