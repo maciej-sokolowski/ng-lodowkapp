@@ -12,19 +12,21 @@ import { ProductsComponent } from './components/products/products.component';
 import { MainComponent } from './components/main/main.component';
 import { VideoComponent } from './components/video/video.component';
 import { ColorComponent } from './components/color/color.component';
+import { AvatarComponent } from './components/avatar/avatar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StartComponent,
     RegisterComponent,
-    RegisterinputComponent
+    RegisterinputComponent,
     StartBackgroundComponent,
     FridgeComponent,
     ProductsComponent,
     MainComponent,
     VideoComponent,
-    ColorComponent
+    ColorComponent,
+    AvatarComponent
   ],
   imports: [
     BrowserModule,
