@@ -8,7 +8,7 @@ import {filter, find} from 'rxjs/operators';
 })
 export class NoteService {
 
-  public notes = new BehaviorSubject(Array<Note>());
+ public notes = new BehaviorSubject(Array<Note>());
 
   constructor() {
   }
