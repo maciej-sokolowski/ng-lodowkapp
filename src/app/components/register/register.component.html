@@ -1,4 +1,3 @@
-
 <div class="register-wrapper">
   <div class="header-container">
     <h1 class="header-container__headline">Add a family member</h1>
@@ -8,19 +7,21 @@
 
   <div class="component-container">
 
-    <div *ngIf="this.x==1" class="component-container__middle">
+    <div class="component-container__middle">
       <!-- to miejsce na component -->
 
-      <app-registerinput></app-registerinput>
-      <app-color></app-color>
-    
+      <app-registerinput *ngIf="this.registerStep==1" (emitName)="getName($event)" [userName]="userNamee">
+      </app-registerinput>
+      <app-color *ngIf="this.registerStep==2" (emitColor)="getColor($event)" [chosenColor]="userColor"></app-color>
+
 
       <!-- to miejsce na component -->
     </div>
 
   </div>
   <div class="nav-buttons">
-    <button id="prev" class="nav-buttons__btn nav-buttons__btn--prev">Back</button>
-    <button id="next" class="nav-buttons__btn nav-buttons__btn--next">Next</button>
+    <button (click)="onClickPrev()" id="prev" class="nav-buttons__btn nav-buttons__btn--prev">Back</button>
+    <button (click)="onClickNext()" [disabled]="btnIsDisabled" id="next"
+      class="nav-buttons__btn nav-buttons__btn--next">Next</button>
   </div>
 </div>
