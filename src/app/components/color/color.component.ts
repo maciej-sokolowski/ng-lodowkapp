@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./color.component.scss']
 })
 export class ColorComponent implements OnInit {
-  @Output() onColorChoose = new EventEmitter<string>();
+  // @Output() onColorChoose = new EventEmitter<string>();
 
   colors = ['blue', 'lightblue', 'green', 'orange', 'purple', 'pink']
 
@@ -15,10 +15,11 @@ export class ColorComponent implements OnInit {
 
   ngOnInit() {
   }
+  private chosenColor: string;
 
-  chooseColor(color) {
-    this.chooseColor = color;
-    this.onColorChoose.emit(color);
+  chooseColor(color: string): void {
+    this.chosenColor = color;
+    // this.onColorChoose.emit(color);
     console.log(color);
   }
 
