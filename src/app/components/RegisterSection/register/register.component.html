@@ -1,0 +1,28 @@
+<div class="register-wrapper">
+  <div class="header-container">
+    <h1 class="header-container__headline">Add a family member</h1>
+    <p class="header-container__paragraph">Start by adding members of your family for a more personalised experience.
+    </p>
+  </div>
+
+  <div class="component-container">
+
+    <div class="component-container__middle">
+      <!-- to miejsce na component -->
+
+      <app-registerinput *ngIf="this.registerStep==1" (emitName)="getName($event)" [userName]="userNamee">
+      </app-registerinput>
+      <app-color *ngIf="this.registerStep==2" (emitColor)="getColor($event)" [chosenColor]="userColor"></app-color>
+      <app-avatar *ngIf="this.registerStep==3" (emitAvatar)="getAvatar($event)" [chosenAvatar]="userAvatar">
+      </app-avatar>
+
+      <!-- to miejsce na component -->
+    </div>
+
+  </div>
+  <div class="nav-buttons">
+    <button (click)="onClickPrev()" id="prev" class="nav-buttons__btn nav-buttons__btn--prev">Back</button>
+    <button (click)="onClickNext()" [disabled]="btnIsDisabled" id="next"
+      class="nav-buttons__btn nav-buttons__btn--next">Next</button>
+  </div>
+</div>
