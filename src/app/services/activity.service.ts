@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {filter, find} from 'rxjs/operators';
 import {BehaviorSubject} from 'rxjs';
 import {Activity} from '../interfaces/Models/activity';
-import * as _ from 'lodash';
 import {ManageDataService} from './manage-data.service';
+import * as _ from 'lodash';
 
 @Injectable({
   providedIn: 'root'
