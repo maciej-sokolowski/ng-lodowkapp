@@ -13,6 +13,8 @@ export class WeatherComponent implements OnInit {
   myWeather: CurrentWeather;
   location;
   temperature: string;
+  description: string;
+  icon;
   constructor(private ws: WeatherService) { }
 
   ngOnInit() {
@@ -30,10 +32,9 @@ export class WeatherComponent implements OnInit {
 
           this.temperature = data.main.temp.toFixed(1);
 
+          this.description = data.weather[0].description;
 
-
-
-          console.log(this.myWeather = new CurrentWeather(data.main.temp, data.weather[0].icon, data.weather[0].description));
+          this.icon = data.weather[0].icon.split("").reverse().join("");
         }
       )
     })

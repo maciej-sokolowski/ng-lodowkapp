@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 420px;
+  height: 190px;
+  color: #5F7891;
+  font-family: 'Open Sans';
+  background-color: #fff;
+  border-radius: 10px;
+
+
+  &__temperature {
+    font-size: 64px;
+    font-weight: 300;
+  }
+
+  &__weather {
+    font-weight: 900;
+  }
+
+  &__description::first-letter {
+    text-transform: uppercase;
+  }
+
+
+
+
+
+
+
+
+
+  &__icon {
+    width: 125px;
+    height: 125px;
+  }
+}

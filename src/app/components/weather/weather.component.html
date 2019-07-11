@@ -1,7 +1,10 @@
 <div class="container">
-  <div>{{temperature}}&deg;</div>
-  <img src='http://openweathermap.org/img/wn/{{myWeather.icon}}@2x.png'>
+  <div>
+    <img src="../../../assets/{{icon}}.svg" class="container__icon">
+  </div>
+  <div class="container__weather">
+    <div class="container__temperature">{{temperature}}&deg;C</div>
 
-  <!-- <div>{{myWeather.icon}}</div> -->
-  <div>{{myWeather.weatherKind}}</div>
+    <div class="container__description">{{myWeather.weatherKind}}</div>
+  </div>
 </div>
