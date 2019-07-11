@@ -10,7 +10,6 @@ import { User } from 'src/app/interfaces/Models/user';
 export class RegisterComponent implements OnInit {
 
   public registerStep: number = 0;
-  userInfo: User;
   btnIsDisabled: boolean = true;
 
   // tu zbiera dane
@@ -29,7 +28,7 @@ export class RegisterComponent implements OnInit {
   }
 
   setButtonStatus() {
-    let array = [this.userNamee, this.userColor, this.userAvatar, "summary"];
+    let array = [this.userNamee, this.userAvatar, this.userColor, "summary"];
     console.log(array[this.registerStep], this.registerStep);
     if (array[this.registerStep] == undefined) {
       this.btnIsDisabled = true;
@@ -62,7 +61,9 @@ export class RegisterComponent implements OnInit {
     if (this.registerStep == 4) {
       console.log('stworzono użytkownika');
 
-      //tu dajemy funkcję końcową
+      //tu dajemy funkcję kończącą proces rejestracji
+      let agregatedInfo = { id: "1", name: this.userNamee, avatar: this.userAvatar, color: this.userColor }
+      this.registerInfo(agregatedInfo);
     }
 
     this.setButtonStatus();
@@ -88,5 +89,11 @@ export class RegisterComponent implements OnInit {
     this.userAvatar = avatar;
     console.log(avatar, 'z emmitera');
     this.btnIsDisabled = false;
+  }
+
+  registerInfo(userInfo: User) {
+    console.log(userInfo, 'cały user');
+
+
   }
 }

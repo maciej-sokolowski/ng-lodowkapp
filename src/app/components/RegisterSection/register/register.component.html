@@ -12,10 +12,11 @@
 
       <app-registerinput *ngIf="this.registerStep==0" (emitName)="getName($event)" [userName]="userNamee">
       </app-registerinput>
-      <app-color *ngIf="this.registerStep==1" (emitColor)="getColor($event)" [chosenColor]="userColor"></app-color>
-      <app-avatar *ngIf="this.registerStep==2" (emitAvatar)="getAvatar($event)" [chosenAvatar]="userAvatar">
+      <app-avatar *ngIf="this.registerStep==1" (emitAvatar)="getAvatar($event)" [chosenAvatar]="userAvatar">
       </app-avatar>
-
+      <app-color *ngIf="this.registerStep==2" (emitColor)="getColor($event)" [chosenColor]="userColor"></app-color>
+      <app-registersumm *ngIf="this.registerStep==3" [userName]="userNamee" [chosenAvatar]="userAvatar"
+        [chosenColor]="userColor"></app-registersumm>
       <!-- to miejsce na component -->
     </div>
 
