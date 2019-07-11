@@ -30,8 +30,13 @@
 
   </div>
   <div class="nav-buttons">
-    <button (click)="onClickPrev()" id="prev" class="nav-buttons__btn nav-buttons__btn--prev">Back</button>
-    <button (click)="onClickNext()" [disabled]="btnIsDisabled" id="next"
+    <button routerLink="/start" [hidden]="this.registerStep>0" (click)="onClickPrev()"
+      class="nav-buttons__btn nav-buttons__btn--prev">Back</button>
+    <button *ngIf="this.registerStep>0" (click)="onClickPrev()"
+      class="nav-buttons__btn nav-buttons__btn--prev">Back</button>
+    <button [hidden]="this.registerStep==3" (click)="onClickNext()" [disabled]="btnIsDisabled" id="next"
       class="nav-buttons__btn nav-buttons__btn--next">{{btnNextText}}</button>
+    <button *ngIf="this.registerStep==3" (click)="onClickNext()" class="nav-buttons__btn nav-buttons__btn--next"
+      routerLink="/start">{{btnNextText}}</button>
   </div>
 </div>
