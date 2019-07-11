@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/interfaces/Models/user';
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -19,8 +20,7 @@ export class RegisterComponent implements OnInit {
 
   btnNextText = "Next";
 
-  constructor() {
-
+  constructor(private userService: UserService) {
   }
 
   ngOnInit() {
@@ -61,9 +61,9 @@ export class RegisterComponent implements OnInit {
     if (this.registerStep == 4) {
       console.log('stworzono użytkownika');
 
-      //tu dajemy funkcję kończącą proces rejestracji
       let agregatedInfo = { id: "1", name: this.userNamee, avatar: this.userAvatar, color: this.userColor }
       this.registerInfo(agregatedInfo);
+
     }
 
     this.setButtonStatus();
@@ -93,7 +93,6 @@ export class RegisterComponent implements OnInit {
 
   registerInfo(userInfo: User) {
     console.log(userInfo, 'cały user');
-
-
+    this.userService.insertItem(userInfo);
   }
 }

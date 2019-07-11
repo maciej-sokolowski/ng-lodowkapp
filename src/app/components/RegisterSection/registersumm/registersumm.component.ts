@@ -18,6 +18,9 @@ export class RegistersummComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    // this.userName = 'marcin';
+    // this.chosenAvatar = 'cat';
+    // this.chosenColor = 'pink';
   }
 
 }

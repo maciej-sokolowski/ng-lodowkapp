@@ -15,8 +15,16 @@
       <app-avatar *ngIf="this.registerStep==1" (emitAvatar)="getAvatar($event)" [chosenAvatar]="userAvatar">
       </app-avatar>
       <app-color *ngIf="this.registerStep==2" (emitColor)="getColor($event)" [chosenColor]="userColor"></app-color>
-      <app-registersumm *ngIf="this.registerStep==3" [userName]="userNamee" [chosenAvatar]="userAvatar"
-        [chosenColor]="userColor"></app-registersumm>
+
+      <ng-container *ngIf="this.registerStep==3">
+        <h2 class="header-container__headline--h2">Does that sound alright?</h2>
+        <p class="header-container__paragraph"> Check if everything is in order and confirm to create an account or go
+          back to make changes.</p>
+        <app-registersumm class="component-container__middle--summary" [userName]="userNamee"
+          [chosenAvatar]="userAvatar" [chosenColor]="userColor">
+        </app-registersumm>
+      </ng-container>
+
       <!-- to miejsce na component -->
     </div>
 
