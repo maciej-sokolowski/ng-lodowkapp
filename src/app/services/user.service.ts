@@ -4,6 +4,7 @@ import {User} from '../interfaces/Models/user';
 import {ManageDataService} from './manage-data.service';
 import * as _ from 'lodash';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -22,6 +23,8 @@ export class UserService {
   public insertItem(user: User) {
     this.users.next([...this.users.getValue(), user]);
     _.debounce(this.synchronizeWithLocalStorage, 2500);
+    console.log(this.users.getValue());
+
   }
 
   public updateItem(user: User) {

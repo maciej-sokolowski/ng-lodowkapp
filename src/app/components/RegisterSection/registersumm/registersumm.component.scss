@@ -1,0 +1,28 @@
+.item {
+  position: absolute;
+
+  &__color {
+    width: 280px;
+    height: 335px;
+  }
+
+  &__avatar {
+    width: 243px;
+    height: 243px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__name {
+    color: white;
+    font-size: 30px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    bottom: 19px;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+}
