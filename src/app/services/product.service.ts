@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {Product} from '../interfaces/Models/product';
 import {filter, find} from 'rxjs/operators';
+import {ManageDataService} from './manage-data.service';
+import * as _ from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,8 @@ export class ProductService {
 
   public products = new BehaviorSubject(Array<Product>());
 
-  constructor() {
+  constructor(private mdService: ManageDataService) {
+    this.products.next(this.mdService.getProductsFromLocalStorage());
   }
 
   public getItems() {
@@ -19,6 +22,7 @@ export class ProductService {
 
   public insertItem(product: Product) {
     this.products.next([...this.products.getValue(), product]);
+    _.debounce(this.synchronizeWithLocalStorage, 2500);
   }
 
   public updateItem(product: Product) {
@@ -26,6 +30,7 @@ export class ProductService {
       return element.id !== product.id;
     });
     this.products.next([...newStore, product]);
+    _.debounce(this.synchronizeWithLocalStorage, 2500);
   }
 
   public deleteItem(product: Product) {
@@ -33,6 +38,7 @@ export class ProductService {
       return element.id !== product.id;
     });
     this.products.next([...newStore]);
+    _.debounce(this.synchronizeWithLocalStorage, 2500);
   }
 
   public getItemById(id: string) {
@@ -82,6 +88,10 @@ export class ProductService {
         return element.needToBuy === need;
       }))
     );
+  }
+
+  public synchronizeWithLocalStorage() {
+    this.products.subscribe(data => this.mdService.updateProductsToLocalStorage(data));
   }
 
 }

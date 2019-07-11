@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {filter, find} from 'rxjs/operators';
 import {BehaviorSubject} from 'rxjs';
 import {Activity} from '../interfaces/Models/activity';
+import {ManageDataService} from './manage-data.service';
+import * as _ from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,8 @@ import {Activity} from '../interfaces/Models/activity';
 export class ActivityService {
   public activities = new BehaviorSubject(Array<Activity>());
 
-  constructor() {
+  constructor(private mdService: ManageDataService) {
+    this.activities.next(mdService.getActivitiesFromLocalStorage());
   }
 
   public getItems() {
@@ -18,6 +21,7 @@ export class ActivityService {
 
   public insertItem(activity: Activity) {
     this.activities.next([...this.activities.getValue(), activity]);
+    _.debounce(this.synchronizeWithLocalStorage, 2000);
   }
 
   public updateItem(activity: Activity) {
@@ -26,6 +30,7 @@ export class ActivityService {
       return element.id !== activity.id;
     });
     this.activities.next([...newStore, activity]);
+    _.debounce(this.synchronizeWithLocalStorage, 2000);
   }
 
   public deleteItem(activity: Activity) {
@@ -33,6 +38,7 @@ export class ActivityService {
       return element.id !== activity.id;
     });
     this.activities.next([...newStore]);
+    _.debounce(this.synchronizeWithLocalStorage, 2000);
   }
 
   public getItemById(id: string) {
@@ -81,6 +87,10 @@ export class ActivityService {
         return element.priority === priority;
       }))
     );
+  }
+
+  public synchronizeWithLocalStorage() {
+    this.activities.subscribe(data => this.mdService.updateActivitiesToLocalStorage(data));
   }
 
 }

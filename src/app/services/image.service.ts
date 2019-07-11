@@ -1,7 +1,9 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {filter, find} from 'rxjs/operators';
 import {Image} from '../interfaces/Models/image';
 import {BehaviorSubject} from 'rxjs';
+import {ManageDataService} from './manage-data.service';
+import * as _ from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,8 @@ export class ImageService {
 
   public images = new BehaviorSubject(Array<Image>());
 
-  constructor() {
+  constructor(private mdService: ManageDataService) {
+    this.images.next(this.mdService.getImagesFromLocalStorage());
   }
 
   public getItems() {
@@ -20,6 +23,7 @@ export class ImageService {
 
   public insertItem(image: Image) {
     this.images.next([...this.images.getValue(), image]);
+    _.debounce(this.synchronizeWithLocalStorage, 2500);
   }
 
   public updateItem(image: Image) {
@@ -28,6 +32,7 @@ export class ImageService {
       return element.id !== image.id;
     });
     this.images.next([...newStore, image]);
+    _.debounce(this.synchronizeWithLocalStorage, 2500);
   }
 
   public deleteItem(image: Image) {
@@ -35,6 +40,7 @@ export class ImageService {
       return element.id !== image.id;
     });
     this.images.next([...newStore]);
+    _.debounce(this.synchronizeWithLocalStorage, 2500);
   }
 
 
@@ -52,5 +58,9 @@ export class ImageService {
         return element.userId === userId;
       }))
     );
+  }
+
+  public synchronizeWithLocalStorage() {
+    this.images.subscribe(data => this.mdService.updateImagesToLocalStorage(data));
   }
 }
