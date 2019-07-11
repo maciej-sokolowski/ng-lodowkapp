@@ -10,7 +10,7 @@ import * as _ from 'lodash';
 })
 export class ProductService {
 
-  public products = new BehaviorSubject(Array<Product>());
+  public products = new BehaviorSubject([]);
 
   constructor(private mdService: ManageDataService) {
     this.products.next(this.mdService.getProductsFromLocalStorage());

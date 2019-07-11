@@ -9,7 +9,7 @@ import * as _ from 'lodash';
   providedIn: 'root'
 })
 export class ActivityService {
-  public activities = new BehaviorSubject(Array<Activity>());
+  public activities = new BehaviorSubject([]);
 
   constructor(private mdService: ManageDataService) {
     this.activities.next(mdService.getActivitiesFromLocalStorage());

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/interfaces/Models/user';
-import { UserService } from 'src/app/services/user.service';
+import {Component, OnInit} from '@angular/core';
+import {User} from 'src/app/interfaces/Models/user';
+import {UserService} from 'src/app/services/user.service';
 
 
 @Component({
@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
   userColor: string;
   userAvatar: string;
 
-  btnNextText = "Next";
+  btnNextText = 'Next';
 
   constructor(private userService: UserService) {
   }
@@ -28,16 +28,15 @@ export class RegisterComponent implements OnInit {
   }
 
   setButtonStatus() {
-    let array = [this.userNamee, this.userAvatar, this.userColor, "summary"];
+    let array = [this.userNamee, this.userAvatar, this.userColor, 'summary'];
     console.log(array[this.registerStep], this.registerStep);
     if (array[this.registerStep] == undefined) {
       this.btnIsDisabled = true;
 
     } else if (this.registerStep == 3) {
       this.btnIsDisabled = false;
-      this.btnNextText = "Confirm and add family member";
-    }
-    else {
+      this.btnNextText = 'Confirm and add family member';
+    } else {
       this.btnIsDisabled = false;
     }
   }
@@ -51,17 +50,17 @@ export class RegisterComponent implements OnInit {
       //tu należy wywołać funkcję do wyjścia do głównego widoku.
       return;
     } else if (this.registerStep == 2) {
-      this.btnNextText = "Next";
+      this.btnNextText = 'Next';
     }
     this.setButtonStatus();
   }
+
   onClickNext() {
     this.registerStep++;
 
     if (this.registerStep == 4) {
       console.log('stworzono użytkownika');
-
-      let agregatedInfo = { id: "1", name: this.userNamee, avatar: this.userAvatar, color: this.userColor }
+      let agregatedInfo = {id: '1', name: this.userNamee, avatar: this.userAvatar, color: this.userColor};
       this.registerInfo(agregatedInfo);
 
     }
@@ -74,7 +73,7 @@ export class RegisterComponent implements OnInit {
     if (user.length > 0) {
       this.btnIsDisabled = false;
       this.userNamee = user;
-    } else if (user.length == 0) {
+    } else if (user.length === 0) {
       this.btnIsDisabled = true;
     }
   }

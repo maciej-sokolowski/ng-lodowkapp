@@ -1,6 +1,6 @@
 export interface User {
   id: string;
-  type: 'PARENT' | 'CHILDREN';
+  // type: 'PARENT' | 'CHILDREN';
   name: string;
   avatar: string;
   color: string;

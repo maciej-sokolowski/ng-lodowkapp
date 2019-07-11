@@ -11,7 +11,7 @@ import * as _ from 'lodash';
 export class ImageService {
 
 
-  public images = new BehaviorSubject(Array<Image>());
+  public images = new BehaviorSubject([]);
 
   constructor(private mdService: ManageDataService) {
     this.images.next(this.mdService.getImagesFromLocalStorage());

@@ -10,10 +10,10 @@ import * as _ from 'lodash';
 })
 export class UserService {
 
-  public users = new BehaviorSubject(Array<User>());
+  public users = new BehaviorSubject([]);
 
   constructor(private mdService: ManageDataService) {
-    this.users.next(mdService.getUsersFromLocalStorage());
+    // this.users.next(mdService.getUsersFromLocalStorage());
   }
 
   public getItems() {
@@ -21,6 +21,8 @@ export class UserService {
   }
 
   public insertItem(user: User) {
+
+    console.log(this.users.getValue());
     this.users.next([...this.users.getValue(), user]);
     _.debounce(this.synchronizeWithLocalStorage, 2500);
     console.log(this.users.getValue());
