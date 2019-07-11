@@ -9,10 +9,13 @@ import * as _ from 'lodash';
   providedIn: 'root'
 })
 export class ActivityService {
-  public activities = new BehaviorSubject([]);
+  public activities: BehaviorSubject<Activity[]> = new BehaviorSubject([]);
 
   constructor(private mdService: ManageDataService) {
-    this.activities.next(mdService.getActivitiesFromLocalStorage());
+    const data: Activity[] = mdService.getActivitiesFromLocalStorage();
+    if (data !== null) {
+      this.activities.next(data);
+    }
   }
 
   public getItems() {
@@ -21,7 +24,7 @@ export class ActivityService {
 
   public insertItem(activity: Activity) {
     this.activities.next([...this.activities.getValue(), activity]);
-    _.debounce(this.synchronizeWithLocalStorage, 2000);
+    this.synchronizeWithLocalStorage();
   }
 
   public updateItem(activity: Activity) {
@@ -30,7 +33,7 @@ export class ActivityService {
       return element.id !== activity.id;
     });
     this.activities.next([...newStore, activity]);
-    _.debounce(this.synchronizeWithLocalStorage, 2000);
+    this.synchronizeWithLocalStorage();
   }
 
   public deleteItem(activity: Activity) {
@@ -38,7 +41,7 @@ export class ActivityService {
       return element.id !== activity.id;
     });
     this.activities.next([...newStore]);
-    _.debounce(this.synchronizeWithLocalStorage, 2000);
+    this.synchronizeWithLocalStorage();
   }
 
   public getItemById(id: string) {
@@ -90,7 +93,7 @@ export class ActivityService {
   }
 
   public synchronizeWithLocalStorage() {
-    this.activities.subscribe(data => this.mdService.updateActivitiesToLocalStorage(data));
+    _.debounce(() => this.mdService.updateActivitiesToLocalStorage(this.activities.getValue()), 2500)();
   }
 
 }

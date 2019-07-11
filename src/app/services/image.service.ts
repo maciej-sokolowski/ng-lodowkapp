@@ -11,10 +11,13 @@ import * as _ from 'lodash';
 export class ImageService {
 
 
-  public images = new BehaviorSubject([]);
+  public images: BehaviorSubject<Image[]> = new BehaviorSubject([]);
 
   constructor(private mdService: ManageDataService) {
-    this.images.next(this.mdService.getImagesFromLocalStorage());
+    const data: Image[] = mdService.getImagesFromLocalStorage();
+    if (data !== null) {
+      this.images.next(data);
+    }
   }
 
   public getItems() {
@@ -23,16 +26,15 @@ export class ImageService {
 
   public insertItem(image: Image) {
     this.images.next([...this.images.getValue(), image]);
-    _.debounce(this.synchronizeWithLocalStorage, 2500);
+    this.synchronizeWithLocalStorage();
   }
 
   public updateItem(image: Image) {
-
     const newStore = this.images.getValue().filter((element) => {
       return element.id !== image.id;
     });
     this.images.next([...newStore, image]);
-    _.debounce(this.synchronizeWithLocalStorage, 2500);
+    this.synchronizeWithLocalStorage();
   }
 
   public deleteItem(image: Image) {
@@ -40,9 +42,8 @@ export class ImageService {
       return element.id !== image.id;
     });
     this.images.next([...newStore]);
-    _.debounce(this.synchronizeWithLocalStorage, 2500);
+    this.synchronizeWithLocalStorage();
   }
-
 
   public getItemById(id: string) {
     return this.images.pipe(
@@ -61,6 +62,6 @@ export class ImageService {
   }
 
   public synchronizeWithLocalStorage() {
-    this.images.subscribe(data => this.mdService.updateImagesToLocalStorage(data));
+    _.debounce(() => this.mdService.updateImagesToLocalStorage(this.images.getValue()), 2500)();
   }
 }

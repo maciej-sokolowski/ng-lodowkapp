@@ -10,10 +10,13 @@ import * as _ from 'lodash';
 })
 export class ProductService {
 
-  public products = new BehaviorSubject([]);
+  public products: BehaviorSubject<Product[]> = new BehaviorSubject([]);
 
   constructor(private mdService: ManageDataService) {
-    this.products.next(this.mdService.getProductsFromLocalStorage());
+    const data: Product[] = mdService.getProductsFromLocalStorage();
+    if (data !== null) {
+      this.products.next(data);
+    }
   }
 
   public getItems() {
@@ -22,7 +25,7 @@ export class ProductService {
 
   public insertItem(product: Product) {
     this.products.next([...this.products.getValue(), product]);
-    _.debounce(this.synchronizeWithLocalStorage, 2500);
+    this.synchronizeWithLocalStorage();
   }
 
   public updateItem(product: Product) {
@@ -30,7 +33,7 @@ export class ProductService {
       return element.id !== product.id;
     });
     this.products.next([...newStore, product]);
-    _.debounce(this.synchronizeWithLocalStorage, 2500);
+    this.synchronizeWithLocalStorage();
   }
 
   public deleteItem(product: Product) {
@@ -38,7 +41,7 @@ export class ProductService {
       return element.id !== product.id;
     });
     this.products.next([...newStore]);
-    _.debounce(this.synchronizeWithLocalStorage, 2500);
+    this.synchronizeWithLocalStorage();
   }
 
   public getItemById(id: string) {
@@ -91,7 +94,8 @@ export class ProductService {
   }
 
   public synchronizeWithLocalStorage() {
-    this.products.subscribe(data => this.mdService.updateProductsToLocalStorage(data));
+    _.debounce(() => this.mdService.updateProductsToLocalStorage(this.products.getValue()), 2500)();
+
   }
 
 }

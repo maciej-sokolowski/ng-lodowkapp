@@ -10,10 +10,13 @@ import * as _ from 'lodash';
 })
 export class UserService {
 
-  public users = new BehaviorSubject([]);
+  public users: BehaviorSubject<User[]> = new BehaviorSubject([]);
 
   constructor(private mdService: ManageDataService) {
-    // this.users.next(mdService.getUsersFromLocalStorage());
+    const data: User[] = mdService.getUsersFromLocalStorage();
+    if (data !== null) {
+      this.users.next(data);
+    }
   }
 
   public getItems() {
@@ -21,12 +24,9 @@ export class UserService {
   }
 
   public insertItem(user: User) {
-
-    console.log(this.users.getValue());
     this.users.next([...this.users.getValue(), user]);
-    _.debounce(this.synchronizeWithLocalStorage, 2500);
-    console.log(this.users.getValue());
-
+    console.log('my store: ', this.users.getValue());
+    this.synchronizeWithLocalStorage();
   }
 
   public updateItem(user: User) {
@@ -34,7 +34,7 @@ export class UserService {
       return element.id !== user.id;
     });
     this.users.next([...newStore, user]);
-    _.debounce(this.synchronizeWithLocalStorage, 2500);
+    this.synchronizeWithLocalStorage();
   }
 
   public deleteItem(user: User) {
@@ -42,10 +42,10 @@ export class UserService {
       return element.id !== user.id;
     });
     this.users.next([...newStore]);
-    _.debounce(this.synchronizeWithLocalStorage, 2500);
+    this.synchronizeWithLocalStorage();
   }
 
   public synchronizeWithLocalStorage() {
-    this.users.subscribe(data => this.mdService.updateUsersToLocalStorage(data));
+    _.debounce(() => this.mdService.updateUsersToLocalStorage(this.users.getValue()), 2500)();
   }
 }

@@ -5,15 +5,19 @@ import {filter, find} from 'rxjs/operators';
 import {ManageDataService} from './manage-data.service';
 import * as _ from 'lodash';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class NoteService {
 
-  public notes = new BehaviorSubject([]);
+  public notes: BehaviorSubject<Note[]> = new BehaviorSubject([]);
 
   constructor(private mdService: ManageDataService) {
-    this.notes.next(this.mdService.getNotesFromLocalStorage());
+    const data: Note[] = mdService.getNotesFromLocalStorage();
+    if (data !== null) {
+      this.notes.next(data);
+    }
   }
 
   public getItems() {
@@ -22,7 +26,7 @@ export class NoteService {
 
   public insertItem(note: Note) {
     this.notes.next([...this.notes.getValue(), note]);
-    _.debounce(this.synchronizeWithLocalStorage, 2500);
+    this.synchronizeWithLocalStorage();
   }
 
   public updateItem(note: Note) {
@@ -30,7 +34,7 @@ export class NoteService {
       return element.id !== note.id;
     });
     this.notes.next([...newStore, note]);
-    _.debounce(this.synchronizeWithLocalStorage, 2500);
+    this.synchronizeWithLocalStorage();
   }
 
   public deleteItem(note: Note) {
@@ -38,7 +42,7 @@ export class NoteService {
       return element.id !== note.id;
     });
     this.notes.next([...newStore]);
-    _.debounce(this.synchronizeWithLocalStorage, 2500);
+    this.synchronizeWithLocalStorage();
   }
 
   public getItemById(id: string) {
@@ -82,6 +86,6 @@ export class NoteService {
   }
 
   public synchronizeWithLocalStorage() {
-    this.notes.subscribe(data => this.mdService.updateNotesToLocalStorage(data));
+    _.debounce(() => this.mdService.updateNotesToLocalStorage(this.notes.getValue()), 2500)();
   }
 }
