@@ -10,6 +10,7 @@ export class ActivityService {
   public activities = new BehaviorSubject(Array<Activity>());
 
   constructor() {
+
   }
 
   public getItems() {
