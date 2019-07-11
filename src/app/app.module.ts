@@ -14,7 +14,7 @@ import { VideoComponent } from './components/FridgeSection/video/video.component
 import { ColorComponent } from './components/RegisterSection/color/color.component';
 import { RegistersummComponent } from './components/RegisterSection/registersumm/registersumm.component';
 import { AvatarComponent } from './components/avatar/avatar.component';
-import { TopBarComponent } from './components/top-bar/top-bar.component';
+import { TopBarComponent } from './components/MainSection/top-bar/top-bar.component';
 import { MembersContainer } from './components/StartSection/members-container/members-container.component';
 import { RegisterinputComponent } from './components/RegisterSection/registerinput/registerinput.component';
 
