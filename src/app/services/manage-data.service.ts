@@ -39,7 +39,7 @@ export class ManageDataService {
   }
 
   getActivitiesFromLocalStorage() {
-    return JSON.stringify(localStorage.getItem('activities'));
+    return JSON.parse(localStorage.getItem('activities'));
   }
 
   updateActivitiesToLocalStorage(activities: Array<Activity>) {
@@ -47,7 +47,7 @@ export class ManageDataService {
   }
 
   getImagesFromLocalStorage() {
-    return JSON.stringify(localStorage.getItem('images'));
+    return JSON.parse(localStorage.getItem('images'));
   }
 
   updateImagesToLocalStorage(images: Array<Image>) {
