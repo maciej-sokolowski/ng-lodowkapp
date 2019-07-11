@@ -1,5 +1,4 @@
-
-.register-background {
+.start-background {
   position: relative;
   width: 1080px;
   height: 1920px;
@@ -17,6 +16,7 @@
     transform: translateX(-50%);
     text-align: center;
   }
+
   &__title {
     font-weight: 300;
     font-size: 68px;
@@ -48,47 +48,4 @@
     color: #5F7891;
     font-size: 16px;
   }
-
-  &__members {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    width: 810px;
-    flex-wrap: wrap;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 908px;
-  }
-
-  &__card {
-    position: relative;
-    width: 214px;
-    height: 255px;
-    background-color: white;
-    border: 1px solid #5F7891;
-    border-radius: 30px;
-    margin: 0 20px 20px;
-  }
-
-  &__card-button {
-    background-image: url("src/assets/add-member.png");
-    width: 63px;
-    height: 63px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 65px;
-  }
-
-  &__card-description {
-    font-size: 19px;
-    color: #5F7891;
-    height: 51px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 53px;
-    text-align: center;
-  }
 }
-

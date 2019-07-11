@@ -1,6 +1,6 @@
 export interface Activity {
   id: string;
-  userId: string; //optional
+  userId: string | 'FRIDGE';
   date: Date;
   message: string;
   priority: number;
