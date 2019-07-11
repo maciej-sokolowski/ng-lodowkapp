@@ -15,8 +15,8 @@ import { VideoComponent } from './components/FridgeSection/video/video.component
 import { ColorComponent } from './components/RegisterSection/color/color.component';
 import { RegistersummComponent } from './components/RegisterSection/registersumm/registersumm.component';
 import { AvatarComponent } from './components/avatar/avatar.component';
-import { WeatherComponent } from './components/weather/weather.component';
-import { WeatherService } from './components/weather/weather.service';
+import { WeatherComponent } from './components/MainSection/weather/weather.component';
+import { WeatherService } from './components/MainSection/weather/weather.service';
 import { MembersContainer } from './components/StartSection/members-container/members-container.component';
 import { RegisterinputComponent } from './components/RegisterSection/registerinput/registerinput.component';
 
