@@ -4,12 +4,12 @@ import {Image} from '../interfaces/Models/image';
 import {BehaviorSubject} from 'rxjs';
 import {ManageDataService} from './manage-data.service';
 import * as _ from 'lodash';
+import {StoreManager} from '../interfaces/store-manager';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ImageService {
-
+export class ImageService implements StoreManager<Image> {
 
   public images: BehaviorSubject<Image[]> = new BehaviorSubject([]);
 
@@ -45,6 +45,10 @@ export class ImageService {
     this.synchronizeWithLocalStorage();
   }
 
+  public synchronizeWithLocalStorage() {
+    _.debounce(() => this.mdService.updateImagesToLocalStorage(this.images.getValue()), 2500)();
+  }
+
   public getItemById(id: string) {
     return this.images.pipe(
       find(images => images === images.filter(element => {
@@ -61,7 +65,5 @@ export class ImageService {
     );
   }
 
-  public synchronizeWithLocalStorage() {
-    _.debounce(() => this.mdService.updateImagesToLocalStorage(this.images.getValue()), 2500)();
-  }
+
 }

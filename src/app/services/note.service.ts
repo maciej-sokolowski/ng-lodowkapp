@@ -4,12 +4,13 @@ import {Note} from '../interfaces/Models/note';
 import {filter, find} from 'rxjs/operators';
 import {ManageDataService} from './manage-data.service';
 import * as _ from 'lodash';
+import {StoreManager} from '../interfaces/store-manager';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class NoteService {
+export class NoteService implements StoreManager<Note> {
 
   public notes: BehaviorSubject<Note[]> = new BehaviorSubject([]);
 
@@ -43,6 +44,10 @@ export class NoteService {
     });
     this.notes.next([...newStore]);
     this.synchronizeWithLocalStorage();
+  }
+
+  public synchronizeWithLocalStorage() {
+    _.debounce(() => this.mdService.updateNotesToLocalStorage(this.notes.getValue()), 2500)();
   }
 
   public getItemById(id: string) {
@@ -85,7 +90,4 @@ export class NoteService {
     );
   }
 
-  public synchronizeWithLocalStorage() {
-    _.debounce(() => this.mdService.updateNotesToLocalStorage(this.notes.getValue()), 2500)();
-  }
 }

@@ -4,12 +4,13 @@ import {User} from '../interfaces/Models/user';
 import {Note} from '../interfaces/Models/note';
 import {Activity} from '../interfaces/Models/activity';
 import {Image} from '../interfaces/Models/image';
+import {DataManager} from '../interfaces/data-manager';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class ManageDataService {
+export class ManageDataService implements DataManager{
 
   constructor() {
   }

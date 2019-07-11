@@ -3,12 +3,14 @@ import {BehaviorSubject} from 'rxjs';
 import {User} from '../interfaces/Models/user';
 import {ManageDataService} from './manage-data.service';
 import * as _ from 'lodash';
+import {StoreManager} from '../interfaces/store-manager';
+import {find} from 'rxjs/operators';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class UserService implements StoreManager<User> {
 
   public users: BehaviorSubject<User[]> = new BehaviorSubject([]);
 
@@ -47,5 +49,13 @@ export class UserService {
 
   public synchronizeWithLocalStorage() {
     _.debounce(() => this.mdService.updateUsersToLocalStorage(this.users.getValue()), 2500)();
+  }
+
+  public getItemById(id: string) {
+    return this.users.pipe(
+      find(users => users === users.filter(element => {
+        return element.id === id;
+      }))
+    );
   }
 }
