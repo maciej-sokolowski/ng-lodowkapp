@@ -17,6 +17,7 @@ export class RegisterComponent implements OnInit {
   userNamee = '';
   userColor: string;
   userAvatar: string;
+  private personType;
   btnSwitch: Array<Number> = [0];
 
   btnNextText = 'Next';
@@ -26,6 +27,12 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
 
+  }
+  userParent() {
+    this.personType = "PARENT";
+  }
+  userChild() {
+    this.personType = "CHILDREN";
   }
 
   setButtonStatus(step) {
@@ -59,7 +66,10 @@ export class RegisterComponent implements OnInit {
     this.registerStep++;
     this.setButtonStatus(this.registerStep);
     if (this.registerStep == 4) {
-      let agregatedInfo = { id: '1', name: this.userNamee, avatar: this.userAvatar, color: this.userColor };
+      if (this.personType == undefined) {
+        this.userParent();
+      }
+      let agregatedInfo = { id: '1', type: this.personType, name: this.userNamee, avatar: this.userAvatar, color: this.userColor };
       this.registerInfo(agregatedInfo);
     }
   }
