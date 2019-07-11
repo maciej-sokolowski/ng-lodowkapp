@@ -4,11 +4,12 @@ import {Product} from '../interfaces/Models/product';
 import {filter, find} from 'rxjs/operators';
 import {ManageDataService} from './manage-data.service';
 import * as _ from 'lodash';
+import {StoreManager} from '../interfaces/store-manager';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
+export class ProductService implements StoreManager<Product> {
 
   public products: BehaviorSubject<Product[]> = new BehaviorSubject([]);
 
@@ -42,6 +43,11 @@ export class ProductService {
     });
     this.products.next([...newStore]);
     this.synchronizeWithLocalStorage();
+  }
+
+  public synchronizeWithLocalStorage() {
+    _.debounce(() => this.mdService.updateProductsToLocalStorage(this.products.getValue()), 2500)();
+
   }
 
   public getItemById(id: string) {
@@ -92,10 +98,4 @@ export class ProductService {
       }))
     );
   }
-
-  public synchronizeWithLocalStorage() {
-    _.debounce(() => this.mdService.updateProductsToLocalStorage(this.products.getValue()), 2500)();
-
-  }
-
 }

@@ -4,11 +4,12 @@ import {BehaviorSubject} from 'rxjs';
 import {Activity} from '../interfaces/Models/activity';
 import {ManageDataService} from './manage-data.service';
 import * as _ from 'lodash';
+import {StoreManager} from '../interfaces/store-manager';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ActivityService {
+export class ActivityService implements StoreManager<Activity> {
   public activities: BehaviorSubject<Activity[]> = new BehaviorSubject([]);
 
   constructor(private mdService: ManageDataService) {
@@ -42,6 +43,10 @@ export class ActivityService {
     });
     this.activities.next([...newStore]);
     this.synchronizeWithLocalStorage();
+  }
+
+  public synchronizeWithLocalStorage() {
+    _.debounce(() => this.mdService.updateActivitiesToLocalStorage(this.activities.getValue()), 2500)();
   }
 
   public getItemById(id: string) {
@@ -90,10 +95,6 @@ export class ActivityService {
         return element.priority === priority;
       }))
     );
-  }
-
-  public synchronizeWithLocalStorage() {
-    _.debounce(() => this.mdService.updateActivitiesToLocalStorage(this.activities.getValue()), 2500)();
   }
 
 }
