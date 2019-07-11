@@ -1,0 +1,39 @@
+.top-bar {
+  height: 190px;
+  color: #5F7891;
+  display: flex;
+  justify-content: space-between;
+  width: 800px;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__date {
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 15px;
+  }
+
+  &__time {
+    font-size: 110px;
+    font-weight: 300;
+  }
+
+  &__button {
+    height: 88px;
+    width: 88px;
+    background-color: #00C3FF;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    transition: .1s;
+
+    &:active {
+      transform: translate(-2px, 2px);
+    }
+  }
+
+}
