@@ -11,10 +11,12 @@ import 'rxjs';
 export class WeatherComponent implements OnInit {
 
   myWeather: CurrentWeather;
-  location;
+  location: any;
   temperature: string;
   description: string;
-  icon;
+  icon: string;
+  obs: any;
+
   constructor(private ws: WeatherService) { }
 
   ngOnInit() {
@@ -25,15 +27,13 @@ export class WeatherComponent implements OnInit {
       const lat = this.location.latitude;
       const lon = this.location.longitude;
 
+
       this.ws.localWeather(lat, lon).subscribe(
         (data: any) => {
           console.log(data);
           this.myWeather = new CurrentWeather(data.main.temp, data.weather[0].icon, data.weather[0].description);
-
           this.temperature = data.main.temp.toFixed(1);
-
           this.description = data.weather[0].description;
-
           this.icon = data.weather[0].icon.split("").reverse().join("");
         }
       )

@@ -5,10 +5,8 @@
   width: 420px;
   height: 190px;
   color: #5F7891;
-  font-family: 'Open Sans';
   background-color: #fff;
   border-radius: 10px;
-
 
   &__temperature {
     font-size: 64px;
@@ -22,14 +20,6 @@
   &__description::first-letter {
     text-transform: uppercase;
   }
-
-
-
-
-
-
-
-
 
   &__icon {
     width: 125px;
