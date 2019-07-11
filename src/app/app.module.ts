@@ -17,6 +17,7 @@ import { RegistersummComponent } from './components/RegisterSection/registersumm
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { WeatherComponent } from './components/MainSection/weather/weather.component';
 import { WeatherService } from './components/MainSection/weather/weather.service';
+import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { MembersContainer } from './components/StartSection/members-container/members-container.component';
 import { RegisterinputComponent } from './components/RegisterSection/registerinput/registerinput.component';
 
@@ -38,6 +39,7 @@ import { RegisterinputComponent } from './components/RegisterSection/registerinp
     ColorComponent,
     AvatarComponent,
     WeatherComponent,
+    TopBarComponent,
     RegistersummComponent
   ],
   imports: [

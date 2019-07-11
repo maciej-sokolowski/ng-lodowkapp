@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
-import {User} from '../interfaces/Models/user';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { User } from '../interfaces/Models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +18,8 @@ export class UserService {
 
   public insertItem(user: User) {
     this.users.next([...this.users.getValue(), user]);
+    console.log(this.users.getValue());
+
   }
 
   public updateItem(user: User) {
