@@ -1,6 +1,7 @@
 export class CurrentWeather {
-    constructor(public temp: string,
+    constructor(
+        public temp: string,
         public icon: string,
-        public weatherKing: string) {
+        public weatherKind: string) {
     }
 }
