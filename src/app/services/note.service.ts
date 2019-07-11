@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {Note} from '../interfaces/Models/note';
 import {filter, find} from 'rxjs/operators';
+import {ManageDataService} from './manage-data.service';
+import * as _ from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,8 @@ export class NoteService {
 
   public notes = new BehaviorSubject(Array<Note>());
 
-  constructor() {
+  constructor(private mdService: ManageDataService) {
+    this.notes.next(this.mdService.getNotesFromLocalStorage());
   }
 
   public getItems() {
@@ -19,6 +22,7 @@ export class NoteService {
 
   public insertItem(note: Note) {
     this.notes.next([...this.notes.getValue(), note]);
+    _.debounce(this.synchronizeWithLocalStorage, 2500);
   }
 
   public updateItem(note: Note) {
@@ -26,6 +30,7 @@ export class NoteService {
       return element.id !== note.id;
     });
     this.notes.next([...newStore, note]);
+    _.debounce(this.synchronizeWithLocalStorage, 2500);
   }
 
   public deleteItem(note: Note) {
@@ -33,6 +38,7 @@ export class NoteService {
       return element.id !== note.id;
     });
     this.notes.next([...newStore]);
+    _.debounce(this.synchronizeWithLocalStorage, 2500);
   }
 
   public getItemById(id: string) {
@@ -73,5 +79,9 @@ export class NoteService {
         return element.date.valueOf() >= date.valueOf();
       }))
     );
+  }
+
+  public synchronizeWithLocalStorage() {
+    this.notes.subscribe(data => this.mdService.updateNotesToLocalStorage(data));
   }
 }
