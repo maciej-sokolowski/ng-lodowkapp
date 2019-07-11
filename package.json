@@ -19,7 +19,14 @@
     "@angular/platform-browser": "~8.0.0",
     "@angular/platform-browser-dynamic": "~8.0.0",
     "@angular/router": "~8.0.0",
+<<<<<<< HEAD
     "rxjs": "~6.4.0",
+=======
+    "@ngrx/store": "^8.0.1",
+    "@rxjs/rx": "^4.1.0",
+    "ngx-youtube-player": "^7.1.1",
+    "rxjs": "^6.4.0",
+>>>>>>> 6929e1e594af1a74a058d711b632e49b506f4ab4
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
   },

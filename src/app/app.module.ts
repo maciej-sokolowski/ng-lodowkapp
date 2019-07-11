@@ -1,6 +1,7 @@
 // Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 // Components
@@ -14,6 +15,8 @@ import { VideoComponent } from './components/FridgeSection/video/video.component
 import { ColorComponent } from './components/RegisterSection/color/color.component';
 import { RegistersummComponent } from './components/RegisterSection/registersumm/registersumm.component';
 import { AvatarComponent } from './components/avatar/avatar.component';
+import { WeatherComponent } from './components/MainSection/weather/weather.component';
+import { WeatherService } from './components/MainSection/weather/weather.service';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { MembersContainer } from './components/StartSection/members-container/members-container.component';
 import { RegisterinputComponent } from './components/RegisterSection/registerinput/registerinput.component';
@@ -35,15 +38,17 @@ import { RegisterinputComponent } from './components/RegisterSection/registerinp
     VideoComponent,
     ColorComponent,
     AvatarComponent,
+    WeatherComponent,
     TopBarComponent,
     RegistersummComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [WeatherService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
