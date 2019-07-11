@@ -39,14 +39,16 @@ export class RegisterComponent implements OnInit {
       this.btnIsDisabled = true;
     }
   }
+  activateBtn() {
+    this.btnIsDisabled = false;
+    this.btnSwitch.push(this.registerStep);
+  }
 
   onClickPrev() {
     this.registerStep--;
     this.setButtonStatus(this.registerStep);
     if (this.registerStep < 0) {
-      this.registerStep = 0;
-      console.log('out');
-      //tu należy wywołać funkcję do wyjścia do głównego widoku.
+      this.registerStep = 0; //out to /start path
       return;
     } else if (this.registerStep == 2) {
       this.btnNextText = 'Next';
@@ -73,18 +75,15 @@ export class RegisterComponent implements OnInit {
 
   getColor(color: string) {
     this.userColor = color;
-    this.btnIsDisabled = false;
-    this.btnSwitch.push(this.registerStep);
+    this.activateBtn();
   }
 
   getAvatar(avatar: string) {
     this.userAvatar = avatar;
-    this.btnIsDisabled = false;
-    this.btnSwitch.push(this.registerStep);
+    this.activateBtn();
   }
 
   registerInfo(userInfo: User) {
-    console.log(userInfo, 'cały user');
-    this.userService.insertItem(userInfo);
+    this.userService.insertItem(userInfo); //push user to store and  out to /start path
   }
 }
