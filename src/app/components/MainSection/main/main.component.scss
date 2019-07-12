@@ -1,0 +1,56 @@
+
+
+.main-wrapper {
+  width: 1080px;
+  height: 1920px;
+}
+
+.widgets-wrapper {
+	width: 880px;
+	height: 1340px;
+	position: absolute;
+	left: 100px;
+	top: 350px;
+	display: grid;
+	grid-gap: 40px;
+	grid-template-columns: 420px 420px;
+	grid-template-rows: 420px 420px 420px;
+
+	&__item {
+		position: relative;
+		border: 1px dashed #5F7891;
+		border-radius: 10px;
+		opacity: 0.4;
+
+		&--splited {
+			border-style: none;
+			display: grid;
+			grid-row-gap: 40px;
+			opacity: 1;
+		}
+	}
+
+	&__item-button {
+		display: block;
+		width: 63px;
+		height: 63px;
+		position: absolute;
+		left: 50%;
+		// top: 30%;
+		bottom: 50%;
+		// transform: translate(-50%, -50%);
+		transform: translateX(-50%);
+		background-image: url("src/assets/add-member.png");
+		// opacity: 0.4;
+	}
+
+	&__item-description {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		bottom: 25%;
+		font-size: 30px;
+		color: #5F7891;
+	}
+
+}

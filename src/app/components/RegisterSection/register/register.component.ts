@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {User} from 'src/app/interfaces/Models/user';
-import {UserService} from 'src/app/services/user.service';
+import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/interfaces/Models/user';
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -17,6 +17,8 @@ export class RegisterComponent implements OnInit {
   userNamee = '';
   userColor: string;
   userAvatar: string;
+  private personType;
+  btnSwitch: Array<Number> = [0];
 
   btnNextText = 'Next';
 
@@ -26,50 +28,53 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
 
   }
+  userParent() {
+    this.personType = "PARENT";
+  }
+  userChild() {
+    this.personType = "CHILDREN";
+  }
 
-  setButtonStatus() {
-    let array = [this.userNamee, this.userAvatar, this.userColor, 'summary'];
-    console.log(array[this.registerStep], this.registerStep);
-    if (array[this.registerStep] == undefined) {
-      this.btnIsDisabled = true;
-
-    } else if (this.registerStep == 3) {
+  setButtonStatus(step) {
+    if (this.btnSwitch.includes(step)) {
       this.btnIsDisabled = false;
+    } else if (this.registerStep === 3) {
       this.btnNextText = 'Confirm and add family member';
-    } else {
       this.btnIsDisabled = false;
     }
+    else {
+      this.btnIsDisabled = true;
+    }
+  }
+  activateBtn() {
+    this.btnIsDisabled = false;
+    this.btnSwitch.push(this.registerStep);
   }
 
   onClickPrev() {
     this.registerStep--;
+    this.setButtonStatus(this.registerStep);
     if (this.registerStep < 0) {
-      this.registerStep = 0;
-
-      console.log('out');
-      //tu należy wywołać funkcję do wyjścia do głównego widoku.
+      this.registerStep = 0; //out to /start path
       return;
-    } else if (this.registerStep == 2) {
+    } else if (this.registerStep === 2) {
       this.btnNextText = 'Next';
     }
-    this.setButtonStatus();
   }
 
   onClickNext() {
     this.registerStep++;
-
-    if (this.registerStep == 4) {
-      console.log('stworzono użytkownika');
-      let agregatedInfo = {id: '1', name: this.userNamee, avatar: this.userAvatar, color: this.userColor};
+    this.setButtonStatus(this.registerStep);
+    if (this.registerStep === 4) {
+      if (this.personType === undefined) {
+        this.userParent();
+      }
+      let agregatedInfo = { id: '1', type: this.personType, name: this.userNamee, avatar: this.userAvatar, color: this.userColor };
       this.registerInfo(agregatedInfo);
-
     }
-
-    this.setButtonStatus();
   }
 
   getName(user: string) {
-    console.log(user.length, 'z emmitera');
     if (user.length > 0) {
       this.btnIsDisabled = false;
       this.userNamee = user;
@@ -80,18 +85,15 @@ export class RegisterComponent implements OnInit {
 
   getColor(color: string) {
     this.userColor = color;
-    console.log(color, 'z emmitera');
-    this.btnIsDisabled = false;
+    this.activateBtn();
   }
 
   getAvatar(avatar: string) {
     this.userAvatar = avatar;
-    console.log(avatar, 'z emmitera');
-    this.btnIsDisabled = false;
+    this.activateBtn();
   }
 
   registerInfo(userInfo: User) {
-    console.log(userInfo, 'cały user');
-    this.userService.insertItem(userInfo);
+    this.userService.insertItem(userInfo); //push user to store and  out to /start path
   }
 }
