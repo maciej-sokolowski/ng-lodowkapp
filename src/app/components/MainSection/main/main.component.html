@@ -1,35 +1,35 @@
 <div class="main-wrapper">
 	<app-top-bar></app-top-bar>
-
+	<app-widgets-list *ngIf="isOpen" [isSmallWidget]="emitIsSmallWidget" [largeWidgets]="emitLargeWidgetsList" [smallWidgets]="emitSmallWidgetsList" (emitClose)="onClose($event)"></app-widgets-list>
 	<div class="widgets-wrapper">
 		<div id="widget-1" class="widgets-wrapper__item">
-			<span class="widgets-wrapper__item-button"></span>
+			<span class="widgets-wrapper__item-button" (click)="initList()"></span>
 			<p class="widgets-wrapper__item-description">Add widget</p>
 		</div>
 		<div id="widget-2" class="widgets-wrapper__item">
-			<span class="widgets-wrapper__item-button"></span>
+			<span class="widgets-wrapper__item-button" (click)="initList()"></span>
 			<p class="widgets-wrapper__item-description">Add widget</p>
 		</div>
 		<div id="widget-3" class="widgets-wrapper__item">
-			<span class="widgets-wrapper__item-button"></span>
+			<span class="widgets-wrapper__item-button" (click)="initList()"></span>
 			<p class="widgets-wrapper__item-description">Add widget</p>
 		</div>
 		<div class="widgets-wrapper__item widgets-wrapper__item--splited">
 			<div id="widget-4" class="widgets-wrapper__item">
-				<span class="widgets-wrapper__item-button"></span>
+				<span class="widgets-wrapper__item-button" (click)="initList()"></span>
 				<p class="widgets-wrapper__item-description">Add widget</p>
 			</div>
 			<div id="widget-5" class="widgets-wrapper__item">
-				<span class="widgets-wrapper__item-button"></span>
+				<span class="widgets-wrapper__item-button" (click)="initList()"></span>
 				<p class="widgets-wrapper__item-description">Add widget</p>
 			</div>
 		</div>
 		<div id="widget-6" class="widgets-wrapper__item">
-			<span class="widgets-wrapper__item-button"></span>
+			<span class="widgets-wrapper__item-button" (click)="initList()"></span>
 			<p class="widgets-wrapper__item-description">Add widget</p>
 		</div>
 		<div id="widget-7" class="widgets-wrapper__item">
-			<span class="widgets-wrapper__item-button"></span>
+			<span class="widgets-wrapper__item-button" (click)="initList()"></span>
 			<p class="widgets-wrapper__item-description">Add widget</p>
 		</div>
 	</div>
