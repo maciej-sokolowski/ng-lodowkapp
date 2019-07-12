@@ -36,8 +36,10 @@
 		height: 63px;
 		position: absolute;
 		left: 50%;
-		top: 30%;
-		transform: translate(-50%, -50%);
+		// top: 30%;
+		bottom: 50%;
+		// transform: translate(-50%, -50%);
+		transform: translateX(-50%);
 		background-image: url("src/assets/add-member.png");
 		// opacity: 0.4;
 	}
