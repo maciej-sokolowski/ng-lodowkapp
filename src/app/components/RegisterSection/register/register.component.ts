@@ -29,9 +29,12 @@ export class RegisterComponent implements OnInit {
 
   }
 
-  setButtonStatus(step) {
+  setButtonStatus(step: number) {
     if (this.btnSwitch.includes(step)) {
       this.btnIsDisabled = false;
+      if (this.registerStep === 1 && this.userNamee.length === 0) {
+        this.btnIsDisabled = true;
+      }
     } else if (this.registerStep === 4) {
       this.btnNextText = 'Confirm and add family member';
       this.btnIsDisabled = false;
@@ -69,15 +72,16 @@ export class RegisterComponent implements OnInit {
     console.log(userType, "z emitra");
     this.personType = userType;
     this.activateBtn();
-
   }
 
   getName(user: string) {
     if (user.length > 0) {
-      this.btnIsDisabled = false;
+      this.activateBtn();
       this.userNamee = user;
     } else if (user.length === 0) {
-      this.btnIsDisabled = true;
+      console.log(user.length);
+      this.userNamee = "";
+      this.setButtonStatus(this.registerStep);
     }
   }
 

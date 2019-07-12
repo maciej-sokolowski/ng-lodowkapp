@@ -1,4 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-usertype',
@@ -8,13 +9,28 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class UsertypeComponent implements OnInit {
 
   private person: string;
+  private isDisabled: boolean;
+
+  @Input()
+  isChecked: string;
 
   @Output()
   emitUserType = new EventEmitter();
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
+    this.isFirstAccount();
+  }
+
+  isFirstAccount() {
+    let check = this.userService.getItems();
+    console.log(check.value.length);
+    if (check.value.length === 0) {
+      this.isChecked = 'checked';
+      this.userParent();
+      this.isDisabled = true;
+    }
   }
 
   choseUserType(value: string) {
