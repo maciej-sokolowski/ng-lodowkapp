@@ -1,11 +1,26 @@
-.stream-image {
+.stream-view {
   width: 880px;
   height: 1433px;
   background-color: #5F7891;
-  border-radius: 10px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  &__info {
+    position: absolute;
+    font-size: 40px;
+    font-family: "Open Sans", sans-serif;
+    color: #FFF;
+  }
+
+  &__video {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 15px;
+  }
 }
 
-img {
-  width: 880px;
-  height: 1433px;
-}
+

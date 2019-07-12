@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {StreamService} from '../../../services/stream.service';
 import {Socket} from 'ngx-socket-io';
 
 @Component({
