@@ -1,15 +1,22 @@
 import {Injectable} from '@angular/core';
-import {Observable, Observer, Subject} from 'rxjs';
+import {Socket} from 'ngx-socket-io';
 
 @Injectable({
   providedIn: 'root'
 })
-export class WebsocketService {
+export class StreamService {
+
+  constructor(private socket: Socket) {
+  }
+
+  getStream() {
+    // return this.socket.on('image', (image) => console.log(image));
+  }
+
 
   // private subject: Subject<MessageEvent>;
   //
-  // constructor() {
-  // }
+
   //
   // private create(url: string): Subject<MessageEvent> {
   //   let webSocket = new WebSocket(url);

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {StreamService} from '../../../services/stream.service';
+import {Socket} from 'ngx-socket-io';
 
 @Component({
   selector: 'app-camera',
@@ -7,10 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CameraComponent implements OnInit {
 
-  constructor() { }
+  public imageUrl: string;
+
+  constructor(private socket: Socket) {
+  }
 
   ngOnInit() {
-
+    this.socket.on('image', (image) => this.imageUrl = `data:image/jpeg;base64,${image}`);
   }
 
 }
+
+

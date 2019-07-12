@@ -23,7 +23,7 @@ import {MembersContainer} from './components/StartSection/members-container/memb
 import {RegisterinputComponent} from './components/RegisterSection/registerinput/registerinput.component';
 
 
-const fridgeConnectionConfig: SocketIoConfig = {url: '10.254.0.40:3000', options: {}};
+const fridgeConnectionConfig: SocketIoConfig = {url: 'http://10.254.0.40:3000/', options: {}};
 
 @NgModule({
   declarations: [
