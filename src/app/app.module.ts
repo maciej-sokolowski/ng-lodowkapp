@@ -11,7 +11,7 @@ import {RegisterComponent} from './components/RegisterSection/register/register.
 import {FridgeComponent} from './components/FridgeSection/fridge/fridge.component';
 import {ProductsComponent} from './components/FridgeSection/products/products.component';
 import {MainComponent} from './components/MainSection/main/main.component';
-import {VideoComponent} from './components/FridgeSection/video/video.component';
+import {CameraComponent} from './components/FridgeSection/camera/camera.component';
 import {ColorComponent} from './components/RegisterSection/color/color.component';
 import {RegistersummComponent} from './components/RegisterSection/registersumm/registersumm.component';
 import {AvatarComponent} from './components/avatar/avatar.component';
@@ -33,7 +33,7 @@ import {RegisterinputComponent} from './components/RegisterSection/registerinput
     FridgeComponent,
     ProductsComponent,
     MainComponent,
-    VideoComponent,
+    CameraComponent,
     ColorComponent,
     AvatarComponent,
     WeatherComponent,
