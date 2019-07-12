@@ -45,7 +45,7 @@ export class ActivityService implements StoreManager<Activity> {
     this.synchronizeWithLocalStorage();
   }
 
-  public synchronizeWithLocalStorage() {
+  private synchronizeWithLocalStorage() {
     _.debounce(() => this.mdService.updateActivitiesToLocalStorage(this.activities.getValue()), 2500)();
   }
 

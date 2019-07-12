@@ -45,7 +45,7 @@ export class ProductService implements StoreManager<Product> {
     this.synchronizeWithLocalStorage();
   }
 
-  public synchronizeWithLocalStorage() {
+  private synchronizeWithLocalStorage() {
     _.debounce(() => this.mdService.updateProductsToLocalStorage(this.products.getValue()), 2500)();
 
   }
