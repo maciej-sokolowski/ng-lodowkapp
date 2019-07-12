@@ -1,6 +1,12 @@
-<div style="color: red;">
-  <input (click)="userParent()" type="radio" id="parent" name="personType" value="parent" checked={{isChecked}}>
-  <label for="contactChoice1">Parent</label>
-  <input [disabled]="isDisabled" (click)="userChild()" type="radio" id="" name="personType" value="phone">
-  <label for="contactChoice2">Child</label>
+<div class="wrapper">
+  <label class="container">
+    <input (click)="userParent()" type="radio" checked="checked" name="radio" checked={{isChecked}}>
+    <span class="checkmark"></span>
+    Parent
+  </label>
+  <label class="container">
+    <input [disabled]="isDisabled" (click)="userChild()" type="radio" name="radio">
+    <span class="checkmark"></span>
+    Child
+  </label>
 </div>

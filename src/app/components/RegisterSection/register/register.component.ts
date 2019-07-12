@@ -69,7 +69,6 @@ export class RegisterComponent implements OnInit {
   }
 
   getUserType(userType: string) {
-    console.log(userType, "z emitra");
     this.personType = userType;
     this.activateBtn();
   }

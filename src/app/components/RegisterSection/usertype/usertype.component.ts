@@ -25,8 +25,9 @@ export class UsertypeComponent implements OnInit {
 
   isFirstAccount() {
     let check = this.userService.getItems();
-    console.log(check.value.length);
     if (check.value.length === 0) {
+      console.log(check.value.length);
+
       this.isChecked = 'checked';
       this.userParent();
       this.isDisabled = true;
