@@ -1,13 +1,19 @@
 import {Component, OnInit} from '@angular/core';
 
+enum ActiveView {
+  Fridge = 1,
+  List = 2,
+}
+
 @Component({
   selector: 'app-fridge',
   templateUrl: './fridge.component.html',
   styleUrls: ['./fridge.component.scss']
 })
+
 export class FridgeComponent implements OnInit {
 
-  isCameraVisible: boolean = false;
+  active = ActiveView.Fridge;
 
   constructor() {
   }
@@ -16,11 +22,11 @@ export class FridgeComponent implements OnInit {
   }
 
   setCameraVisible() {
-    this.isCameraVisible = true;
+    this.active = ActiveView.Fridge;
   }
 
   setListVisible() {
-    this.isCameraVisible = false;
+    this.active = ActiveView.List;
   }
 
 }

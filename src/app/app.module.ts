@@ -4,6 +4,7 @@ import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
+import {SocketIoModule, SocketIoConfig} from 'ngx-socket-io';
 // Components
 import {AppComponent} from './app.component';
 import {StartComponent} from './components/StartSection/start/start.component';
@@ -21,6 +22,8 @@ import {TopBarComponent} from './components/MainSection/top-bar/top-bar.componen
 import {MembersContainer} from './components/StartSection/members-container/members-container.component';
 import {RegisterinputComponent} from './components/RegisterSection/registerinput/registerinput.component';
 
+
+const fridgeConnectionConfig: SocketIoConfig = {url: '10.254.0.40:3000', options: {}};
 
 @NgModule({
   declarations: [
@@ -44,7 +47,8 @@ import {RegisterinputComponent} from './components/RegisterSection/registerinput
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    SocketIoModule.forRoot(fridgeConnectionConfig)
   ],
   providers: [WeatherService],
   bootstrap: [AppComponent]
