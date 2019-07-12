@@ -28,17 +28,11 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
 
   }
-  userParent() {
-    this.personType = "PARENT";
-  }
-  userChild() {
-    this.personType = "CHILDREN";
-  }
 
   setButtonStatus(step) {
     if (this.btnSwitch.includes(step)) {
       this.btnIsDisabled = false;
-    } else if (this.registerStep === 3) {
+    } else if (this.registerStep === 4) {
       this.btnNextText = 'Confirm and add family member';
       this.btnIsDisabled = false;
     }
@@ -57,7 +51,7 @@ export class RegisterComponent implements OnInit {
     if (this.registerStep < 0) {
       this.registerStep = 0; //out to /start path
       return;
-    } else if (this.registerStep === 2) {
+    } else if (this.registerStep === 3) {
       this.btnNextText = 'Next';
     }
   }
@@ -65,13 +59,17 @@ export class RegisterComponent implements OnInit {
   onClickNext() {
     this.registerStep++;
     this.setButtonStatus(this.registerStep);
-    if (this.registerStep === 4) {
-      if (this.personType === undefined) {
-        this.userParent();
-      }
+    if (this.registerStep === 5) {
       let agregatedInfo = { id: '1', type: this.personType, name: this.userNamee, avatar: this.userAvatar, color: this.userColor };
       this.registerInfo(agregatedInfo);
     }
+  }
+
+  getUserType(userType: string) {
+    console.log(userType, "z emitra");
+    this.personType = userType;
+    this.activateBtn();
+
   }
 
   getName(user: string) {

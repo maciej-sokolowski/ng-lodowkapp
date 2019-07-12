@@ -9,23 +9,17 @@
 
     <div class="component-container__middle">
       <!-- to miejsce na component -->
-
-      <app-registerinput *ngIf="this.registerStep==0" (emitName)="getName($event)" [userName]="userNamee">
+      <app-usertype *ngIf="this.registerStep==0" (emitUserType)="getUserType($event)"></app-usertype>
+      <app-registerinput *ngIf="this.registerStep==1" (emitName)="getName($event)" [userName]="userNamee">
       </app-registerinput>
-      <app-avatar *ngIf="this.registerStep==1" (emitAvatar)="getAvatar($event)" [chosenAvatar]="userAvatar">
+      <app-avatar *ngIf="this.registerStep==2" (emitAvatar)="getAvatar($event)" [chosenAvatar]="userAvatar">
       </app-avatar>
-      <app-color *ngIf="this.registerStep==2" (emitColor)="getColor($event)" [chosenColor]="userColor"></app-color>
+      <app-color *ngIf="this.registerStep==3" (emitColor)="getColor($event)" [chosenColor]="userColor"></app-color>
 
-      <ng-container *ngIf="this.registerStep==3">
+      <ng-container *ngIf="this.registerStep==4">
         <h2 class="header-container__headline--h2">Does that sound alright?</h2>
         <p class="header-container__paragraph"> Check if everything is in order and confirm to create an account or go
           back to make changes.</p>
-        <div style="color: red;">
-          <input (click)="userParent()" type="radio" id="parent" name="personType" value="parent">
-          <label for="contactChoice1">Parent</label>
-          <input (click)="userChild()" type="radio" id="" name="personType" value="phone">
-          <label for="contactChoice2">Child</label>
-        </div>
         <app-registersumm class="component-container__middle--summary" [userName]="userNamee"
           [chosenAvatar]="userAvatar" [chosenColor]="userColor">
         </app-registersumm>
@@ -40,9 +34,9 @@
       class="nav-buttons__btn nav-buttons__btn--prev">Back</button>
     <button *ngIf="this.registerStep>0" (click)="onClickPrev()"
       class="nav-buttons__btn nav-buttons__btn--prev">Back</button>
-    <button [hidden]="this.registerStep==3" (click)="onClickNext()" [disabled]="btnIsDisabled" id="next"
+    <button [hidden]="this.registerStep==4" (click)="onClickNext()" [disabled]="btnIsDisabled" id="next"
       class="nav-buttons__btn nav-buttons__btn--next">{{btnNextText}}</button>
-    <button *ngIf="this.registerStep==3" (click)="onClickNext()" class="nav-buttons__btn nav-buttons__btn--next"
+    <button *ngIf="this.registerStep==4" (click)="onClickNext()" class="nav-buttons__btn nav-buttons__btn--next"
       routerLink="/start">{{btnNextText}}</button>
   </div>
 </div>
