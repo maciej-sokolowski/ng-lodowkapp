@@ -20,6 +20,7 @@ import {WeatherService} from './components/MainSection/weather/weather.service';
 import {TopBarComponent} from './components/MainSection/top-bar/top-bar.component';
 import {MembersContainer} from './components/StartSection/members-container/members-container.component';
 import {RegisterinputComponent} from './components/RegisterSection/registerinput/registerinput.component';
+import { WidgetsListComponent } from './components/MainSection/widgets-list/widgets-list.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import {RegisterinputComponent} from './components/RegisterSection/registerinput
     AvatarComponent,
     WeatherComponent,
     TopBarComponent,
-    RegistersummComponent
+    RegistersummComponent,
+    WidgetsListComponent
   ],
   imports: [
     BrowserModule,
