@@ -1,1 +1,19 @@
-fridge works
+<div class="fridge-wrapper">
+  <h1 class="fridge-wrapper__header">Your products</h1>
+  <div class="nav-buttons">
+    <button class="nav-buttons__btn" [class.nav-buttons__btn--activated]="isCameraVisible" (click)="setCameraVisible()">Fridge</button>
+    <button class="nav-buttons__btn" [class.nav-buttons__btn--activated]="!isCameraVisible" (click)="setListVisible()">List</button>
+  </div>
+  <p class="instruction">
+    <span class="instruction__strong">Tap on products</span> to add them to the list
+  </p>
+  <div [ngSwitch]="isCameraVisible">
+    <app-camera *ngSwitchCase="true"></app-camera>
+    <app-products *ngSwitchCase="false"></app-products>
+  </div>
+
+
+
+
+
+</div>

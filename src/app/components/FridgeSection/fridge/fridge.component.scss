@@ -1,0 +1,71 @@
+.fridge-wrapper {
+  width: 1080px;
+  height: 1920px;
+  margin: 160px auto 170px auto;
+  background-image: url("~src/assets/fridgeBackground.png");
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 81px 100px 120px 100px;
+
+  &__header {
+    font-size: 46px;
+    line-height: 62px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: lighter;
+    color: #5F7891;
+    margin-bottom: 21px;
+  }
+}
+
+.nav-buttons {
+  margin-bottom: 73px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
+  &__btn {
+    background-color: #fff;
+    color: #00C3FF;
+    width: 163px;
+    height: 69px;
+    border: 1px solid #00C3FF;
+    font-size: 24px;
+    line-height: 33px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: normal;
+    text-align: center;
+
+    &:first-child {
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+    }
+
+    &:last-child {
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+
+    }
+
+    &--activated {
+      background-color: #00C3FF;
+      color: #fff;
+    }
+
+  }
+}
+
+.instruction {
+  font-size: 16px;
+  color: #5F7891;
+  line-height: 22px;
+  margin-bottom: 38px;
+
+  &__strong {
+    font-weight: bold;
+  }
+
+}
