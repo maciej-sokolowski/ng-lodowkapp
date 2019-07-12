@@ -38,7 +38,7 @@ export class RegisterComponent implements OnInit {
   setButtonStatus(step) {
     if (this.btnSwitch.includes(step)) {
       this.btnIsDisabled = false;
-    } else if (this.registerStep == 3) {
+    } else if (this.registerStep === 3) {
       this.btnNextText = 'Confirm and add family member';
       this.btnIsDisabled = false;
     }
@@ -57,7 +57,7 @@ export class RegisterComponent implements OnInit {
     if (this.registerStep < 0) {
       this.registerStep = 0; //out to /start path
       return;
-    } else if (this.registerStep == 2) {
+    } else if (this.registerStep === 2) {
       this.btnNextText = 'Next';
     }
   }
@@ -65,8 +65,8 @@ export class RegisterComponent implements OnInit {
   onClickNext() {
     this.registerStep++;
     this.setButtonStatus(this.registerStep);
-    if (this.registerStep == 4) {
-      if (this.personType == undefined) {
+    if (this.registerStep === 4) {
+      if (this.personType === undefined) {
         this.userParent();
       }
       let agregatedInfo = { id: '1', type: this.personType, name: this.userNamee, avatar: this.userAvatar, color: this.userColor };
