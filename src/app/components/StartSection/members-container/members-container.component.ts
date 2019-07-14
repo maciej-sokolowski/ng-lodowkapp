@@ -23,7 +23,7 @@ export class MembersContainer implements OnInit {
       console.log('brak');
       return;
     } else {
-      this.users = [...this.userService.users.value];
+      this.users = [...this.userService.users.value].reverse(); //usuń .reverse() jeśli chcesz wyświetlić userów chronologocznie
     }
   }
 }
