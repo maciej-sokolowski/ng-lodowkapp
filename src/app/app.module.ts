@@ -20,8 +20,6 @@ import { WeatherService } from './components/MainSection/weather/weather.service
 import { TopBarComponent } from './components/MainSection/top-bar/top-bar.component';
 import { MembersContainer } from './components/StartSection/members-container/members-container.component';
 import { RegisterinputComponent } from './components/RegisterSection/registerinput/registerinput.component';
-import { YouTubeComponent } from './components/MainSection/youtube-widget/you-tube.component';
-import { YoutubeComponent } from './components/MainSection/youtube-widget/youtube-content/youtube.component';
 
 
 @NgModule({
@@ -41,8 +39,6 @@ import { YoutubeComponent } from './components/MainSection/youtube-widget/youtub
     WeatherComponent,
     TopBarComponent,
     RegistersummComponent,
-    YouTubeComponent,
-    YoutubeComponent,
   ],
   imports: [
     BrowserModule,
