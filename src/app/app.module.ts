@@ -20,6 +20,7 @@ import { WeatherService } from './components/MainSection/weather/weather.service
 import { TopBarComponent } from './components/MainSection/top-bar/top-bar.component';
 import { MembersContainer } from './components/StartSection/members-container/members-container.component';
 import { RegisterinputComponent } from './components/RegisterSection/registerinput/registerinput.component';
+import { YoutubePlayerComponent } from './components/YoutubeSection/youtube-player/youtube-player.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { RegisterinputComponent } from './components/RegisterSection/registerinp
     WeatherComponent,
     TopBarComponent,
     RegistersummComponent,
+    YoutubePlayerComponent,
   ],
   imports: [
     BrowserModule,
