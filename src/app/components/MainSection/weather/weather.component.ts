@@ -30,7 +30,6 @@ export class WeatherComponent implements OnInit {
 
       this.ws.localWeather(lat, lon).subscribe(
         (data: any) => {
-          console.log(data);
           this.myWeather = new CurrentWeather(data.main.temp, data.weather[0].icon, data.weather[0].description);
           this.temperature = data.main.temp.toFixed(1);
           this.description = data.weather[0].description;
