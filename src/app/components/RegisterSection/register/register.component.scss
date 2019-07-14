@@ -47,11 +47,10 @@
       margin: 0 120px 0;
 
       &--summary {
-        display: flex;
-        min-width: fit-content;
-        justify-content: center;
-        align-items: center;
-        height: 400px;
+        margin: auto;
+        padding-top: 25px;
+        width: 280px;
+        height: 335px;
         color: rgb(37, 116, 194);
       }
     }

@@ -1,4 +1,8 @@
 <div class="members-container">
+  <div class="logged" *ngFor="let user of users">
+    <app-registersumm class="component-container__middle--summary" [userName]="user.name" [chosenAvatar]="user.avatar"
+      [chosenColor]="user.color"></app-registersumm>
+  </div>
   <a routerLink="/register" class="members-container__card">
     <span class="members-container__card-button"></span>
     <p class="members-container__card-description">Add new<br>member</p>

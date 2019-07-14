@@ -20,9 +20,10 @@
         <h2 class="header-container__headline--h2">Does that sound alright?</h2>
         <p class="header-container__paragraph"> Check if everything is in order and confirm to create an account or go
           back to make changes.</p>
-        <app-registersumm class="component-container__middle--summary" [userName]="userNamee"
-          [chosenAvatar]="userAvatar" [chosenColor]="userColor">
-        </app-registersumm>
+        <div class="component-container__middle--summary">
+          <app-registersumm [userName]="userNamee" [chosenAvatar]="userAvatar" [chosenColor]="userColor">
+          </app-registersumm>
+        </div>
       </ng-container>
 
       <!-- to miejsce na component -->

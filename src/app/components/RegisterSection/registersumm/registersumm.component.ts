@@ -22,5 +22,4 @@ export class RegistersummComponent implements OnInit {
     // this.chosenAvatar = 'cat';
     // this.chosenColor = 'pink';
   }
-
 }
