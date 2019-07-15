@@ -19,10 +19,14 @@ import {AvatarComponent} from './components/avatar/avatar.component';
 import {WeatherComponent} from './components/MainSection/weather/weather.component';
 import {WeatherService} from './components/MainSection/weather/weather.service';
 import {TopBarComponent} from './components/MainSection/top-bar/top-bar.component';
-import {MembersContainer} from './components/StartSection/members-container/members-container.component';
+import {MembersContainerComponent} from './components/StartSection/members-container/members-container.component';
 import {RegisterinputComponent} from './components/RegisterSection/registerinput/registerinput.component';
 import { DotComponent } from './components/FridgeSection/dot/dot.component';
 import { ProductCloudComponent } from './components/FridgeSection/product-cloud/product-cloud.component';
+import { UsertypeComponent } from './components/RegisterSection/usertype/usertype.component';
+import { YoutubePlayerComponent } from './components/YoutubeSection/youtube-player/youtube-player.component';
+import { SecureDomPipe } from './components/YoutubeSection/youtube-player/secure-dom.pipe';
+import { YoutubeComponent } from './components/MainSection/youtube/youtube.component';
 
 
 const fridgeConnectionConfig: SocketIoConfig = {url: 'http://10.254.0.40:3000/', options: {}};
@@ -34,7 +38,7 @@ const fridgeConnectionConfig: SocketIoConfig = {url: 'http://10.254.0.40:3000/',
     RegisterComponent,
     RegisterinputComponent,
     StartComponent,
-    MembersContainer,
+    MembersContainerComponent,
     FridgeComponent,
     ProductsComponent,
     MainComponent,
@@ -45,7 +49,11 @@ const fridgeConnectionConfig: SocketIoConfig = {url: 'http://10.254.0.40:3000/',
     TopBarComponent,
     RegistersummComponent,
     DotComponent,
-    ProductCloudComponent
+    ProductCloudComponent,
+    UsertypeComponent,
+    YoutubePlayerComponent,
+    SecureDomPipe,
+    YoutubeComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,6 +63,7 @@ const fridgeConnectionConfig: SocketIoConfig = {url: 'http://10.254.0.40:3000/',
     SocketIoModule.forRoot(fridgeConnectionConfig)
   ],
   providers: [WeatherService],
+
   bootstrap: [AppComponent]
 })
 export class AppModule {

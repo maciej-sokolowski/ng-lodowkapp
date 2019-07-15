@@ -3,7 +3,7 @@
   width: 1080px;
   height: 1920px;
   display: flex;
-  margin: 160px auto 170px auto;
+  // margin: 160px auto 170px auto;
   text-align: center;
   color: #5F7891;
   flex-direction: column;
@@ -47,13 +47,17 @@
       margin: 0 120px 0;
 
       &--summary {
-        display: flex;
-        min-width: fit-content;
-        justify-content: center;
-        align-items: center;
-        height: 400px;
+        font-size: 30px;
+        margin: auto;
+        padding-top: 25px;
+        width: 280px;
+        height: 335px;
         color: rgb(37, 116, 194);
       }
+    }
+
+    &__pin {
+      margin-top: 100px;
     }
   }
 

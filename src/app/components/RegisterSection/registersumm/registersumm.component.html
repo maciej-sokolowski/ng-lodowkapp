@@ -1,4 +1,6 @@
-<div class="item item__color colors__btn colors__btn--{{chosenColor}}">
-  <div class="item item__avatar avatars__btn avatars__btn--{{chosenAvatar}}"></div>
-  <p class="item item__name">{{userName}}</p>
+<div (click)="emitAll($event)" class="item__color colors__btn colors__btn--{{chosenColor}}">
+  <div class="item__avatar avatars__btn avatars__btn--{{chosenAvatar}}"></div>
+  <p class="item__name">{{userName}}>
+    <span *ngIf="userIcon" class="item__icon item__icon--{{userIcon}}"></span>
+  </p>
 </div>
