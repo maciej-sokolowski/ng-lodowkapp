@@ -1,9 +1,9 @@
 // Modules
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
-import {AppRoutingModule} from './app-routing.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app-routing.module';
 // Components
 import {AppComponent} from './app.component';
 import {StartComponent} from './components/StartSection/start/start.component';
@@ -21,7 +21,9 @@ import {TopBarComponent} from './components/MainSection/top-bar/top-bar.componen
 import {MembersContainer} from './components/StartSection/members-container/members-container.component';
 import {RegisterinputComponent} from './components/RegisterSection/registerinput/registerinput.component';
 import { UsertypeComponent } from './components/RegisterSection/usertype/usertype.component';
-
+import { YoutubePlayerComponent } from './components/YoutubeSection/youtube-player/youtube-player.component';
+import { SecureDomPipe } from './components/YoutubeSection/youtube-player/secure-dom.pipe';
+import { YoutubeComponent } from './components/MainSection/youtube/youtube.component'
 
 @NgModule({
   declarations: [
@@ -40,7 +42,10 @@ import { UsertypeComponent } from './components/RegisterSection/usertype/usertyp
     WeatherComponent,
     TopBarComponent,
     RegistersummComponent,
-    UsertypeComponent
+    UsertypeComponent,
+    YoutubePlayerComponent,
+    SecureDomPipe,
+    YoutubeComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +53,8 @@ import { UsertypeComponent } from './components/RegisterSection/usertype/usertyp
     HttpClientModule,
     FormsModule
   ],
-  providers: [WeatherService],
+  providers: [WeatherService,],
+
   bootstrap: [AppComponent]
 })
 export class AppModule {
