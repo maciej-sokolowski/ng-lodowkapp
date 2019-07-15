@@ -70,7 +70,7 @@ export class RegisterComponent implements OnInit {
     this.registerStep++;
     this.setButtonStatus(this.registerStep);
     if (this.registerStep === 5) {
-      let agregatedInfo = { id: '1', type: this.personType, name: this.userNamee, avatar: this.userAvatar, color: this.userColor };
+      let agregatedInfo = { id: '1', type: this.personType, name: this.userNamee, avatar: this.userAvatar, color: this.userColor, pin: this.userPIN };
       this.registerInfo(agregatedInfo);
     }
   }

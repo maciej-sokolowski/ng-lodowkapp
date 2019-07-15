@@ -31,13 +31,10 @@ export class RegistersummComponent implements OnInit {
   }
 
   setUserTypeIcon() {
-    console.log(this.userType);
     if (this.userType === 'PARENT') {
       this.userIcon = 'parent';
-      console.log(this.userIcon);
     } else {
       this.userIcon = 'child';
     }
   }
-
 }
