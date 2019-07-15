@@ -3,5 +3,4 @@ export interface Note {
   userId: string;
   date: Date;
   message: string;
-
 }
