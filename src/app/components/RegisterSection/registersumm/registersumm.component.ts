@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-registersumm',
@@ -26,7 +26,8 @@ export class RegistersummComponent implements OnInit {
   @Output() emitPIN = new EventEmitter();
 
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
     this.setUserTypeIcon();
@@ -42,7 +43,8 @@ export class RegistersummComponent implements OnInit {
       this.userIcon = 'child';
     }
   }
-  emitAll(event) {
+
+  emitAll($event) {
     console.log(this.infoToLogin);
   }
 }
