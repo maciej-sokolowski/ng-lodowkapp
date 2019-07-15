@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { YoutubeService } from '../youtube-player/youtube.service';
+
+declare var $: any;
+
 
 @Component({
   selector: 'app-youtube-player',
@@ -7,9 +11,41 @@ import { Component, OnInit } from '@angular/core';
 })
 export class YoutubePlayerComponent implements OnInit {
 
-  constructor() { }
+  videos: any[] = [];
+  videoSelected: any;
+  initialVideoId = 'GVP8qLK_8Ig';
+
+  constructor(private youtubeService: YoutubeService) {
+    this.youtubeService.getVideos()
+      .subscribe(videos => {
+        this.videos = videos
+      }
+      );
+  }
 
   ngOnInit() {
+
+  }
+
+  getVideoId() {
+    return this.videoSelected ? this.videoSelected.resourceId.videoId : this.initialVideoId;
+  }
+
+  loadMore() {
+    this.youtubeService.getVideos()
+      .subscribe(videos => this.videos.push.apply(this.videos, videos));
+  }
+
+  watchVideo(video: any) {
+    this.videoSelected = video;
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }
+
+  closeModal() {
+    this.videoSelected = null;
   }
 
 }

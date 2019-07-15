@@ -1,1 +1,17 @@
-<p>youtube-player works!</p>
+<div class="youtube-content">
+  <div class="youtube-content__container">
+    <iframe class="youtube-content__player" [src]="getVideoId() | secureDom" frameborder="0"></iframe>
+    <div class="youtube-content__wrapper">
+      <div class="youtube-content__card" *ngFor="let video of videos">
+        <img class="youtube-content__thumbnail" [src]="video.thumbnails.high.url" [alt]="video.title"
+          (click)="watchVideo(video)">
+        <p class=" youtube-content__title">{{video.title}}</p>
+        <p class="youtube-content__description">
+          {{video.description}}</p>
+        <button class="youtube-content__button" (click)="watchVideo(video)">Watch video</button>
+        <p class="youtube-content__date">{{video.publishedAt | date}}</p>
+      </div>
+    </div>
+    <button class="youtube-content__button" (click)="loadMore()"> Load more videos</button>
+  </div>
+</div>
