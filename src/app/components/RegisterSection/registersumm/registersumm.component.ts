@@ -38,6 +38,6 @@ export class RegistersummComponent implements OnInit {
     } else {
       this.userIcon = 'child';
     }
-
   }
+
 }

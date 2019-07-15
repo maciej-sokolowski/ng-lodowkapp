@@ -6,7 +6,7 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss', './../registerinput/registerinput.component.scss']
 })
 export class RegisterComponent implements OnInit {
 
@@ -17,6 +17,7 @@ export class RegisterComponent implements OnInit {
   userNamee = '';
   userColor: string;
   userAvatar: string;
+  userPIN: string = '';
   private personType;
   btnSwitch: Array<Number> = [0];
 
@@ -35,17 +36,23 @@ export class RegisterComponent implements OnInit {
       if (this.registerStep === 1 && this.userNamee.length === 0) {
         this.btnIsDisabled = true;
       }
-    } else if (this.registerStep === 4) {
+    } else if ((this.registerStep === 4 && this.personType === 'CHILDREN') || (this.registerStep === 4 && this.userPIN.length === 4)) {
       this.btnNextText = 'Confirm and add family member';
       this.btnIsDisabled = false;
-    }
-    else {
+    } else if (this.registerStep === 4 && this.userPIN.length < 4) {
+      this.btnIsDisabled = true;
+      this.btnNextText = 'First you need to enter PIN';
+    } else {
       this.btnIsDisabled = true;
     }
   }
   activateBtn() {
     this.btnIsDisabled = false;
     this.btnSwitch.push(this.registerStep);
+  }
+
+  checkLength() {
+    this.setButtonStatus(4);
   }
 
   onClickPrev() {

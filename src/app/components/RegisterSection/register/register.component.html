@@ -6,16 +6,18 @@
   </div>
 
   <div class="component-container">
-
     <div class="component-container__middle">
-      <!-- to miejsce na component -->
+      <!-- step 1 -->
       <app-usertype *ngIf="this.registerStep==0" (emitUserType)="getUserType($event)"></app-usertype>
+      <!-- step 2 -->
       <app-registerinput *ngIf="this.registerStep==1" (emitName)="getName($event)" [userName]="userNamee">
       </app-registerinput>
+      <!-- step 3 -->
       <app-avatar *ngIf="this.registerStep==2" (emitAvatar)="getAvatar($event)" [chosenAvatar]="userAvatar">
       </app-avatar>
+      <!-- step 4 -->
       <app-color *ngIf="this.registerStep==3" (emitColor)="getColor($event)" [chosenColor]="userColor"></app-color>
-
+      <!-- step 5 summary -->
       <ng-container *ngIf="this.registerStep==4">
         <h2 class="header-container__headline--h2">Does that sound alright?</h2>
         <p class="header-container__paragraph"> Check if everything is in order and confirm to create an account or go
@@ -25,12 +27,16 @@
             [userType]="personType">
           </app-registersumm>
         </div>
+        <div class="component-container__pin" *ngIf="personType==='PARENT'">
+          <h2 class="header-container__headline--h2">Create PIN for this account!</h2>
+          <p class="header-container__paragraph">Insert 4 charecters. </p>
+          <input class="input-wrapper__input" maxlength="4" (input)="checkLength($event)" [(ngModel)]="userPIN"
+            type="password">
+        </div>
       </ng-container>
-
-      <!-- to miejsce na component -->
     </div>
-
   </div>
+  <!-- Buttons -->
   <div class="nav-buttons">
     <button routerLink="/start" [hidden]="this.registerStep>0" (click)="onClickPrev()"
       class="nav-buttons__btn nav-buttons__btn--prev">Back</button>
@@ -38,7 +44,7 @@
       class="nav-buttons__btn nav-buttons__btn--prev">Back</button>
     <button [hidden]="this.registerStep==4" (click)="onClickNext()" [disabled]="btnIsDisabled" id="next"
       class="nav-buttons__btn nav-buttons__btn--next">{{btnNextText}}</button>
-    <button *ngIf="this.registerStep==4" (click)="onClickNext()" class="nav-buttons__btn nav-buttons__btn--next"
-      routerLink="/start">{{btnNextText}}</button>
+    <button *ngIf="this.registerStep==4" (click)="onClickNext()" [disabled]="btnIsDisabled"
+      class="nav-buttons__btn nav-buttons__btn--next" routerLink="/start">{{btnNextText}}</button>
   </div>
 </div>
