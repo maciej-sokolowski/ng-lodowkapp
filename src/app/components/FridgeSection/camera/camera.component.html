@@ -1,4 +1,7 @@
 <div class="stream-view">
-  <p class="stream-view__info">View not available</p>
-  <img class="stream-view__video" src="{{imageUrl}}" alt="fridge content">
+  <img (click)="setDot($event)" class="stream-view__video" src="{{imageUrl}}">
+  <div *ngFor="let dot of dots">
+    <div class="stream-view__dot" [ngStyle]="{'top': dot.y, 'left':dot.x}"></div>
+  </div>
 </div>
+
