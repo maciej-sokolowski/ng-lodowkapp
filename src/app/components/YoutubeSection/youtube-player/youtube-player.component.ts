@@ -13,7 +13,7 @@ export class YoutubePlayerComponent implements OnInit {
 
   videos: any[] = [];
   videoSelected: any;
-  initialVideoId = 'GVP8qLK_8Ig';
+  initialVideoId = '?listType=playlist&list=UUJFp8uSYCjXOMnkUyb3CQ3Q';
 
   constructor(private youtubeService: YoutubeService) {
     this.youtubeService.getVideos()

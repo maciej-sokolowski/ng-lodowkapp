@@ -23,12 +23,10 @@ export class YoutubeService {
       .set('playlistId', 'UUJFp8uSYCjXOMnkUyb3CQ3Q')
       .set('key', this.apiKey)
       .set('pageToken', this.nextPageToken)
-      .set('order', 'date');
-
+      .set('order', 'date')
 
     return this.httpClient.get(url, { params })
       .pipe(map((data: any) => {
-
         this.nextPageToken = data.nextPageToken;
 
         const videos: any[] = [];

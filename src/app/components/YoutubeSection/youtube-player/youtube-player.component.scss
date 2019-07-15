@@ -1,8 +1,10 @@
 .youtube-content {
   background: url("../../../../assets/pexels-photo-1640777.png");
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   color: #5F7891;
+  position: relative;
 
 
   &__container {
@@ -52,6 +54,8 @@
     font-size: 14px;
     height: 150px;
     overflow: hidden;
+    text-overflow: ellipsis;
+    // white-space: nowrap;
     line-height: 25px;
 
   }
@@ -66,12 +70,27 @@
     margin: 20px auto;
     display: block;
     color: #fff;
+    transition: .1s;
+
+    &:active {
+      transform: translateY(2px);
+    }
+
+    &--href {
+      text-decoration: none;
+      text-align: center;
+      line-height: 60px;
+      position: fixed;
+      top: 0;
+      left: 5%;
+      width: 60px;
+      height: 60px;
+      font-size: 30px;
+    }
   }
 
   &__date {
     font-size: 14px;
     text-align: center;
   }
-
-
 }
