@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-registersumm',
@@ -10,7 +10,7 @@ export class RegistersummComponent implements OnInit {
   userIcon: string;
 
   @Input()
-  infoToDisplay;
+  infoToLogin;
 
   @Input()
   userName: string;
@@ -23,6 +23,7 @@ export class RegistersummComponent implements OnInit {
   @Input()
   PIN?: string;
 
+  @Output() emitPIN = new EventEmitter();
 
 
   constructor() { }
@@ -42,6 +43,6 @@ export class RegistersummComponent implements OnInit {
     }
   }
   emitAll(event) {
-    console.log(this.infoToDisplay);
+    console.log(this.infoToLogin);
   }
 }
