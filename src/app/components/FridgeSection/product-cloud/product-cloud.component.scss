@@ -1,0 +1,27 @@
+.cloud {
+
+  position: absolute;
+  bottom: 120px;
+  left: -168px;
+
+  &__rectangle {
+    width: 396px;
+    height: 180px;
+    background-color: #fff;
+    border-radius: 10px;
+    position: relative;
+    padding: 19px 19px 25px 19px;
+  }
+
+  &__arrow {
+    position: absolute;
+    width: 68px;
+    height: 68px;
+    background-color: #fff;
+    transform: rotate(45deg);
+    bottom: -34px;
+    left: 164px;
+    right: 164px;
+
+  }
+}
