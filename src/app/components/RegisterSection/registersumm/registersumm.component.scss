@@ -1,28 +1,41 @@
 .item {
-  position: absolute;
 
   &__color {
-    width: 280px;
-    height: 335px;
+    padding-top: 15px;
+    width: 100%;
+    height: 100%;
   }
 
   &__avatar {
-    width: 243px;
-    height: 243px;
+    margin: auto;
+    width: 86%;
+    height: 77%;
     background-repeat: no-repeat;
     background-size: cover;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    background-position: center;
+    border-radius: 10%;
   }
 
   &__name {
-    color: white;
-    font-size: 30px;
+    text-align: center;
+    margin: 8px auto;
+    color: #fff;
+  }
+
+  &__icon {
+    margin-left: 10px;
+    display: inline-block;
     background-repeat: no-repeat;
-    background-size: cover;
-    bottom: 19px;
-    left: 50%;
-    transform: translate(-50%, 0);
+    width: 30px;
+    height: 30px;
+    opacity: 0.8;
+
+    &--parent {
+      background-image: url('../../../../assets/user-solid.svg');
+    }
+
+    &--child {
+      background-image: url('../../../../assets/baby-solid.svg');
+    }
   }
 }

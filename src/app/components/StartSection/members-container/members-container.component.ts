@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/interfaces/Models/user';
 
 @Component({
   selector: 'app-members-container',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MembersContainer implements OnInit {
 
-  constructor() { }
+  users = [];
 
-  ngOnInit() {
+  constructor(private userService: UserService) {
   }
 
+  ngOnInit() {
+    this.createCards();
+  }
+
+  createCards() {
+    if (this.userService.users.value.length === 0) {
+      console.log('brak');
+      return;
+    } else {
+      this.users = [...this.userService.users.value].reverse(); //usuń .reverse() jeśli chcesz wyświetlić userów chronologocznie
+    }
+  }
 }
