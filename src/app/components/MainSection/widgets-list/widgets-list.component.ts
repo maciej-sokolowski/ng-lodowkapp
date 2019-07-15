@@ -14,7 +14,7 @@ export class WidgetsListComponent implements OnInit {
   @Input() largeWidgets: Array<string>;
   @Input() smallWidgets: Array<string>;
 
-  @Output() emitClose = new EventEmitter();
+  @Output() emitCloseList = new EventEmitter();
  
 
   constructor() { }
@@ -23,7 +23,8 @@ export class WidgetsListComponent implements OnInit {
   }
 
   chooseWidget() {
-    let currentWidget = event.target.innerText;
+    let target = (<HTMLInputElement>event.target);
+    let currentWidget = target.innerText;
     let widgetOnList: number;
     let emiter: any;
     if (this.isSmallWidget) {
@@ -33,10 +34,6 @@ export class WidgetsListComponent implements OnInit {
       widgetOnList = this.largeWidgets.indexOf(currentWidget);
       emiter = [widgetOnList, "large"]
     }
-    this.emitClose.emit(emiter);
-    // console.log(this.largeWidgetsList);
-    // this.largeWidgetsList.splice(widgetOnList, 1);
-    // console.log(this.largeWidgetsList);
+    this.emitCloseList.emit(emiter);
   }
-
 }

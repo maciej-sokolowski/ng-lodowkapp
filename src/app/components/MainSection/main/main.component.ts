@@ -19,16 +19,23 @@ export class MainComponent implements OnInit {
   }
 
   initList() {
-    this.isOpen = true;
-    
+    let target = <HTMLInputElement>event.target;
+    console.log(target);
 
-    console.log(event.target.parentElement.getAttribute("id"));
-    if (event.target.parentElement.getAttribute("id") === "widget-4" || event.target.parentElement.getAttribute("id") === "widget-5") {
+    console.log(target.parentElement.getAttribute("id"));
+    if (target.parentElement.getAttribute("id") === "widget-4" || target.parentElement.getAttribute("id") === "widget-5") {
       console.log("mały");
       this.emitIsSmallWidget = true;
+      if (this.emitSmallWidgetsList.length === 0) {
+        return;
+      }
     } else {
       this.emitIsSmallWidget = false;
+      if (this.emitLargeWidgetsList.length === 0) {
+        return;
+      }
     }
+    this.isOpen = true;
   }
 
   onClose(event) {
@@ -42,6 +49,4 @@ export class MainComponent implements OnInit {
     console.log(this.emitLargeWidgetsList)
     console.log(this.emitSmallWidgetsList)
   }
-
-
 }

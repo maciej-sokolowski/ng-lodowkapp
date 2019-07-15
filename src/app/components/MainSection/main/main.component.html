@@ -1,6 +1,6 @@
 <div class="main-wrapper">
 	<app-top-bar></app-top-bar>
-	<app-widgets-list *ngIf="isOpen" [isSmallWidget]="emitIsSmallWidget" [largeWidgets]="emitLargeWidgetsList" [smallWidgets]="emitSmallWidgetsList" (emitClose)="onClose($event)"></app-widgets-list>
+	<app-widgets-list *ngIf="isOpen" [isSmallWidget]="emitIsSmallWidget" [largeWidgets]="emitLargeWidgetsList" [smallWidgets]="emitSmallWidgetsList" (emitCloseList)="onClose($event)"></app-widgets-list>
 	<div class="widgets-wrapper">
 		<div id="widget-1" class="widgets-wrapper__item">
 			<span class="widgets-wrapper__item-button" (click)="initList()"></span>
