@@ -10,6 +10,9 @@ export class RegistersummComponent implements OnInit {
   userIcon: string;
 
   @Input()
+  infoToDisplay;
+
+  @Input()
   userName: string;
   @Input()
   chosenAvatar: string;
@@ -19,6 +22,7 @@ export class RegistersummComponent implements OnInit {
   userType: string;
   @Input()
   PIN?: string;
+
 
 
   constructor() { }
@@ -36,5 +40,8 @@ export class RegistersummComponent implements OnInit {
     } else {
       this.userIcon = 'child';
     }
+  }
+  emitAll(event) {
+    console.log(this.infoToDisplay);
   }
 }
