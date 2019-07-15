@@ -21,4 +21,21 @@
     margin: 8px auto;
     color: #fff;
   }
+
+  &__icon {
+    margin-left: 10px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+    opacity: 0.8;
+
+    &--parent {
+      background-image: url('../../../../assets/user-solid.svg');
+    }
+
+    &--child {
+      background-image: url('../../../../assets/baby-solid.svg');
+    }
+  }
 }

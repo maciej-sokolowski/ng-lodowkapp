@@ -1,7 +1,7 @@
 <div class="members-container">
   <div class="logged" *ngFor="let user of users">
     <app-registersumm class="component-container__middle--summary" [userName]="user.name" [chosenAvatar]="user.avatar"
-      [chosenColor]="user.color"></app-registersumm>
+      [chosenColor]="user.color" [userType]="user.type"></app-registersumm>
   </div>
   <a routerLink="/register" class="members-container__card">
     <span class="members-container__card-button"></span>
