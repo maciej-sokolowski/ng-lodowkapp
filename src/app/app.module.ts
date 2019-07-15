@@ -21,8 +21,8 @@ import { TopBarComponent } from './components/MainSection/top-bar/top-bar.compon
 import { MembersContainer } from './components/StartSection/members-container/members-container.component';
 import { RegisterinputComponent } from './components/RegisterSection/registerinput/registerinput.component';
 import { YoutubePlayerComponent } from './components/YoutubeSection/youtube-player/youtube-player.component';
-import { SecureDomPipe } from './components/YoutubeSection/pipes/secure-dom.pipe';
-import { YoutubeService } from './components/YoutubeSection/youtube-player/youtube.service'
+import { SecureDomPipe } from './components/YoutubeSection/youtube-player/secure-dom.pipe';
+import { YoutubeComponent } from './components/MainSection/youtube/youtube.component'
 
 
 
@@ -46,6 +46,7 @@ import { YoutubeService } from './components/YoutubeSection/youtube-player/youtu
     RegistersummComponent,
     YoutubePlayerComponent,
     SecureDomPipe,
+    YoutubeComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +54,7 @@ import { YoutubeService } from './components/YoutubeSection/youtube-player/youtu
     HttpClientModule,
     FormsModule
   ],
-  providers: [WeatherService],
+  providers: [WeatherService,],
 
   bootstrap: [AppComponent]
 })

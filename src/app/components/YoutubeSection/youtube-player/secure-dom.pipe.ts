@@ -1,9 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
-// Pipe for youtube videos
-// To sanitize the url
-
 @Pipe({
     name: 'secureDom'
 })

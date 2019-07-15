@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { YoutubeService } from '../youtube-player/youtube.service';
 
-declare var $: any;
-
-
 @Component({
   selector: 'app-youtube-player',
   templateUrl: './youtube-player.component.html',
@@ -20,7 +17,7 @@ export class YoutubePlayerComponent implements OnInit {
       .subscribe(videos => {
         this.videos = videos
       }
-      );
+      )
   }
 
   ngOnInit() {
