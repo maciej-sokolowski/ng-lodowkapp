@@ -1,5 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
+import {NameDate} from '../../../interfaces/name-date';
+import {ProductService} from '../../../services/product.service';
 
 @Component({
   selector: 'app-edit',
@@ -8,8 +10,11 @@ import {FormControl, FormGroup} from '@angular/forms';
 })
 export class EditComponent implements OnInit {
 
+  @Output() nameAndDateEmitter = new EventEmitter<NameDate>();
+
   constructor() {
   }
+
 
   nameDate = new FormGroup({
     name: new FormControl(''),
@@ -19,8 +24,12 @@ export class EditComponent implements OnInit {
   ngOnInit() {
   }
 
-  showValue(formValue: object) {
-    console.log(formValue);
+  emitDateAndName(formValue: FormGroup) {
+    console.log(formValue.value);
+    const data: NameDate = {...formValue.value};
+    console.log(data);
+    this.nameAndDateEmitter.emit(data);
+    this.nameDate.reset({});
   }
 
 }

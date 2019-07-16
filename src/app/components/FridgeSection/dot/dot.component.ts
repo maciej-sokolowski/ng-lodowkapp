@@ -31,7 +31,6 @@ export class DotComponent implements OnInit {
 
   }
 
-
   ngOnInit() {
     if (this.ActiveLabelID === '') {
       this.ActiveLabelID = this.product.id;

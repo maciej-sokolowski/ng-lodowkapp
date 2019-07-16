@@ -33,15 +33,14 @@ export class CameraComponent implements OnInit {
 
   setDot($event) {
     if (!this._isAnyCloudActive) {
-
-      console.log(this._isAnyCloudActive);
       // @ts-ignore
       const product: Product = {
         id: uuid(),
         fridgePosition: {x: `${$event.layerX - 30}px`, y: `${$event.layerY - 30}px`}
       };
-      this.products.push(product);
-
+      // this.products.push(product);
+      this.prService.insertItem(product);
+      console.log(this.products);
     }
   }
 
