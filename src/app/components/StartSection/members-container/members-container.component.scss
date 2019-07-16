@@ -90,19 +90,10 @@
     font-size: 24px;
     padding: 0 15px;
     border-radius: 10px 10px 10px 10px;
-    background-color: rgb(96, 209, 73);
     border-style: solid;
     width: 330px;
     height: 60px;
     transition: .3s;
     outline: none;
-
-    &:disabled {
-      background-color: #b8b8b8;
-    }
-
-    &--red {
-      background-color: #d1496b;
-    }
   }
 }

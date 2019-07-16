@@ -16,6 +16,7 @@ export class MembersContainerComponent implements OnInit {
   displayLoginPanel: boolean = true;
   isDisabled: boolean = true;
   btnInnerText: string = "Insert PIN";
+  btnState: string = 'inactive';
 
   constructor(private userService: UserService) {
   }
@@ -28,6 +29,7 @@ export class MembersContainerComponent implements OnInit {
     this.inputReset = '';
     this.isDisabled = true;
     this.btnInnerText = 'Insert PIN';
+    this.btnState = 'inactive';
   }
 
   getLoginData(userData) {
@@ -37,21 +39,30 @@ export class MembersContainerComponent implements OnInit {
     console.log(userData);
   }
 
+  setBtnStatus(status?: string) {
+    switch (status) {
+      case 'correct':
+        this.isDisabled = false;
+        this.btnInnerText = 'Correct! Click to log in';
+        return '#60d149';
+      case 'wrong':
+        this.isDisabled = true;
+        this.btnInnerText = 'Wrong PIN. Try again.';
+        return '#d14949';
+      case 'inactive':
+        this.isDisabled = true;
+        this.btnInnerText = 'Insert PIN';
+        return '#b8b8b8';
+    }
+  }
+
   verifyPIN(event) {
     if (event.target.value.length === 4) {
       setTimeout(() => {
-        if (event.target.value === this.infoToLogin.pin) {
-          this.isDisabled = false;
-          this.btnInnerText = 'Correct! Click to log in';
-        }
-        else {
-          this.isDisabled = true;
-          this.btnInnerText = 'Wrong PIN. Try again.';
-        }
+        event.target.value === this.infoToLogin.pin ? this.btnState = 'correct' : this.btnState = 'wrong';
       }, 500);
     } else if (event.target.value.length < 4) {
-      this.isDisabled = true;
-      this.btnInnerText = 'Insert PIN';
+      this.btnState = 'inactive'
     }
   }
   logIn() {
