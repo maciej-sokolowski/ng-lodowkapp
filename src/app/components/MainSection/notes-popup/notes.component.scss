@@ -1,0 +1,44 @@
+.container {
+  background-color: rgba(95, 120, 145);
+  width: 420px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  border-radius: 10px;
+  margin: 20px 0;
+  position: absolute;
+  z-index: 5;
+
+  &__title {
+    font-size: 30px;
+    color: #fff;
+  }
+
+  &__text {
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    padding: 0 20px;
+    height: 30px;
+    width: 95%;
+  }
+
+  &__button {
+    background-color: #00C3FF;
+    border: none;
+    border-radius: 10px;
+    height: 44px;
+    width: 70px;
+    color: #fff;
+    outline: none;
+    transition: .1s;
+    margin: 0 20px;
+
+    &:active {
+      transform: translateY(2px);
+    }
+  }
+}

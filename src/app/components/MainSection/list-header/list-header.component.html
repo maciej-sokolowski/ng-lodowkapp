@@ -1,5 +1,7 @@
 <div class="container">
-  <p class="container__title">{{noteTitle}}</p>
-  <button>View all</button>
-  <button *ngIf='canAddListItem'>+</button>
+  <p class="container__title">{{headerTitle}}</p>
+  <div class="container__buttons">
+    <button class="container__button">VIEW ALL</button>
+    <button class="container__button container__button-add" *ngIf='canAddListItem' (click)="openPopup()"></button>
+  </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-list-header',
@@ -6,21 +6,22 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./list-header.component.scss']
 })
 export class ListHeaderComponent implements OnInit {
-  // title: string;
 
   @Input()
   canAddListItem: boolean = false;
 
   @Input()
-  noteTitle: string = "";
+  headerTitle: string = "";
 
-
+  @Output()
+  popupOpenEvent = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
-
   }
 
-
+  openPopup() {
+    this.popupOpenEvent.emit(true);
+  }
 }

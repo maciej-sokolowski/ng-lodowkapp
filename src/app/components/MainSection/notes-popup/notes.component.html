@@ -1,2 +1,8 @@
-<input [value]="message" (input)="emitNoteMessage($event)" type="text">
-<button (click)="addNote()">OK</button>
+<div class="container">
+  <p class="container__title">Add your note</p>
+  <input class="container__text" [value]="message" (input)="emitNoteMessage($event)" type="text">
+  <div class="container__wrapper">
+    <button class="container__button" (click)="addNote()">OK</button>
+    <button class="container__button" (click)="closePopup()">Back</button>
+  </div>
+</div>
