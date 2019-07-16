@@ -1,7 +1,14 @@
+<div class="login-panel" [hidden]="displayLoginPanel">
+  <h2>Enter PIN to login</h2>
+  <p>Insert 4 characters.</p>
+  <input [(ngModel)]="inputReset" (input)="verifyPIN($event)" maxlength="4" type="password">
+  <button (click)="logIn()" [hidden]="isLoginBtnHidden">{{btnInnerText}}</button>
+</div>
 <div class="members-container">
   <div class="logged" *ngFor="let user of users">
-    <app-registersumm class="component-container__middle--summary" [infoToLogin]="user" [userName]="user.name"
-      [chosenAvatar]="user.avatar" [chosenColor]="user.color" [userType]="user.type" [PIN]="user.pin">
+    <app-registersumm (emitLoginInfo)="getLoginData($event)" class="component-container__middle--summary"
+      [infoToLogin]="user" [userName]="user.name" [chosenAvatar]="user.avatar" [chosenColor]="user.color"
+      [userType]="user.type" [PIN]="user.pin">
     </app-registersumm>
   </div>
   <a routerLink="/register" class="members-container__card">

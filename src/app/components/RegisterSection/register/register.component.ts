@@ -37,8 +37,7 @@ export class RegisterComponent implements OnInit {
       if (this.registerStep === 1 && this.userNamee.length === 0) {
         this.btnIsDisabled = true;
       }
-    }
-    else if ((this.registerStep === 4 && this.personType === 'CHILDREN') || (this.registerStep === 4 && this.userPIN.length === 4)) {
+    } else if (this.registerStep === 4 && this.userPIN.length === 4) {
       this.btnNextText = 'Confirm and add family member';
       this.btnIsDisabled = false;
     } else if (this.registerStep === 4 && this.userPIN.length < 4) {

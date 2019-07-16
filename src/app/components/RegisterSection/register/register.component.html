@@ -27,7 +27,7 @@
             [userType]="personType" [PIN]="userPIN">
           </app-registersumm>
         </div>
-        <div class="component-container__pin" *ngIf="personType==='PARENT'">
+        <div class="component-container__pin">
           <h2 class="header-container__headline--h2">Create PIN for this account!</h2>
           <p class="header-container__paragraph">Insert 4 charecters. </p>
           <input class="input-wrapper__input" maxlength="4" (input)="checkLength($event)" [(ngModel)]="userPIN"
