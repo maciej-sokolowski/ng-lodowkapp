@@ -19,13 +19,14 @@ export class ProductCloudComponent implements OnInit {
   @Input() product: Product;
   @Output() removeSignal: EventEmitter<void> = new EventEmitter<void>();
   public editButtonChildren = 'Edit';
+  public editDisable = false;
 
   constructor(private prService: ProductService) {
   }
 
   ngOnInit() {
     if (this.product.name === undefined && this.product.expiryDate === undefined) {
-      this.editButtonChildren = 'Add';
+      this.editDisable = true;
       this.editable = Edit.YES;
     } else {
       this.editable = Edit.NOT;
@@ -37,6 +38,7 @@ export class ProductCloudComponent implements OnInit {
     this.product.expiryDate = value.expiry;
     this.prService.updateItem(this.product);
     this.editable = Edit.NOT;
+    this.editDisable = false;
   }
 
   edit() {

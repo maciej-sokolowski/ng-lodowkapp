@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Socket} from 'ngx-socket-io';
 import {Product} from '../../../interfaces/Models/product';
 import {ProductService} from '../../../services/product.service';
@@ -10,7 +10,7 @@ import {v4 as uuid} from 'uuid';
   styleUrls: ['./camera.component.scss']
 })
 
-export class CameraComponent implements OnInit {
+export class CameraComponent implements OnInit, OnDestroy {
 
 
   public imageUrl: string;
@@ -28,8 +28,12 @@ export class CameraComponent implements OnInit {
 
   ngOnInit() {
     this.prService.getItems().subscribe(products => this.products = [...products]);
+    this.cleanDrafts();
   }
 
+  ngOnDestroy() {
+    this.cleanDrafts();
+  }
 
   setDot($event) {
     if (!this._isAnyCloudActive) {
@@ -42,6 +46,11 @@ export class CameraComponent implements OnInit {
       this.prService.insertItem(product);
       console.log(this.products);
     }
+  }
+
+  private cleanDrafts() {
+    const drafts = this.products.filter(product => product.name === undefined || product.expiryDate === undefined || product.name === '' || product.expiryDate === '');
+    drafts.forEach(draft => this.prService.deleteItem(draft));
   }
 
 }

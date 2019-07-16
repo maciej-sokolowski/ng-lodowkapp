@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, DoCheck, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {Product} from '../../../interfaces/Models/product';
 import {ProductService} from '../../../services/product.service';
 
@@ -32,12 +32,8 @@ export class DotComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.ActiveLabelID === '') {
-      this.ActiveLabelID = this.product.id;
-      this.visibleLabel = Visible.YES;
-      this.cloudActiveNotification.emit(true);
-    }
   }
+
 
   changeLabelVisibility() {
     // debugger;
