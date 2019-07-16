@@ -12,6 +12,7 @@ export class CanvasSectionComponent implements OnInit {
   public ctx: CanvasRenderingContext2D;
 
   drawing: boolean;
+  isRubber: boolean;
   
   constructor() { }
 
@@ -37,18 +38,34 @@ export class CanvasSectionComponent implements OnInit {
     if (!this.drawing) {
       return
     }
+    if (this.isRubber) {
+      this.ctx.globalCompositeOperation="destination-out";
+      this.ctx.lineWidth = 120;
+    } else {
+      this.ctx.globalCompositeOperation="source-over";
+      this.ctx.lineWidth = 10;
+    }
 
-    let posX = event.touches[0].clientX;
-    let posY = event.touches[0].clientY;
+    let posX = event.touches[0].clientX - 120;
+    let posY = event.touches[0].clientY - 120;
 
-    this.ctx.lineWidth = 10;
     this.ctx.lineCap = "round";
+    this.ctx.strokeStyle = "#5F7891";
+
     this.ctx.lineTo(posX, posY);
     this.ctx.stroke();
     this.ctx.beginPath();
     this.ctx.moveTo(posX, posY);
 
     console.log("drawing")
+  }
+
+  pencilMode() {
+    this.isRubber = false;
+  }
+  
+  rubberMode() {
+    this.isRubber = true;
   }
   
 }

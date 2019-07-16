@@ -1,5 +1,12 @@
 <div class="wrapper">
   <div class="canvas-wrapper">
-    <canvas #myCanvas width="840px" height="800px" style="border: 1px solid black" (touchstart)="mouseDown($event)" (touchend)="mouseUp($event)" (touchmove)="draw($event)"></canvas>
+    <canvas #myCanvas width="840px" height="800px" style="border-radius: 10px" (touchstart)="mouseDown($event)" (touchend)="mouseUp($event)" (touchmove)="draw($event)"></canvas>
+  </div>
+
+  <div class="buttons-wrapper">
+    <button class="button" (click)="pencilMode($event)">Rysuj</button>
+    <button class="button" (click)="rubberMode($event)">Gumka</button>
+    <button class="button">Zacznij od nowa</button>
+    <button class="button">Zapisz</button>
   </div>
 </div>
