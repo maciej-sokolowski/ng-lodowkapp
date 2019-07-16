@@ -1,6 +1,7 @@
 <div class="main-wrapper">
 	<app-top-bar></app-top-bar>
-	<app-widgets-list *ngIf="isOpen" [isSmallWidget]="emitIsSmallWidget" [largeWidgets]="emitLargeWidgetsList" [smallWidgets]="emitSmallWidgetsList" (emitCloseList)="onClose($event)"></app-widgets-list>
+	<app-widgets-list *ngIf="isOpen" [isSmallWidget]="emitIsSmallWidget" [largeWidgets]="emitLargeWidgetsList"
+		[smallWidgets]="emitSmallWidgetsList" (emitCloseList)="onClose($event)"></app-widgets-list>
 	<div class="widgets-wrapper">
 		<div id="widget-1" class="widgets-wrapper__item">
 			<span class="widgets-wrapper__item-button" (click)="initList()"></span>
@@ -15,13 +16,17 @@
 			<p class="widgets-wrapper__item-description">Add widget</p>
 		</div>
 		<div class="widgets-wrapper__item widgets-wrapper__item--splited">
-			<div id="widget-4" class="widgets-wrapper__item">
+			<div id="widget-4" class="widgets-wrapper__item widgets-wrapper__item--small">
 				<span class="widgets-wrapper__item-button" (click)="initList()"></span>
 				<p class="widgets-wrapper__item-description">Add widget</p>
+				<app-weather *ngIf="widgets['widget-4'] === 'Weather'"></app-weather>
+				<app-weather *ngIf="widgets['widget-4'] === 'Youtube - Tasty chanel'"></app-weather>
 			</div>
-			<div id="widget-5" class="widgets-wrapper__item">
+			<div id="widget-5" class="widgets-wrapper__item widgets-wrapper__item--small">
 				<span class="widgets-wrapper__item-button" (click)="initList()"></span>
 				<p class="widgets-wrapper__item-description">Add widget</p>
+				<app-weather *ngIf="widgets['widget-5'] === 'Weather'"></app-weather>
+				<app-weather *ngIf="widgets['widget-5'] === 'Youtube - Tasty chanel'"></app-weather>
 			</div>
 		</div>
 		<div id="widget-6" class="widgets-wrapper__item">

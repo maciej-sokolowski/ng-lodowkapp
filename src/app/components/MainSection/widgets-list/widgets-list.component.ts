@@ -7,9 +7,6 @@ import { Component, EventEmitter, OnInit, Output, Input} from '@angular/core';
 })
 export class WidgetsListComponent implements OnInit {
 
-  // largeWidgetsList = ["Canvas", "Activities", "Products", "Notes"]
-  // smallWidgetsList = ["Youtube - Tasty chanel", "Weather"]
-  
   @Input() isSmallWidget: boolean;
   @Input() largeWidgets: Array<string>;
   @Input() smallWidgets: Array<string>;

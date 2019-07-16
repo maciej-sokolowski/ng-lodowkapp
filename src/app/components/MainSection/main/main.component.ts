@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-// import { emit } from 'cluster';
 
 @Component({
   selector: 'app-main',
@@ -12,6 +11,28 @@ export class MainComponent implements OnInit {
   emitIsSmallWidget: boolean;
   emitLargeWidgetsList = ["Canvas", "Activities", "Products", "Notes"];
   emitSmallWidgetsList =["Youtube - Tasty chanel", "Weather"];
+  placeholderId: string;
+  target: any;
+  
+
+  // widgets = {
+  //   "Canvas": "app-weather",
+  //   "Activities": "app-weather",
+  //   "Products": "app-weather",
+  //   "Notes": "app-weather",
+  //   "Youtube - Tasty chanel": "app-weather",
+  //   "Weather": "app-weather",
+  // }
+
+  widgets = {
+    "widget-1": "",
+    "widget-2": "",
+    "widget-3": "",
+    "widget-4": "",
+    "widget-5": "",
+    "widget-6": "",
+    "widget-7": "",
+  }
 
   constructor() { }
 
@@ -19,12 +40,12 @@ export class MainComponent implements OnInit {
   }
 
   initList() {
-    let target = <HTMLInputElement>event.target;
-    console.log(target);
+    this.target = <HTMLInputElement>event.target;
+    console.log(this.target)
+    this.placeholderId = this.target.parentElement.getAttribute("id");
+    console.log(this.placeholderId)
 
-    console.log(target.parentElement.getAttribute("id"));
-    if (target.parentElement.getAttribute("id") === "widget-4" || target.parentElement.getAttribute("id") === "widget-5") {
-      console.log("mały");
+    if (this.placeholderId === "widget-4" || this.placeholderId === "widget-5") {
       this.emitIsSmallWidget = true;
       if (this.emitSmallWidgetsList.length === 0) {
         return;
@@ -38,15 +59,37 @@ export class MainComponent implements OnInit {
     this.isOpen = true;
   }
 
-  onClose(event) {
+  onClose(getEmiter) {
     this.isOpen = false;
-    console.log(event)
-    if (event[1] === "small") {
-      this.emitSmallWidgetsList.splice(event[0], 1);
+    let widgetToAssign: string;
+
+    if (getEmiter[1] === "small") {
+      widgetToAssign = this.emitSmallWidgetsList[getEmiter[0]];
+      // console.log(widgetToAssign)
+      this.emitSmallWidgetsList.splice(getEmiter[0], 1);
     } else {
-      this.emitLargeWidgetsList.splice(event[0], 1);
+      widgetToAssign = this.emitLargeWidgetsList[getEmiter[0]];
+      // console.log(widgetToAssign)
+      this.emitLargeWidgetsList.splice(getEmiter[0], 1);
     }
-    console.log(this.emitLargeWidgetsList)
-    console.log(this.emitSmallWidgetsList)
+
+    let widgetPlaceholder = document.getElementById(this.placeholderId);
+    let placeholderSpan = widgetPlaceholder.childNodes[0];
+    let placeholderDescription = widgetPlaceholder.childNodes[1];
+
+    widgetPlaceholder.removeChild(placeholderSpan);
+    widgetPlaceholder.removeChild(placeholderDescription);
+    widgetPlaceholder.style.border = "none";
+    // while (widgetPlaceholder.firstChild) {
+    //   widgetPlaceholder.removeChild(widgetPlaceholder.firstChild);
+    // }
+    // console.log(this.placeholderId)
+    // console.log(widgetToAssign);
+    // console.log(widgetPlaceholder)
+
+    this.widgets[this.placeholderId] = widgetToAssign;
+
+    // widgetToAssign = this.widgets[widgetToAssign];
+    // console.log(widgetToAssign)
   }
 }

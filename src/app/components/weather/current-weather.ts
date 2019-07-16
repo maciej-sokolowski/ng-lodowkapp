@@ -1,3 +1,4 @@
+
 export class CurrentWeather {
   constructor(
     public temp: string,
