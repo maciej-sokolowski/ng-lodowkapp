@@ -14,8 +14,8 @@ export class MembersContainerComponent implements OnInit {
   infoToLogin;
   inputReset: string = '';
   displayLoginPanel: boolean = true;
-  isLoginBtnHidden: boolean = true;
-  btnInnerText: string;
+  isDisabled: boolean = true;
+  btnInnerText: string = "Insert PIN";
 
   constructor(private userService: UserService) {
   }
@@ -26,7 +26,8 @@ export class MembersContainerComponent implements OnInit {
 
   formReset() {
     this.inputReset = '';
-    this.isLoginBtnHidden = true;
+    this.isDisabled = true;
+    this.btnInnerText = 'Insert PIN';
   }
 
   getLoginData(userData) {
@@ -34,21 +35,23 @@ export class MembersContainerComponent implements OnInit {
     this.displayLoginPanel = false;
     this.formReset();
     console.log(userData);
-
   }
 
   verifyPIN(event) {
     if (event.target.value.length === 4) {
       setTimeout(() => {
         if (event.target.value === this.infoToLogin.pin) {
-          this.isLoginBtnHidden = false;
+          this.isDisabled = false;
+          this.btnInnerText = 'Correct! Click to log in';
         }
         else {
-          this.isLoginBtnHidden = true;
+          this.isDisabled = true;
+          this.btnInnerText = 'Wrong PIN. Try again.';
         }
       }, 500);
     } else if (event.target.value.length < 4) {
-      this.isLoginBtnHidden = true;
+      this.isDisabled = true;
+      this.btnInnerText = 'Insert PIN';
     }
   }
   logIn() {

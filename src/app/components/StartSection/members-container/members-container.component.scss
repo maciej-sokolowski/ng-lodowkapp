@@ -50,3 +50,59 @@
     cursor: pointer;
   }
 }
+
+.login-panel {
+  position: absolute;
+  text-align: center;
+  color: #5F7891;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  &__headline {
+    margin-bottom: 4px;
+    font-size: 46px;
+    font-weight: 300;
+  }
+
+  &__paragraph {
+    font-size: 16px;
+  }
+
+  &__input {
+    margin-top: 35px;
+    margin-bottom: 35px;
+    color: #5F7891;
+    font-size: 24px;
+    padding: 0 20px 0;
+    border-color: #5F7891;
+    border-radius: 10px;
+    border-style: solid;
+    width: 330px;
+    height: 60px;
+    outline: none;
+  }
+
+  &__btn {
+    background-color: #fff;
+    color: #fff;
+    margin: 0 10px 0;
+    font-size: 24px;
+    padding: 0 15px;
+    border-radius: 10px 10px 10px 10px;
+    background-color: rgb(96, 209, 73);
+    border-style: solid;
+    width: 330px;
+    height: 60px;
+    transition: .3s;
+    outline: none;
+
+    &:disabled {
+      background-color: #b8b8b8;
+    }
+
+    &--red {
+      background-color: #d1496b;
+    }
+  }
+}
