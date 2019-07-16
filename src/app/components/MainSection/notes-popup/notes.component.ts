@@ -35,10 +35,8 @@ export class NotesComponent implements OnInit {
       date: this.date,
       message: this.message
     }
-    console.log(this.date)
-    // this.noteService.insertItem(note); //push note to store and out to /start path
+    this.noteService.insertItem(note); //push note to store and out to /start path
   }
-
 
   @Output()
   emitNote = new EventEmitter();

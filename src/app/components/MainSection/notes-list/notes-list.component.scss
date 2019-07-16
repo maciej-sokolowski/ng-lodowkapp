@@ -1,0 +1,15 @@
+.container {
+  color: #5F7891;
+
+  &__list-item {
+    background-color: aquamarine;
+    border-radius: 10px;
+    width: 800px;
+    font-weight: 500;
+
+  }
+
+  &__date {
+    opacity: .5;
+  }
+}

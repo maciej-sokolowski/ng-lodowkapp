@@ -13,15 +13,19 @@ export class ListHeaderComponent implements OnInit {
   @Input()
   headerTitle: string = "";
 
+  @Input()
+  route: string = "";
+
   @Output()
   popupOpenEvent = new EventEmitter();
 
+  openPopup() {
+    this.popupOpenEvent.emit(true);
+  }
   constructor() { }
 
   ngOnInit() {
   }
 
-  openPopup() {
-    this.popupOpenEvent.emit(true);
-  }
+
 }

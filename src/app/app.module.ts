@@ -25,7 +25,8 @@ import { YoutubePlayerComponent } from './components/YoutubeSection/youtube-play
 import { SecureDomPipe } from './components/YoutubeSection/youtube-player/secure-dom.pipe';
 import { YoutubeComponent } from './components/MainSection/youtube/youtube.component';
 import { NotesComponent } from './components/MainSection/notes-popup/notes.component';
-import { ListHeaderComponent } from './components/MainSection/list-header/list-header.component'
+import { ListHeaderComponent } from './components/MainSection/list-header/list-header.component';
+import { NotesListComponent } from './components/MainSection/notes-list/notes-list.component'
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { ListHeaderComponent } from './components/MainSection/list-header/list-h
     YoutubeComponent,
     NotesComponent,
     ListHeaderComponent,
+    NotesListComponent,
   ],
   imports: [
     BrowserModule,
