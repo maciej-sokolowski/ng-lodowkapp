@@ -1,0 +1,12 @@
+<div class="wrapper">
+  <label class="container">
+    <input (click)="userParent()" type="radio" name="radio" checked={{isChecked}}>
+    <span class="checkmark checkmark--parent"></span>
+    Parent
+  </label>
+  <label class="container">
+    <input [disabled]="isDisabled" (click)="userChild()" type="radio" name="radio">
+    <span class="checkmark checkmark--child"></span>
+    Child
+  </label>
+</div>

@@ -6,7 +6,7 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss', './../registerinput/registerinput.component.scss']
 })
 export class RegisterComponent implements OnInit {
 
@@ -17,6 +17,7 @@ export class RegisterComponent implements OnInit {
   userNamee = '';
   userColor: string;
   userAvatar: string;
+  userPIN: string = '';
   private personType;
   btnSwitch: Array<Number> = [0];
 
@@ -28,21 +29,20 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
 
   }
-  userParent() {
-    this.personType = "PARENT";
-  }
-  userChild() {
-    this.personType = "CHILDREN";
-  }
 
-  setButtonStatus(step) {
+  setButtonStatus(step: number) {
     if (this.btnSwitch.includes(step)) {
       this.btnIsDisabled = false;
-    } else if (this.registerStep === 3) {
+      if (this.registerStep === 1 && this.userNamee.length === 0) {
+        this.btnIsDisabled = true;
+      }
+    } else if ((this.registerStep === 4 && this.personType === 'CHILDREN') || (this.registerStep === 4 && this.userPIN.length === 4)) {
       this.btnNextText = 'Confirm and add family member';
       this.btnIsDisabled = false;
-    }
-    else {
+    } else if (this.registerStep === 4 && this.userPIN.length < 4) {
+      this.btnIsDisabled = true;
+      this.btnNextText = 'First you need to enter PIN';
+    } else {
       this.btnIsDisabled = true;
     }
   }
@@ -51,13 +51,17 @@ export class RegisterComponent implements OnInit {
     this.btnSwitch.push(this.registerStep);
   }
 
+  checkLength() {
+    this.setButtonStatus(4);
+  }
+
   onClickPrev() {
     this.registerStep--;
     this.setButtonStatus(this.registerStep);
     if (this.registerStep < 0) {
       this.registerStep = 0; //out to /start path
       return;
-    } else if (this.registerStep === 2) {
+    } else if (this.registerStep === 3) {
       this.btnNextText = 'Next';
     }
   }
@@ -65,21 +69,25 @@ export class RegisterComponent implements OnInit {
   onClickNext() {
     this.registerStep++;
     this.setButtonStatus(this.registerStep);
-    if (this.registerStep === 4) {
-      if (this.personType === undefined) {
-        this.userParent();
-      }
-      let agregatedInfo = { id: '1', type: this.personType, name: this.userNamee, avatar: this.userAvatar, color: this.userColor };
+    if (this.registerStep === 5) {
+      let agregatedInfo = { id: '1', type: this.personType, name: this.userNamee, avatar: this.userAvatar, color: this.userColor, pin: this.userPIN };
       this.registerInfo(agregatedInfo);
     }
   }
 
+  getUserType(userType: string) {
+    this.personType = userType;
+    this.activateBtn();
+  }
+
   getName(user: string) {
     if (user.length > 0) {
-      this.btnIsDisabled = false;
+      this.activateBtn();
       this.userNamee = user;
     } else if (user.length === 0) {
-      this.btnIsDisabled = true;
+      console.log(user.length);
+      this.userNamee = "";
+      this.setButtonStatus(this.registerStep);
     }
   }
 

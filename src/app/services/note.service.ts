@@ -46,7 +46,7 @@ export class NoteService implements StoreManager<Note> {
     this.synchronizeWithLocalStorage();
   }
 
-  public synchronizeWithLocalStorage() {
+  private synchronizeWithLocalStorage() {
     _.debounce(() => this.mdService.updateNotesToLocalStorage(this.notes.getValue()), 2500)();
   }
 

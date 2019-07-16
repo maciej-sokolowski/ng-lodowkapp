@@ -1,0 +1,16 @@
+.dot {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background-color: #70D9A8;
+  border-radius: 30px;
+  top: 0;
+  left: 0;
+
+  &__frame {
+    width: 60px;
+    height: 60px;
+    background-color: transparent;
+    position: relative;
+  }
+}
