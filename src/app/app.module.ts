@@ -21,6 +21,7 @@ import {WeatherService} from './components/MainSection/weather/weather.service';
 import {TopBarComponent} from './components/MainSection/top-bar/top-bar.component';
 import {MembersContainerComponent} from './components/StartSection/members-container/members-container.component';
 import {RegisterinputComponent} from './components/RegisterSection/registerinput/registerinput.component';
+import { WidgetsListComponent } from './components/MainSection/widgets-list/widgets-list.component';
 import { DotComponent } from './components/FridgeSection/dot/dot.component';
 import { ProductCloudComponent } from './components/FridgeSection/product-cloud/product-cloud.component';
 import { UsertypeComponent } from './components/RegisterSection/usertype/usertype.component';
@@ -50,6 +51,7 @@ const fridgeConnectionConfig: SocketIoConfig = {url: 'http://10.254.0.40:3000/',
     WeatherComponent,
     TopBarComponent,
     RegistersummComponent,
+    WidgetsListComponent,
     DotComponent,
     ProductCloudComponent,
     UsertypeComponent,
