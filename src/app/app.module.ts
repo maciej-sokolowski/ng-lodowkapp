@@ -2,7 +2,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import {SocketIoModule, SocketIoConfig} from 'ngx-socket-io';
 // Components
@@ -27,6 +27,8 @@ import { UsertypeComponent } from './components/RegisterSection/usertype/usertyp
 import { YoutubePlayerComponent } from './components/YoutubeSection/youtube-player/youtube-player.component';
 import { SecureDomPipe } from './components/YoutubeSection/youtube-player/secure-dom.pipe';
 import { YoutubeComponent } from './components/MainSection/youtube/youtube.component';
+import { EditComponent } from './components/FridgeSection/edit/edit.component';
+import { InfoComponent } from './components/FridgeSection/info/info.component';
 
 
 const fridgeConnectionConfig: SocketIoConfig = {url: 'http://10.254.0.40:3000/', options: {}};
@@ -54,13 +56,16 @@ const fridgeConnectionConfig: SocketIoConfig = {url: 'http://10.254.0.40:3000/',
     YoutubePlayerComponent,
     SecureDomPipe,
     YoutubeComponent,
+    EditComponent,
+    InfoComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    SocketIoModule.forRoot(fridgeConnectionConfig)
+    SocketIoModule.forRoot(fridgeConnectionConfig),
+    ReactiveFormsModule
   ],
   providers: [WeatherService],
 

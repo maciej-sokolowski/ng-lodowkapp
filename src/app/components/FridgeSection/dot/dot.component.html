@@ -1,5 +1,6 @@
-<div class="dot" [ngStyle]="{'top': product.fridgePosition.y, 'left': product.fridgePosition.x}">
-  <div (click)="changeLabelVisibility()" class="dot__frame">
+<div class="dot"
+     [ngStyle]="{'top': product.fridgePosition.y, 'left': product.fridgePosition.x}">
+  <div (dblclick)="changeLabelVisibility()" class="dot__frame">
     <app-product-cloud *ngIf="visibleLabel === 1"></app-product-cloud>
   </div>
 </div>

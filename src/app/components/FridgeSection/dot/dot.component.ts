@@ -1,4 +1,4 @@
-import {Component, DoCheck, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Product} from '../../../interfaces/Models/product';
 import {ProductService} from '../../../services/product.service';
 
@@ -16,6 +16,7 @@ export class DotComponent implements OnInit {
 
   static activeLabelID = '';
   @Input() product: Product;
+  @Output() cloudActiveNotification = new EventEmitter<boolean>();
   visibleLabel = Visible.NOT;
 
   get ActiveLabelID() {
@@ -35,6 +36,7 @@ export class DotComponent implements OnInit {
     if (this.ActiveLabelID === '') {
       this.ActiveLabelID = this.product.id;
       this.visibleLabel = Visible.YES;
+      this.cloudActiveNotification.emit(true);
     }
   }
 
@@ -42,10 +44,12 @@ export class DotComponent implements OnInit {
     if (this.ActiveLabelID === '') {
       this.ActiveLabelID = this.product.id;
       this.visibleLabel = Visible.YES;
+      this.cloudActiveNotification.emit(true);
     } else {
       if (this.ActiveLabelID === this.product.id) {
         this.ActiveLabelID = '';
         this.visibleLabel = Visible.NOT;
+        this.cloudActiveNotification.emit(false);
       }
     }
 

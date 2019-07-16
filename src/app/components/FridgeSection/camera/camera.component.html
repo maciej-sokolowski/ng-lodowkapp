@@ -1,7 +1,7 @@
 <div class="stream-view">
   <img (click)="setDot($event)" class="stream-view__video" src="{{imageUrl}}">
   <div *ngFor="let product of products">
-    <app-dot [product]="product"></app-dot>
+    <app-dot (cloudActiveNotification)="anyCloudActive($event)" [product]="product"></app-dot>
   </div>
 </div>
 

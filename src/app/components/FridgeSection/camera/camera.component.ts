@@ -12,8 +12,15 @@ import {v4 as uuid} from 'uuid';
 
 export class CameraComponent implements OnInit {
 
+
   public imageUrl: string;
   public products: Product[];
+  // tslint:disable-next-line:variable-name
+  private _isAnyCloudActive: boolean;
+
+  anyCloudActive(value: boolean) {
+    this._isAnyCloudActive = value;
+  }
 
   constructor(private socket: Socket, private prService: ProductService) {
     this.socket.on('image', (image) => this.imageUrl = `data:image/jpeg;base64,${image}`);
@@ -25,13 +32,17 @@ export class CameraComponent implements OnInit {
 
 
   setDot($event) {
-    // @ts-ignore
-    const product: Product = {
-      id: uuid(),
-      fridgePosition: {x: `${$event.layerX - 30}px`, y: `${$event.layerY - 30}px`}
-    };
-    console.log(product.id);
-    this.products.push(product);
+    if (!this._isAnyCloudActive) {
+
+      console.log(this._isAnyCloudActive);
+      // @ts-ignore
+      const product: Product = {
+        id: uuid(),
+        fridgePosition: {x: `${$event.layerX - 30}px`, y: `${$event.layerY - 30}px`}
+      };
+      this.products.push(product);
+
+    }
   }
 
 }

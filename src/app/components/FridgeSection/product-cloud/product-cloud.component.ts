@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+
+enum Edit {
+  YES = 1,
+  NO = 2
+}
 
 @Component({
   selector: 'app-product-cloud',
@@ -7,9 +12,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductCloudComponent implements OnInit {
 
-  constructor() { }
+  editable: Edit;
+
+  constructor() {
+  }
 
   ngOnInit() {
+    this.editable = Edit.YES;
   }
+
 
 }

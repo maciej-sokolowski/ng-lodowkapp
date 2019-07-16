@@ -1,0 +1,6 @@
+<div class="edit_box">
+  <form class="edit_box__form" action="" [formGroup]="nameDate" (keyup.enter)="showValue(nameDate.value)">
+    <input class="edit_box__input" id="title" placeholder="Product name" type="text" formControlName="name">
+    <input class="edit_box__input" id="date" placeholder="Expiry date" type="text" formControlName="expiry">
+  </form>
+</div>

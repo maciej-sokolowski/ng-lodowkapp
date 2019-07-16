@@ -1,5 +1,15 @@
 <div class="cloud">
   <div class="cloud__rectangle">
+    <div [ngSwitch]="editable">
+      <app-edit *ngSwitchCase="editable === 1"></app-edit>
+      <app-edit *ngSwitchCase="editable===2"></app-edit>
+    </div>
+
+    <div class="btn-box">
+      <button class="btn-box__btn btn-box__btn--buy">To buy</button>
+      <button class="btn-box__btn btn-box__btn--edit">Edit</button>
+      <button class="btn-box__btn btn-box__btn--remove">Remove</button>
+    </div>
     <div class="cloud__arrow"></div>
   </div>
 </div>
