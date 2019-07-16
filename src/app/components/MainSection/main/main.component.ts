@@ -10,7 +10,7 @@ export class MainComponent implements OnInit {
   isOpen: boolean;
   emitIsSmallWidget: boolean;
   emitLargeWidgetsList = ["Canvas", "Activities", "Products", "Notes"];
-  emitSmallWidgetsList =["Youtube - Tasty chanel", "Weather"];
+  emitSmallWidgetsList =["Youtube", "Weather"];
   placeholderId: string;
   target: any;
   
@@ -88,6 +88,7 @@ export class MainComponent implements OnInit {
     // console.log(widgetPlaceholder)
 
     this.widgets[this.placeholderId] = widgetToAssign;
+    console.log(this.widgets)
 
     // widgetToAssign = this.widgets[widgetToAssign];
     // console.log(widgetToAssign)
