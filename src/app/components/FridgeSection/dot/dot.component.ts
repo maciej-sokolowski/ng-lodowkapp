@@ -40,6 +40,7 @@ export class DotComponent implements OnInit {
   }
 
   changeLabelVisibility() {
+    // debugger;
     if (this.ActiveLabelID === '') {
       this.ActiveLabelID = this.product.id;
       this.visibleLabel = Visible.YES;
@@ -52,6 +53,12 @@ export class DotComponent implements OnInit {
       }
     }
 
+  }
+
+  removeProduct() {
+    this.prService.deleteItem(this.product);
+    this.ActiveLabelID = '';
+    this.cloudActiveNotification.emit(false);
   }
 
 }

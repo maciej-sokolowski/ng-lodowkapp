@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Product} from '../../../interfaces/Models/product';
 import {NameDate} from '../../../interfaces/name-date';
 import {ProductService} from '../../../services/product.service';
@@ -17,13 +17,15 @@ export class ProductCloudComponent implements OnInit {
 
   editable: Edit;
   @Input() product: Product;
+  @Output() removeSignal: EventEmitter<void> = new EventEmitter<void>();
+  public editButtonChildren = 'Edit';
 
   constructor(private prService: ProductService) {
-
   }
 
   ngOnInit() {
     if (this.product.name === undefined && this.product.expiryDate === undefined) {
+      this.editButtonChildren = 'Add';
       this.editable = Edit.YES;
     } else {
       this.editable = Edit.NOT;
@@ -40,7 +42,15 @@ export class ProductCloudComponent implements OnInit {
   edit() {
     if (this.editable === Edit.NOT) {
       this.editable = Edit.YES;
+      this.editButtonChildren = 'Cancel';
+    } else {
+      this.editable = Edit.NOT;
+      this.editButtonChildren = 'Edit';
     }
+  }
+
+  remove() {
+    this.removeSignal.emit();
   }
 
 
