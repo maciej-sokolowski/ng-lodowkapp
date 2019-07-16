@@ -28,6 +28,9 @@ import { UsertypeComponent } from './components/RegisterSection/usertype/usertyp
 import { YoutubePlayerComponent } from './components/YoutubeSection/youtube-player/youtube-player.component';
 import { SecureDomPipe } from './components/YoutubeSection/youtube-player/secure-dom.pipe';
 import { YoutubeComponent } from './components/MainSection/youtube/youtube.component';
+import { CanvasComponent } from './components/MainSection/canvas/canvas.component';
+import { CanvasSectionComponent } from './components/CanvasSection/canvas-section.component';
+
 
 
 const fridgeConnectionConfig: SocketIoConfig = {url: 'http://10.254.0.40:3000/', options: {}};
@@ -56,6 +59,8 @@ const fridgeConnectionConfig: SocketIoConfig = {url: 'http://10.254.0.40:3000/',
     YoutubePlayerComponent,
     SecureDomPipe,
     YoutubeComponent,
+    CanvasComponent,
+    CanvasSectionComponent
   ],
   imports: [
     BrowserModule,

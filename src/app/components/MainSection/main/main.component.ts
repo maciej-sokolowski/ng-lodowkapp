@@ -80,6 +80,7 @@ export class MainComponent implements OnInit {
     widgetPlaceholder.removeChild(placeholderSpan);
     widgetPlaceholder.removeChild(placeholderDescription);
     widgetPlaceholder.style.border = "none";
+    widgetPlaceholder.style.opacity = "1";
     // while (widgetPlaceholder.firstChild) {
     //   widgetPlaceholder.removeChild(widgetPlaceholder.firstChild);
     // }
