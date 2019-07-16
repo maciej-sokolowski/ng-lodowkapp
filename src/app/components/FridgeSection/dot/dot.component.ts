@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, DoCheck, Input, OnInit} from '@angular/core';
 import {Product} from '../../../interfaces/Models/product';
 import {ProductService} from '../../../services/product.service';
 
@@ -14,28 +14,41 @@ enum Visible {
 })
 export class DotComponent implements OnInit {
 
+  static activeLabelID = '';
   @Input() product: Product;
-  visibleLabel = Visible.YES;
+  visibleLabel = Visible.NOT;
 
+  get ActiveLabelID() {
+    return DotComponent.activeLabelID;
+  }
+
+  set ActiveLabelID(value: string) {
+    DotComponent.activeLabelID = value;
+  }
 
   constructor(private prService: ProductService) {
 
   }
 
-  ngOnInit() {
 
+  ngOnInit() {
+    if (this.ActiveLabelID === '') {
+      this.ActiveLabelID = this.product.id;
+      this.visibleLabel = Visible.YES;
+    }
   }
 
-  changeLabelVisibility($event) {
-
-    console.log($event);
-    if (this.visibleLabel === Visible.YES) {
-      this.visibleLabel = Visible.NOT;
-    } else {
+  changeLabelVisibility() {
+    if (this.ActiveLabelID === '') {
+      this.ActiveLabelID = this.product.id;
       this.visibleLabel = Visible.YES;
+    } else {
+      if (this.ActiveLabelID === this.product.id) {
+        this.ActiveLabelID = '';
+        this.visibleLabel = Visible.NOT;
+      }
     }
 
   }
-
 
 }
