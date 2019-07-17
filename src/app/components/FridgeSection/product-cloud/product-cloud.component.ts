@@ -39,6 +39,7 @@ export class ProductCloudComponent implements OnInit {
     this.prService.updateItem(this.product);
     this.editable = Edit.NOT;
     this.editDisable = false;
+    this.editButtonChildren = 'Edit';
   }
 
   edit() {
