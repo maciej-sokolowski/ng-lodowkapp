@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   width: 420px;
-  height: 80px;
+  height: 79px;
   background-color: #5F7891;
   color: #fff;
   font-weight: bold;
@@ -45,6 +45,26 @@
     background-color: rgba(255, 255, 255, .2);
     background-position: 10px, 10px;
   }
+}
 
+.wrapper {
+  height: 320px;
+  overflow: hidden;
+  background-color: aqua;
+}
 
+.list-item {
+  position: relative;
+  z-index: 9;
+  height: 79px;
+  width: 420px;
+  background-color: #aaa;
+  border-radius: 10px;
+  margin-bottom: 1px;
+
+}
+
+.text {
+  text-overflow: ellipsis;
+  overflow: hidden;
 }

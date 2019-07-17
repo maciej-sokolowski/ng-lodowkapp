@@ -11,14 +11,10 @@ export class NotesListComponent implements OnInit {
   constructor(private noteService: NoteService) { }
 
   notes: any;
-  notesLenght: number;
 
   ngOnInit() {
     this.getNotes();
-    console.log(this.notes)
   }
-
-
 
   ngDoCheck() {
     this.getNotes();
@@ -36,13 +32,4 @@ export class NotesListComponent implements OnInit {
   deleteNote(note: any) {
     this.noteService.deleteItem(note);
   }
-
-  // @Output()
-  // emitLength = new EventEmitter();
-
-  // notesCounter() {
-  //   this.notesLenght = this.notes.length;
-  //   this.emitLength.emit(this.notesLenght)
-  //   console.log(this.emitLength)
-  // }
 }

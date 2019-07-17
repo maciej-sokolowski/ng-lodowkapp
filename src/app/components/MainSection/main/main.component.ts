@@ -13,7 +13,6 @@ export class MainComponent implements OnInit {
     this.isPopupOpen = value;
   }
 
-
   constructor() { }
 
   ngOnInit() {

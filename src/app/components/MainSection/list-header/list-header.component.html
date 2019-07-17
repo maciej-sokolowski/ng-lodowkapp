@@ -1,7 +1,13 @@
 <div class="container">
-  <p class="container__title">{{counter}} {{headerTitle}}</p>
+  <p class="container__title">{{headerTitle}}</p>
   <div class="container__buttons">
     <button [routerLink]="route" class="container__button">VIEW ALL</button>
     <button class="container__button container__button-add" *ngIf='canAddListItem' (click)="openPopup()"></button>
+  </div>
+</div>
+<div class="wrapper">
+  <div class="list-item" *ngFor='let note of notes'>
+    <p class="date">{{note.date | date: 'dd/MM/yyyy HH:mm'}}</p>
+    <p class="text">{{note.message}}</p>
   </div>
 </div>

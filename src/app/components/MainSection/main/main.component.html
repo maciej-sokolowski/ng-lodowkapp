@@ -1,6 +1,6 @@
 <div class="main-wrapper">
   <app-top-bar></app-top-bar>
-  <app-list-header [counter]="lenght" headerTitle="notes" route="/notes" [canAddListItem]="true"
+  <app-list-header headerTitle="notes" route="/notes" [canAddListItem]="true"
     (popupOpenEvent)="onPopupStatusChange($event)">
   </app-list-header>
   <app-notes *ngIf=" isPopupOpen" (popupCloseEvent)="onPopupStatusChange($event)">
