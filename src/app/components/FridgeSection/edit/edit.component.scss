@@ -10,11 +10,33 @@
     justify-content: space-between;
   }
 
-  &__input {
-    height: 30px;
-    margin-top: 8px;
-    margin-bottom: 27px;
+  &__input-container {
+    width: 160px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
   }
 
+  &__input {
+    height: 30px;
+    width: 160px;
+    margin-top: 8px;
+    margin-bottom: 27px;
+
+    &--invalid {
+      margin-bottom: 0;
+    }
+  }
+
+  &__validator {
+    width: 160px;
+    height: 27px;
+    line-height: 25px;
+    font-size: 15px;
+    color: #FF4E4E;
+    font-family: "Open Sans", sans-serif;
+  }
 
 }
