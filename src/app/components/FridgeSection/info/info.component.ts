@@ -15,38 +15,28 @@ export class InfoComponent implements OnInit {
 
   @Input() title: string;
   @Input() date: Date;
+  parsedDate: number;
   labelColor: labelColors;
   dayTime = 86400000;
-  formatedTimeStamp: string;
 
   constructor() {
 
   }
 
   ngOnInit() {
+    this.parsedDate = Date.parse(String(this.date));
     this.setLabel();
   }
 
-  setLabel() {
-    // debugger;
-    const timeBetweenExpiry = this.date.valueOf() - Date.now().valueOf();
+  private setLabel() {
+    const timeBetweenExpiry = this.parsedDate - Date.now().valueOf();
 
     if (timeBetweenExpiry >= 10 * this.dayTime) {
       this.labelColor = labelColors.GREEN;
+    } else if (timeBetweenExpiry > 0 && timeBetweenExpiry < 10 * this.dayTime) {
+      this.labelColor = labelColors.YELLOW;
     } else {
-      if (timeBetweenExpiry > 0 && timeBetweenExpiry < 10 * this.dayTime) {
-        this.labelColor = labelColors.YELLOW;
-        const daysCount = Math.floor(timeBetweenExpiry / this.dayTime);
-        console.log(daysCount);
-        if (daysCount === 1) {
-          this.formatedTimeStamp = `${daysCount} DAY`;
-        } else {
-          this.formatedTimeStamp = `${daysCount} DAYS`;
-        }
-
-      } else {
-        this.labelColor = labelColors.RED;
-      }
+      this.labelColor = labelColors.RED;
     }
   }
 }

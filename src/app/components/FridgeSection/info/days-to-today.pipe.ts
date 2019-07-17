@@ -7,14 +7,18 @@ import {Pipe, PipeTransform} from '@angular/core';
 export class DaysToTodayPipe implements PipeTransform {
 
   dayTime = 86400000;
+  parsedDate: number;
 
   transform(value: Date): any {
-    const daysCount = Math.ceil((value.valueOf() - Date.now().valueOf()) / this.dayTime);
-    console.log(daysCount);
+    this.parsedDate = Date.parse(String(value));
+    const daysCount = Math.ceil((this.parsedDate - Date.now().valueOf()) / this.dayTime);
+
     if (daysCount === 1) {
       return `${daysCount} DAY`;
-    } else {
+    } else if (daysCount > 1) {
       return `${daysCount} DAYS`;
+    } else {
+      return 'EXPIRED';
     }
   }
 
