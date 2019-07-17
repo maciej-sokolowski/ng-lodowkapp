@@ -57,8 +57,9 @@ $remove-color: #FF4E4E;
     user-select: none;
 
     &:disabled {
-      background-color: #d0a428;
-      border: 1px solid #d0a428;
+      background-color: #bbaeb2;
+      border: 1px solid #ffffff;
+      color: #ffffff;
     }
 
     &:active {
