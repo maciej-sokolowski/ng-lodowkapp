@@ -6,14 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
-
   isOpen: boolean;
   emitIsSmallWidget: boolean;
   emitLargeWidgetsList = ["Canvas", "Activities", "Products", "Notes"];
-  emitSmallWidgetsList =["Youtube", "Weather"];
+  emitSmallWidgetsList = ["Youtube", "Weather"];
   placeholderId: string;
   target: any;
-  
+
 
   // widgets = {
   //   "Canvas": "app-weather",
@@ -37,6 +36,7 @@ export class MainComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(history.state[0]);
   }
 
   initList() {

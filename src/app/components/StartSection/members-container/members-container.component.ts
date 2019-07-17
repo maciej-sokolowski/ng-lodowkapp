@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/interfaces/Models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-members-container',
@@ -18,7 +19,7 @@ export class MembersContainerComponent implements OnInit {
   btnInnerText: string = "Insert PIN";
   btnState: string = 'inactive';
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, public router: Router) {
   }
 
   ngOnInit() {
@@ -58,14 +59,15 @@ export class MembersContainerComponent implements OnInit {
 
   verifyPIN(event) {
     if (event.target.value.length === 4) {
+      event.target.value === this.infoToLogin.pin ? this.btnState = 'correct' : this.btnState = 'wrong';
       setTimeout(() => {
-        event.target.value === this.infoToLogin.pin ? this.btnState = 'correct' : this.btnState = 'wrong';
-      }, 500);
+        this.logIn();
+      }, 2500);
     } else if (event.target.value.length < 4) {
       this.btnState = 'inactive'
     }
   }
   logIn() {
-    alert(`${this.infoToLogin.name} zaloguj (tu dalej trzeba przejąć id usera i wejść do dashboardu)`);
+    this.router.navigate(['/main'], { state: [this.infoToLogin] });
   }
 }
