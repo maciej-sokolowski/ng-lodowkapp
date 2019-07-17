@@ -2,7 +2,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import {SocketIoModule, SocketIoConfig} from 'ngx-socket-io';
 // Components
@@ -21,14 +21,16 @@ import {WeatherService} from './components/MainSection/weather/weather.service';
 import {TopBarComponent} from './components/MainSection/top-bar/top-bar.component';
 import {MembersContainerComponent} from './components/StartSection/members-container/members-container.component';
 import {RegisterinputComponent} from './components/RegisterSection/registerinput/registerinput.component';
-import { WidgetsListComponent } from './components/MainSection/widgets-list/widgets-list.component';
-import { DotComponent } from './components/FridgeSection/dot/dot.component';
-import { ProductCloudComponent } from './components/FridgeSection/product-cloud/product-cloud.component';
-import { UsertypeComponent } from './components/RegisterSection/usertype/usertype.component';
-import { YoutubePlayerComponent } from './components/YoutubeSection/youtube-player/youtube-player.component';
-import { SecureDomPipe } from './components/YoutubeSection/youtube-player/secure-dom.pipe';
-import { YoutubeComponent } from './components/MainSection/youtube/youtube.component';
-
+import {WidgetsListComponent} from './components/MainSection/widgets-list/widgets-list.component';
+import {DotComponent} from './components/FridgeSection/dot/dot.component';
+import {ProductCloudComponent} from './components/FridgeSection/product-cloud/product-cloud.component';
+import {UsertypeComponent} from './components/RegisterSection/usertype/usertype.component';
+import {YoutubePlayerComponent} from './components/YoutubeSection/youtube-player/youtube-player.component';
+import {SecureDomPipe} from './components/YoutubeSection/youtube-player/secure-dom.pipe';
+import {YoutubeComponent} from './components/MainSection/youtube/youtube.component';
+import {EditComponent} from './components/FridgeSection/edit/edit.component';
+import {InfoComponent} from './components/FridgeSection/info/info.component';
+import {DaysToTodayPipe} from './components/FridgeSection/info/days-to-today.pipe';
 
 const fridgeConnectionConfig: SocketIoConfig = {url: 'http://10.254.0.40:3000/', options: {}};
 
@@ -56,13 +58,17 @@ const fridgeConnectionConfig: SocketIoConfig = {url: 'http://10.254.0.40:3000/',
     YoutubePlayerComponent,
     SecureDomPipe,
     YoutubeComponent,
+    EditComponent,
+    InfoComponent,
+    DaysToTodayPipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    SocketIoModule.forRoot(fridgeConnectionConfig)
+    SocketIoModule.forRoot(fridgeConnectionConfig),
+    ReactiveFormsModule
   ],
   providers: [WeatherService],
 

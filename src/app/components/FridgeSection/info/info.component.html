@@ -1,0 +1,9 @@
+<div class="info-box">
+  <h3 class="info-box__title">{{title}}</h3>
+  <div [ngSwitch]="labelColor">
+    <div *ngSwitchCase="1" class="info-box__date info-box__date--full">{{date | date: 'yyyy-MM-dd'}}</div>
+    <div *ngSwitchCase="2" class="info-box__date info-box__date--number">{{date | daysToToday}}</div>
+    <div *ngSwitchCase="3" class="info-box__date info-box__date--expired">{{date | daysToToday}}</div>
+  </div>
+
+</div>
