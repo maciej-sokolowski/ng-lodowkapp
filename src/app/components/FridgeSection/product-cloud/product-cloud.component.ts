@@ -33,6 +33,8 @@ export class ProductCloudComponent implements OnInit {
     }
   }
 
+  // TODO: uncomment
+
   changeNameAndDate(value: NameDate) {
     this.product.name = value.name;
     this.product.expiryDate = value.expiry;

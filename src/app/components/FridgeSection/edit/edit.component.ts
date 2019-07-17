@@ -1,8 +1,18 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {NameDate} from '../../../interfaces/name-date';
-import {ProductService} from '../../../services/product.service';
-import {validate} from 'codelyzer/walkerFactory/walkerFn';
+import {AntiPastDateValidator} from './anti-past-date-validator';
+
+
+// export function antiPastDateValidator(control: FormControl) {
+//   const date = new Date(`${control.value}`);
+//   if (date.valueOf() < Date.now().valueOf()) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+//
+// }
 
 @Component({
   selector: 'app-edit',
@@ -16,7 +26,6 @@ export class EditComponent implements OnInit {
   constructor() {
   }
 
-
   public nameDate = new FormGroup({
     name: new FormControl('', [
         Validators.required,
@@ -26,7 +35,8 @@ export class EditComponent implements OnInit {
     ),
     expiry: new FormControl('', [
       Validators.required,
-      Validators.pattern('^([0-2][0-9]|(3)[0-1])(\\-)(((0)[0-9])|((1)[0-2]))(\\-)\\d{4}$')
+      Validators.pattern('([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))'),
+      AntiPastDateValidator
     ])
   });
 

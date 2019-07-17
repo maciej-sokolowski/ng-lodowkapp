@@ -32,7 +32,6 @@ import { EditComponent } from './components/FridgeSection/edit/edit.component';
 import { InfoComponent } from './components/FridgeSection/info/info.component';
 import { DateLabelDirective } from './directives/date-label.directive';
 
-
 const fridgeConnectionConfig: SocketIoConfig = {url: 'http://10.254.0.40:3000/', options: {}};
 
 @NgModule({
