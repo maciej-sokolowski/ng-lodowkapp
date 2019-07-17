@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/interfaces/Models/user';
 import { UserService } from 'src/app/services/user.service';
+import { v4 as uuid } from 'uuid';
 
 
 @Component({
@@ -36,7 +37,7 @@ export class RegisterComponent implements OnInit {
       if (this.registerStep === 1 && this.userNamee.length === 0) {
         this.btnIsDisabled = true;
       }
-    } else if ((this.registerStep === 4 && this.personType === 'CHILDREN') || (this.registerStep === 4 && this.userPIN.length === 4)) {
+    } else if (this.registerStep === 4 && this.userPIN.length === 4) {
       this.btnNextText = 'Confirm and add family member';
       this.btnIsDisabled = false;
     } else if (this.registerStep === 4 && this.userPIN.length < 4) {
@@ -70,7 +71,7 @@ export class RegisterComponent implements OnInit {
     this.registerStep++;
     this.setButtonStatus(this.registerStep);
     if (this.registerStep === 5) {
-      let agregatedInfo = { id: '1', type: this.personType, name: this.userNamee, avatar: this.userAvatar, color: this.userColor, pin: this.userPIN };
+      let agregatedInfo = { id: uuid(), type: this.personType, name: this.userNamee, avatar: this.userAvatar, color: this.userColor, pin: this.userPIN };
       this.registerInfo(agregatedInfo);
     }
   }

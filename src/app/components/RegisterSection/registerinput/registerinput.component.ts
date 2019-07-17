@@ -11,7 +11,7 @@ export class RegisterinputComponent implements OnInit {
   userName: string;
 
   @Output()
-  emitName = new EventEmitter();
+  emitName = new EventEmitter<string>();
 
   constructor() { }
 
