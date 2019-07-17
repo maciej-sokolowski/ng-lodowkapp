@@ -30,10 +30,6 @@ export class UsertypeComponent implements OnInit {
       this.isCheckedParent = 'checked';
       this.userParent();
       this.isDisabled = true;
-    } else if (this.person === "CHILDREN") {
-      this.isCheckedChild = 'checked';
-    } else if (this.person === "PARENT") {
-      this.isCheckedParent = 'checked';
     }
   }
 
