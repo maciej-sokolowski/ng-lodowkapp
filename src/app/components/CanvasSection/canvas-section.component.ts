@@ -67,5 +67,9 @@ export class CanvasSectionComponent implements OnInit {
   rubberMode() {
     this.isRubber = true;
   }
+
+  clearCanvas() {
+    this.ctx.clearRect(0, 0, 840, 800);
+  }
   
 }
