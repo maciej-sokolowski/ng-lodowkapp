@@ -1,5 +1,5 @@
 <div class="container">
-  <p class="container__title">{{headerTitle}}</p>
+  <p class="container__title">{{counter}} {{headerTitle}}</p>
   <div class="container__buttons">
     <button [routerLink]="route" class="container__button">VIEW ALL</button>
     <button class="container__button container__button-add" *ngIf='canAddListItem' (click)="openPopup()"></button>

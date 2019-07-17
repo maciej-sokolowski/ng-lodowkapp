@@ -1,5 +1,5 @@
 .container {
-  background-color: rgba(95, 120, 145);
+  background-color: #5f7891;
   width: 420px;
   height: 300px;
   display: flex;
@@ -9,36 +9,74 @@
   position: absolute;
   border-radius: 10px;
   margin: 20px 0;
-  position: absolute;
-  z-index: 5;
+  position: relative;
+  z-index: 1;
+  animation: showPopup 1s;
+
+  &__button-close {
+    height: 40px;
+    width: 40px;
+    background: url("../../../../assets/plus.svg");
+    background-repeat: no-repeat;
+    background-position: 10px, 10px;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, .2);
+    outline: none;
+    transition: .1s;
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    transform: rotate(45deg);
+
+    &:active {
+      transform: translateY(2px) rotate(45deg);
+    }
+  }
 
   &__title {
     font-size: 30px;
     color: #fff;
+    font-weight: bold;
   }
 
   &__text {
     border-radius: 10px;
-    border: none;
     outline: none;
+    border: none;
     padding: 0 20px;
     height: 30px;
-    width: 95%;
+    width: 90%;
+    color: #5f7891;
   }
 
   &__button {
-    background-color: #00C3FF;
-    border: none;
+    height: 40px;
+    width: 100px;
+    border: 1px solid #fff;
     border-radius: 10px;
-    height: 44px;
-    width: 70px;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
     color: #fff;
+    background-color: rgba(255, 255, 255, .2);
+    padding: 0 16px;
     outline: none;
     transition: .1s;
-    margin: 0 20px;
 
     &:active {
       transform: translateY(2px);
     }
+  }
+}
+
+@keyframes showPopup {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 }

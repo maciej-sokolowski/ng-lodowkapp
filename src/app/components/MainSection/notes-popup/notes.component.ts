@@ -1,7 +1,6 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { NoteService } from '../../../services/note.service';
-import { DatePipe } from '@angular/common';
-
+import { UUID } from 'angular2-uuid';
 
 @Component({
   selector: 'app-notes',
@@ -10,8 +9,7 @@ import { DatePipe } from '@angular/common';
 })
 export class NotesComponent implements OnInit {
   @Input()
-  message = '';
-
+  message: string = "";
 
   @Output()
   popupCloseEvent = new EventEmitter();
@@ -20,7 +18,7 @@ export class NotesComponent implements OnInit {
     this.popupCloseEvent.emit(false);
   }
 
-  id = '5';
+  id = UUID.UUID();
   userId = '1';
   date: Date = new Date();
   constructor(private noteService: NoteService) { }
@@ -35,7 +33,10 @@ export class NotesComponent implements OnInit {
       date: this.date,
       message: this.message
     }
-    this.noteService.insertItem(note); //push note to store and out to /start path
+
+    if (this.message) {
+      this.noteService.insertItem(note);
+    }
   }
 
   @Output()

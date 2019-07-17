@@ -8,13 +8,16 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class ListHeaderComponent implements OnInit {
 
   @Input()
-  canAddListItem: boolean = false;
+  canAddListItem = false;
 
   @Input()
-  headerTitle: string = "";
+  headerTitle = "";
 
   @Input()
-  route: string = "";
+  route = "";
+
+  @Input()
+  counter = "";
 
   @Output()
   popupOpenEvent = new EventEmitter();

@@ -1,9 +1,10 @@
 <div class="container">
-  <button routerLink="/main">Back</button>
-  <div class="container__list">
-    <div class="container__list-item">
-      <p class="container__date">26/05/2019</p>
-      <p class="container__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, natus!</p>
+  <div class="container__wrapper">
+    <button class="container__button-back" routerLink="/main">&lt;</button>
+    <div class="container__list-item" *ngFor='let note of notes'>
+      <button class="container__delete" (click)="deleteNote(note)"></button>
+      <p class="container__date">{{note.date | date: 'dd/MM/yyyy HH:mm'}}</p>
+      <p class="container__text">{{note.message}}</p>
     </div>
   </div>
 </div>

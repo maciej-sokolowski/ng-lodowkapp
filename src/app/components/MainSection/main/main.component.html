@@ -1,11 +1,12 @@
 <div class="main-wrapper">
   <app-top-bar></app-top-bar>
-  <app-list-header headerTitle="notes" route="/notes" [canAddListItem]="true"
+  <app-list-header [counter]="lenght" headerTitle="notes" route="/notes" [canAddListItem]="true"
     (popupOpenEvent)="onPopupStatusChange($event)">
   </app-list-header>
-  <app-notes *ngIf="isPopupOpen" (popupCloseEvent)="onPopupStatusChange($event)"></app-notes>
+  <app-notes *ngIf=" isPopupOpen" (popupCloseEvent)="onPopupStatusChange($event)">
+  </app-notes>
 
-  <div class="widgets-wrapper">
+  <div class=" widgets-wrapper">
     <div class="widgets-wrapper__item">
       <span class="widgets-wrapper__item-button"></span>
       <p class="widgets-wrapper__item-description">Add widget</p>
