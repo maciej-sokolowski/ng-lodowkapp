@@ -37,7 +37,7 @@ export class ProductCloudComponent implements OnInit {
 
   changeNameAndDate(value: NameDate) {
     this.product.name = value.name;
-    this.product.expiryDate = value.expiry;
+    this.product.expiryDate = new Date(value.expiry);
     this.prService.updateItem(this.product);
     this.editable = Edit.NOT;
     this.editDisable = false;

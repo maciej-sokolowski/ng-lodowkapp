@@ -31,6 +31,7 @@ import { YoutubeComponent } from './components/MainSection/youtube/youtube.compo
 import { EditComponent } from './components/FridgeSection/edit/edit.component';
 import { InfoComponent } from './components/FridgeSection/info/info.component';
 import { DateLabelDirective } from './directives/date-label.directive';
+import { DaysToTodayPipe } from './components/FridgeSection/info/days-to-today.pipe';
 
 const fridgeConnectionConfig: SocketIoConfig = {url: 'http://10.254.0.40:3000/', options: {}};
 
@@ -61,6 +62,7 @@ const fridgeConnectionConfig: SocketIoConfig = {url: 'http://10.254.0.40:3000/',
     EditComponent,
     InfoComponent,
     DateLabelDirective,
+    DaysToTodayPipe,
   ],
   imports: [
     BrowserModule,

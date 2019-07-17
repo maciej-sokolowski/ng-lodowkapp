@@ -47,7 +47,8 @@ export class CameraComponent implements OnInit, OnDestroy {
       console.log(this.products);
     }
   }
-// TODO :make fix in clean drafts
+
+// TODO :make fix in clean draft
   private cleanDrafts() {
     const drafts = this.products.filter(product => product.name === undefined || product.expiryDate === undefined || product.name === '' || product.expiryDate === null);
     drafts.forEach(draft => this.prService.deleteItem(draft));

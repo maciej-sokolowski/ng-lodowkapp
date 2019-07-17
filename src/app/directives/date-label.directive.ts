@@ -5,9 +5,15 @@ import {Directive, ElementRef, Input} from '@angular/core';
 })
 export class DateLabelDirective {
 
-  @Input() appDateLabel: Date;
+  day = 86400000;   // miliseconds in day
 
   constructor(private el: ElementRef) {
   }
 
+  @Input() set appDateLabel(expiryDate: Date) {
+    if ((expiryDate.valueOf() - Date.now().valueOf()) > 10 * this.day) {
+      console.log(this.el.nativeElement.children);
+    }
+
+  }
 }
