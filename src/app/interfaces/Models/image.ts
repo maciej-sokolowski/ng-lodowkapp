@@ -1,5 +1,5 @@
 export interface Image {
-  id: string;
+  id?: string;
   userId: string;
   imageUrl: string;
 }
