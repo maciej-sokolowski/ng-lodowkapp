@@ -2,7 +2,7 @@
   <div class="cloud__rectangle">
     <div [ngSwitch]="editable">
       <app-edit (nameAndDateEmitter)="changeNameAndDate($event)" *ngSwitchCase="1"></app-edit>
-      <app-info *ngSwitchCase="2"></app-info>
+      <app-info [title]="product.name" [date]="product.expiryDate" *ngSwitchCase="2"></app-info>
     </div>
 
     <div class="btn-box">

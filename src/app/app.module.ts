@@ -30,6 +30,7 @@ import { SecureDomPipe } from './components/YoutubeSection/youtube-player/secure
 import { YoutubeComponent } from './components/MainSection/youtube/youtube.component';
 import { EditComponent } from './components/FridgeSection/edit/edit.component';
 import { InfoComponent } from './components/FridgeSection/info/info.component';
+import { DateLabelDirective } from './directives/date-label.directive';
 
 
 const fridgeConnectionConfig: SocketIoConfig = {url: 'http://10.254.0.40:3000/', options: {}};
@@ -60,6 +61,7 @@ const fridgeConnectionConfig: SocketIoConfig = {url: 'http://10.254.0.40:3000/',
     YoutubeComponent,
     EditComponent,
     InfoComponent,
+    DateLabelDirective,
   ],
   imports: [
     BrowserModule,
