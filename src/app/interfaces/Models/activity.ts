@@ -3,5 +3,5 @@ export interface Activity {
   userId: string | 'FRIDGE';
   date: Date;
   message: string;
-  priority: number;
+  messageColor: string;
 }
