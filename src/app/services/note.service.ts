@@ -59,11 +59,17 @@ export class NoteService implements StoreManager<Note> {
   }
 
   public getItemsByUserId(userId: string) {
-    return this.notes.pipe(
-      filter(notes => notes === notes.filter(element => {
-        return element.userId === userId;
-      }))
-    );
+    // console.log('pipe', this.notes.pipe(
+    //   filter(notes => notes === notes.filter(element => {
+    //     return element.userId === userId;
+    //   }))))
+
+    // return this.notes.pipe(
+    //   filter(notes => notes === notes.filter(element => {
+    //     return element.userId === userId;
+    //   }))
+    // );
+    return this.notes.value.filter(note => note.userId === userId)
   }
 
   public getItemsByDate(date: Date) {

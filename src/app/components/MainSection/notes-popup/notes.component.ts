@@ -1,5 +1,7 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { NoteService } from '../../../services/note.service';
+import { UserService } from '../../../services/user.service';
+
 import { UUID } from 'angular2-uuid';
 
 @Component({
@@ -20,11 +22,18 @@ export class NotesComponent implements OnInit {
 
 
   id = UUID.UUID();
-  userId = '1';
+  userId: string;
   date = Date.now();
-  constructor(private noteService: NoteService) { }
+  placeholderId: string;
+  target: any;
+  constructor(private noteService: NoteService, private userService: UserService) { }
 
   ngOnInit() {
+    this.getUserId()
+  }
+
+  getUserId() {
+    this.userId = this.userService.getLoggedUser()[0].id
   }
 
   addNote() {
