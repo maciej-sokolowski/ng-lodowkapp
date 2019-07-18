@@ -27,9 +27,11 @@ export class InfoComponent implements OnInit {
   ngOnInit() {
     this.parsedDate = Date.parse(String(this.date));
     this.setLabel();
+    setInterval(() => this.setLabel(), 900000);
   }
 
   private setLabel() {
+    console.log('change colors');
     const timeBetweenExpiry = this.parsedDate - Date.now().valueOf();
 
     if (timeBetweenExpiry >= 10 * this.dayTime) {

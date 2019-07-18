@@ -82,6 +82,12 @@ $remove-color: #FF4E4E;
       &:active {
         color: $edit-color;
       }
+
+      &:disabled {
+        background-color: #bbaeb2;
+        border: 1px solid #ffffff;
+        color: #ffffff;
+      }
     }
 
     &--remove {
