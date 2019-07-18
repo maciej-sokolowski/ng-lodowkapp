@@ -1,5 +1,7 @@
-import {Component, OnInit, Output, EventEmitter, Input, DoCheck} from '@angular/core';
-import {NoteService} from '../../../services/note.service';
+import { User } from 'src/app/interfaces/Models/user';
+import { UserService } from 'src/app/services/user.service';
+import { Component, OnInit, Output, EventEmitter, Input, DoCheck } from '@angular/core';
+import { NoteService } from '../../../services/note.service';
 
 @Component({
   selector: 'app-main',
@@ -7,28 +9,24 @@ import {NoteService} from '../../../services/note.service';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
+
+  isOpen: boolean;
+  emitIsSmallWidget: boolean;
+  emitLargeWidgetsList = ["Canvas", "Activities", "Products", "Notes"];
+  emitSmallWidgetsList = ["Youtube", "Weather"];
+  placeholderId: string;
+  target: any;
+  currentUser;
+
+
   isPopupOpen: boolean;
   isStringShow: any;
 
-  onPopupStatusChange(value: boolean) {
-    this.isPopupOpen = value;
-  }
-
-  constructor(private noteService: NoteService) {
-  }
 
   @Input()
   notes: any;
 
   headerTitle = '';
-
-  isOpen: boolean;
-  emitIsSmallWidget: boolean;
-  emitLargeWidgetsList = ['Canvas', 'Activities', 'Products', 'Notes'];
-  emitSmallWidgetsList = ['Youtube', 'Weather'];
-  placeholderId: string;
-  target: any;
-
 
   // widgets = {
   //   "Canvas": "app-weather",
@@ -50,9 +48,23 @@ export class MainComponent implements OnInit {
   };
 
   ngOnInit() {
+    this.getLoggedUser();
     this.getNotes();
   }
 
+  constructor(private userService: UserService, private noteService: NoteService) { }
+
+  onPopupStatusChange(value: boolean) {
+    this.isPopupOpen = value;
+  }
+
+
+  getLoggedUser() {
+    this.userService.getItems().subscribe((users) => {
+      this.currentUser = users.filter(user => user.isLogged === true)
+    })
+
+  }
 
   getNotes() {
     const tempNotes = this.noteService.getItems().getValue();
@@ -64,11 +76,10 @@ export class MainComponent implements OnInit {
     this.notes = sortedNotes;
 
     this.headerTitle = this.notes.length + ' notes';
-
   }
 
   initList() {
-    this.target = <HTMLInputElement> event.target;
+    this.target = <HTMLInputElement>event.target;
     console.log(this.target);
     this.placeholderId = this.target.parentElement.getAttribute('id');
     console.log(this.placeholderId);
@@ -86,7 +97,6 @@ export class MainComponent implements OnInit {
     }
     this.isOpen = true;
   }
-
 
   onClose(getEmiter) {
     this.isOpen = false;
@@ -123,5 +133,4 @@ export class MainComponent implements OnInit {
     // widgetToAssign = this.widgets[widgetToAssign];
     // console.log(widgetToAssign)
   }
-
 }

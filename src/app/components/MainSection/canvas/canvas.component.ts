@@ -8,11 +8,9 @@ import { ImageService } from 'src/app/services/image.service';
 })
 export class CanvasComponent implements OnInit {
 
-  myImage: any;
-  images: any;
+  currentUser: any;
   userType: string = "CHILDREN";  //może dostanie z dashboardu
   userId: string;   //dostanie z dasboardu
-  myImageUrl: string;
 
 
   isChild: boolean;    //ustala się po otrzymaniu userType
@@ -25,11 +23,7 @@ export class CanvasComponent implements OnInit {
     } else {
       this.isChild = false;
     }
-
-    if (this.isChild) {
-      this.myImage = this.imageService.getItemsByUserId(this.userId);
-      this.myImageUrl = this.myImage["imageUrl"];
-    }
+    console.log(this.currentUser)
   }
 
 

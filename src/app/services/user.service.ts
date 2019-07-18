@@ -1,10 +1,10 @@
-import {Injectable} from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
-import {User} from '../interfaces/Models/user';
-import {ManageDataService} from './manage-data.service';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { User } from '../interfaces/Models/user';
+import { ManageDataService } from './manage-data.service';
 import * as _ from 'lodash';
-import {StoreManager} from '../interfaces/store-manager';
-import {find} from 'rxjs/operators';
+import { StoreManager } from '../interfaces/store-manager';
+import { find } from 'rxjs/operators';
 
 
 @Injectable({
@@ -57,5 +57,8 @@ export class UserService implements StoreManager<User> {
         return element.id === id;
       }))
     );
+  }
+  public getLoggedUser() {
+    return this.users.getValue().filter(user => user.isLogged);
   }
 }
