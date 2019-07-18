@@ -31,6 +31,9 @@ import {YoutubeComponent} from './components/MainSection/youtube/youtube.compone
 import {EditComponent} from './components/FridgeSection/edit/edit.component';
 import {InfoComponent} from './components/FridgeSection/info/info.component';
 import {DaysToTodayPipe} from './components/FridgeSection/info/days-to-today.pipe';
+import { NotesComponent } from './components/MainSection/notes-popup/notes.component';
+import { ListHeaderComponent } from './components/MainSection/list-header/list-header.component';
+import { NotesListComponent } from './components/NotesSection/notes-list/notes-list.component';
 
 const fridgeConnectionConfig: SocketIoConfig = {url: 'http://10.254.0.40:3000/', options: {}};
 
@@ -58,6 +61,9 @@ const fridgeConnectionConfig: SocketIoConfig = {url: 'http://10.254.0.40:3000/',
     YoutubePlayerComponent,
     SecureDomPipe,
     YoutubeComponent,
+    NotesComponent,
+    ListHeaderComponent,
+    NotesListComponent,
     EditComponent,
     InfoComponent,
     DaysToTodayPipe,
