@@ -10,7 +10,7 @@ export class CanvasComponent implements OnInit {
 
   myImage: any;
   images: any;
-  userType: string;  //może dostanie z dashboardu
+  userType: string = "CHILDREN";  //może dostanie z dashboardu
   userId: string;   //dostanie z dasboardu
   myImageUrl: string;
 
@@ -30,7 +30,9 @@ export class CanvasComponent implements OnInit {
       this.myImage = this.imageService.getItemsByUserId(this.userId);
       this.myImageUrl = this.myImage["imageUrl"];
     }
-    
   }
 
+
+
 }
+

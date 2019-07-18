@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { posix } from 'path';
 import { ImageService } from 'src/app/services/image.service';
 import { Image } from 'src/app/interfaces/Models/image';
-import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
+import { UserService } from 'src/app/services/user.service';
+import { filter } from 'rxjs/operators';
+import { User } from 'src/app/interfaces/Models/user';
 
 @Component({
   selector: 'app-canvas-section',
@@ -17,40 +18,48 @@ export class CanvasSectionComponent implements OnInit {
   drawing: boolean;
   isRubber: boolean;
 
-  // gettedImage: any;  jeszcze nie wiem co dostaję
-  // imageId: string;
-  userID: "111";   //przekazany od rodzica
-  canvasURL: string;
-  listobrazow: any;
+  users: User[];
+  loggedUser: User;
+  userId: string;
+
+  imageId: string;
+  myImage: Image[];
+  canvasUrl: string;
 
 
-  constructor(private imageService: ImageService) { }
+  constructor(private imageService: ImageService, private usersService: UserService) { }
 
   ngAfterViewInit(): void {
     this.ctx = (<HTMLCanvasElement>this.myCanvas.nativeElement).getContext('2d');   //tego nie usuwać!!
 
-    let img = new Image;
-    img.src = this.canvasURL;
-    this.ctx.drawImage(img, 0, 0)
+    if (this.canvasUrl) {
+      let img = new Image;
+      img.src = this.canvasUrl;
+      this.ctx.drawImage(img, 0, 0)
+    }
   }
 
+
   ngOnInit() {
-    // this.imageService.getItemsByUserId(this.userID).subscribe(image => this.gettedImage = image);
-    this.imageService.getItems().subscribe(image => this.listobrazow = image);
-    console.log(this.listobrazow)
-    if (this.listobrazow.length === 0) {return}
-    console.log(this.listobrazow[0]["userId"])
-    this.canvasURL = this.listobrazow[0]["imageUrl"];
+    this.usersService.getItems().subscribe(item => this.users = item);
+    this.loggedUser = this.users.find(item => item.isLogged === true);
+    this.userId = this.loggedUser["id"];
+    
+
+    this.imageService.getItemsByUserId(this.userId).subscribe(image => this.myImage = image);
+    this.imageId = this.userId;
   }
 
   mouseDown(event: TouchEvent) {
     this.drawing = true;
     this.draw(event);
+    console.log("touch down")
   }
 
   mouseUp(event: TouchEvent) {
     this.drawing = false;
     this.ctx.beginPath();
+    console.log("touch up")
   }
 
   draw(event: TouchEvent) {
@@ -81,23 +90,28 @@ export class CanvasSectionComponent implements OnInit {
 
   pencilMode() {
     this.isRubber = false;
+    console.log("pencil mode")
   }
 
   rubberMode() {
     this.isRubber = true;
+    console.log("rubber mode")
   }
 
   clearCanvas() {
     this.ctx.clearRect(0, 0, 840, 800);
+    console.log("clear")
   }
+
 
   saveCanvas() {
     let canvas = <HTMLCanvasElement>document.getElementById("myCanvas");
-    this.canvasURL = canvas.toDataURL();
+    this.canvasUrl = canvas.toDataURL();
 
-    this.imageService.insertItem({ userId: this.userID, imageUrl: this.canvasURL }); 
-    // this.imageService.updateItem({ userId: this.userID, imageUrl: this.canvasURL }); 
-    console.log("zapisuję")
+    // this.imageService.updateItem({id: this.imageId, userId: this.userId, imageUrl: this.canvasUrl }); 
+    this.imageService.insertItem({id: this.imageId, userId: this.userId, imageUrl: this.canvasUrl }); 
+    console.log("save")
+    console.log(this.canvasUrl)
   }
 
 }
