@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { emit } from 'cluster';
 
 @Component({
   selector: 'app-registersumm',
@@ -37,7 +36,9 @@ export class RegistersummComponent implements OnInit {
   setUserTypeIcon() {
     if (this.userType === 'PARENT') {
       this.userIcon = 'parent';
-    } else {
+    } else if (this.userType === '') {
+      this.userIcon = 'none';
+    } else if (this.userType === 'CHILDREN') {
       this.userIcon = 'child';
     }
   }
