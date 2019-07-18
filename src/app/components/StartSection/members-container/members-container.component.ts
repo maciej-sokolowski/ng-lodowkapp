@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/interfaces/Models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-members-container',
@@ -18,11 +19,12 @@ export class MembersContainerComponent implements OnInit {
   btnInnerText: string = "Insert PIN";
   btnState: string = 'inactive';
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, public router: Router) {
   }
 
   ngOnInit() {
     this.userService.getItems().subscribe(users => this.users = [...users]);
+    this.logOutUser();
   }
 
   formReset() {
@@ -36,7 +38,6 @@ export class MembersContainerComponent implements OnInit {
     this.infoToLogin = userData;
     this.displayLoginPanel = false;
     this.formReset();
-    console.log(userData);
   }
 
   setBtnStatus(status?: string) {
@@ -51,21 +52,35 @@ export class MembersContainerComponent implements OnInit {
         return '#d14949';
       case 'inactive':
         this.isDisabled = true;
-        this.btnInnerText = 'Insert PIN';
-        return '#b8b8b8';
+        this.btnInnerText = '';
+        return '#5F7891';
     }
   }
 
   verifyPIN(event) {
-    if (event.target.value.length === 4) {
+    if (event.target.value.length === 4 && (event.target.value === this.infoToLogin.pin)) {
+      this.btnState = 'correct'
       setTimeout(() => {
-        event.target.value === this.infoToLogin.pin ? this.btnState = 'correct' : this.btnState = 'wrong';
+        this.logIn(this.infoToLogin);
       }, 500);
     } else if (event.target.value.length < 4) {
       this.btnState = 'inactive'
+    } else {
+      this.btnState = 'wrong'
     }
   }
-  logIn() {
-    alert(`${this.infoToLogin.name} zaloguj (tu dalej trzeba przejąć id usera i wejść do dashboardu)`);
+
+  logIn(user) {
+    user.isLogged = true;
+    this.userService.updateItem(user);
+    this.router.navigate(['/main']);
+  }
+
+  logOutUser() {
+    let usersToLogOut = [];
+    this.userService.getItems().subscribe((users) => usersToLogOut = [...users]);
+    usersToLogOut.forEach((user) => {
+      user.isLogged === true ? user.isLogged = false : null;
+    })
   }
 }

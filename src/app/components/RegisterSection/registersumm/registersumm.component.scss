@@ -4,6 +4,7 @@
     padding-top: 15px;
     width: 100%;
     height: 100%;
+    border-radius: 15%;
   }
 
   &__avatar {
@@ -36,6 +37,10 @@
 
     &--child {
       background-image: url('../../../../assets/baby-solid.svg');
+    }
+
+    &--none {
+      background-image: none;
     }
   }
 }
