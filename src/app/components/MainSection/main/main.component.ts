@@ -39,6 +39,10 @@ export class MainComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
+    this.getLoggedUser();
+  }
+
+  getLoggedUser() {
     this.userService.getItems().subscribe((users) => {
       this.currentUser = users.filter(user => user.isLogged === true)
     })
