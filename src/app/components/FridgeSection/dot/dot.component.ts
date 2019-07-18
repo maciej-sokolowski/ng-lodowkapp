@@ -1,4 +1,4 @@
-import {Component, DoCheck, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Product} from '../../../interfaces/Models/product';
 import {ProductService} from '../../../services/product.service';
 import {Activity} from '../../../interfaces/Models/activity';
@@ -21,7 +21,6 @@ export class DotComponent implements OnInit {
   @Input() product: Product;
   @Output() cloudActiveNotification = new EventEmitter<boolean>();
   visibleLabel = Visible.NOT;
-  allowToNotifyAboutExpiry: boolean = true;
 
   get ActiveLabelID() {
     return DotComponent.activeLabelID;
@@ -36,13 +35,11 @@ export class DotComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.product.expiryDate === undefined || this.product.name === undefined) {
-      this.product.dotColor = '#bbaeb2';
-    } else {
+    if (this.product.expiryDate !== undefined || this.product.name !== undefined) {
       this.tryChangeColorWithInit();
+      setInterval(() => this.tryChangeColorWithInit(), 900000);
     }
   }
-
 
   changeLabelVisibility() {
     if (this.ActiveLabelID === '') {
@@ -86,17 +83,14 @@ export class DotComponent implements OnInit {
       this.product.dotColor = '#FFCE2D';
     } else {
       this.product.dotColor = '#FF4E4E';
-      if (this.allowToNotifyAboutExpiry) {
-        const activity: Activity = {
-          id: uuid(),
-          userId: 'FRIDGE',
-          date: new Date(Date.now()),
-          message: `${this.product.name} has expired!`,
-          messageColor: '#FF4E4E'
-        };
-        this.actService.insertItem(activity);
-        this.allowToNotifyAboutExpiry = false;
-      }
+      const activity: Activity = {
+        id: uuid(),
+        userId: 'FRIDGE',
+        date: new Date(Date.now()),
+        message: `${this.product.name} has expired!`,
+        messageColor: '#FF4E4E'
+      };
+      this.actService.insertItem(activity);
     }
     this.prService.updateItem(this.product);
   }
