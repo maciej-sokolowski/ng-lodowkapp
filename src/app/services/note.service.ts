@@ -42,7 +42,6 @@ export class NoteService implements StoreManager<Note> {
     const newStore = this.notes.getValue().filter((element) => {
       return element.id !== note.id;
     });
-    console.log(newStore)
     this.notes.next([...newStore]);
     this.synchronizeWithLocalStorage();
   }

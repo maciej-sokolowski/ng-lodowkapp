@@ -23,24 +23,19 @@ export class ListHeaderComponent implements OnInit {
   openPopup() {
     this.popupOpenEvent.emit(true);
   }
+
+  @Input()
+  items: any;
+
+
+
+
+
   constructor(private noteService: NoteService) { }
 
-  notes: any;
 
   ngOnInit() {
-    this.getNotes();
   }
 
-  ngDoCheck() {
-    this.getNotes();
-  }
 
-  getNotes() {
-    const tempNotes = this.noteService.getItems().getValue();
-
-    const sortedNotes = tempNotes.sort(function (firstNote, secondNote) {
-      return firstNote.date > secondNote.date ? -1 : firstNote.date < secondNote.date ? 1 : 0;
-    });
-    this.notes = sortedNotes;
-  }
 }

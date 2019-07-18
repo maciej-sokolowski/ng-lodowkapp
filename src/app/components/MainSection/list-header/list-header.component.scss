@@ -49,13 +49,12 @@
 
 .wrapper {
   height: 320px;
-  overflow: hidden;
-  background-color: aqua;
+  width: 420px;
 }
 
 .list-item {
   position: relative;
-  z-index: 9;
+  z-index: 1;
   height: 79px;
   width: 420px;
   background-color: #aaa;
