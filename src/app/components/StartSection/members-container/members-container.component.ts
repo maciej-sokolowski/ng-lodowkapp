@@ -38,7 +38,6 @@ export class MembersContainerComponent implements OnInit {
     this.infoToLogin = userData;
     this.displayLoginPanel = false;
     this.formReset();
-    console.log(userData.isLogged);
   }
 
   setBtnStatus(status?: string) {
