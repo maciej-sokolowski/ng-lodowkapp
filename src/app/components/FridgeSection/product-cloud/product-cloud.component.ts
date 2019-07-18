@@ -22,6 +22,7 @@ export class ProductCloudComponent implements OnInit {
   public editButtonChildren = 'Edit';
   public buyButtonChildren: string;
   public editDisable = false;
+  public needToBuyDisable = false;
 
   constructor(private prService: ProductService) {
   }
@@ -29,6 +30,7 @@ export class ProductCloudComponent implements OnInit {
   ngOnInit() {
     if (this.product.name === undefined && this.product.expiryDate === undefined) {
       this.editDisable = true;
+      this.needToBuyDisable = true;
       this.editable = Edit.YES;
     } else {
       this.editable = Edit.NOT;
@@ -49,6 +51,7 @@ export class ProductCloudComponent implements OnInit {
     this.prService.updateItem(this.product);
     this.editable = Edit.NOT;
     this.editDisable = false;
+    this.needToBuyDisable = false;
     this.editButtonChildren = 'Edit';
   }
 

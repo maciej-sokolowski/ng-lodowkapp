@@ -8,7 +8,8 @@
 
     <div class="btn-box">
       <button class="btn-box__btn btn-box__btn--buy"
-              (click)="emitInfoAboutChangingNeedToBuyStatus()">{{buyButtonChildren}}</button>
+              (click)="emitInfoAboutChangingNeedToBuyStatus()"
+              [disabled]="needToBuyDisable">{{buyButtonChildren}}</button>
       <button class="btn-box__btn btn-box__btn--edit" (click)="edit()"
               [disabled]="editDisable">{{editButtonChildren}}
       </button>
