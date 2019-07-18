@@ -9,7 +9,7 @@
   font-weight: bold;
   border-radius: 10px;
   padding: 0 20px;
-
+  margin-bottom: 1px;
 
   &__title {
     font-size: 20px;
@@ -48,22 +48,30 @@
 }
 
 .wrapper {
-  height: 320px;
   width: 420px;
-}
+  color: #5F7891;
 
-.list-item {
-  position: relative;
-  z-index: 1;
-  height: 79px;
-  width: 420px;
-  background-color: #aaa;
-  border-radius: 10px;
-  margin-bottom: 1px;
+  &__list-item {
+    position: relative;
+    z-index: 1;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 1px 24px 42px -8px rgba(0, 0, 0, 0.75);
+  }
 
-}
+  &__date {
+    opacity: .5;
+  }
 
-.text {
-  text-overflow: ellipsis;
-  overflow: hidden;
+  &__text {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-weight: bold;
+    margin-top: 5px;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
 }

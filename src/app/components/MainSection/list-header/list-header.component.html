@@ -6,8 +6,8 @@
   </div>
 </div>
 <div class="wrapper">
-  <div class="list-item" *ngFor="let item of items|slice:0:4">
-    <p class="date">{{item.date | date: 'dd/MM/yyyy HH:mm'}}</p>
-    <p class="text">{{item.message}}</p>
+  <div class="wrapper__list-item" *ngFor="let item of items|slice:0:4">
+    <p class="wrapper__date">{{item.date | date: 'dd/MM/yyyy'}}</p>
+    <p class="wrapper__text">{{item.message}}</p>
   </div>
 </div>

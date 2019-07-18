@@ -26,7 +26,7 @@ import { SecureDomPipe } from './components/YoutubeSection/youtube-player/secure
 import { YoutubeComponent } from './components/MainSection/youtube/youtube.component';
 import { NotesComponent } from './components/MainSection/notes-popup/notes.component';
 import { ListHeaderComponent } from './components/MainSection/list-header/list-header.component';
-import { NotesListComponent } from './components/MainSection/notes-list/notes-list.component';
+import { NotesListComponent } from './components/NotesSection/notes-list/notes-list.component';
 
 @NgModule({
   declarations: [

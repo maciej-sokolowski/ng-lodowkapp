@@ -20,7 +20,7 @@ export class NotesComponent implements OnInit {
 
   id = UUID.UUID();
   userId = '1';
-  date: Date = new Date();
+  date = Date.now();
   constructor(private noteService: NoteService) { }
 
   ngOnInit() {

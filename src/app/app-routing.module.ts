@@ -5,7 +5,7 @@ import { RegisterComponent } from './components/RegisterSection/register/registe
 import { FridgeComponent } from './components/FridgeSection/fridge/fridge.component';
 import { MainComponent } from './components/MainSection/main/main.component';
 import { YoutubePlayerComponent } from './components/YoutubeSection/youtube-player/youtube-player.component';
-import { NotesListComponent } from './components/MainSection/notes-list/notes-list.component';
+import { NotesListComponent } from './components/NotesSection/notes-list/notes-list.component';
 
 
 

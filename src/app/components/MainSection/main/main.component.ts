@@ -21,12 +21,6 @@ export class MainComponent implements OnInit {
   @Input()
   notes: any;
 
-
-
-
-
-
-
   headerTitle = "";
 
   ngOnInit() {
@@ -45,13 +39,7 @@ export class MainComponent implements OnInit {
     });
 
     this.notes = sortedNotes;
+
     this.headerTitle = this.notes.length + ' notes';
   }
-
-
-
-
-
-
-
 }
