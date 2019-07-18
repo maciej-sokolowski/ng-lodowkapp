@@ -1,0 +1,77 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 420px;
+  height: 79px;
+  background-color: #5F7891;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 10px;
+  padding: 0 20px;
+  margin-bottom: 1px;
+
+  &__title {
+    font-size: 20px;
+  }
+
+  &__buttons {
+    display: flex;
+  }
+
+  &__button {
+    height: 40px;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #fff;
+    background-color: rgba(255, 255, 255, .2);
+    padding: 0 16px;
+    margin: 0 5px;
+    outline: none;
+    transition: .1s;
+
+    &:active {
+      transform: translateY(2px);
+    }
+  }
+
+  &__button-add {
+    width: 40px;
+    background: url("../../../../assets/plus.svg");
+    background-repeat: no-repeat;
+    background-color: rgba(255, 255, 255, .2);
+    background-position: 10px, 10px;
+  }
+}
+
+.wrapper {
+  width: 420px;
+  color: #5F7891;
+
+  &__list-item {
+    position: relative;
+    z-index: 1;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 1px 24px 42px -8px rgba(0, 0, 0, 0.75);
+  }
+
+  &__date {
+    opacity: .5;
+  }
+
+  &__text {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-weight: bold;
+    margin-top: 5px;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+}
