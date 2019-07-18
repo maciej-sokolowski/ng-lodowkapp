@@ -108,8 +108,7 @@ export class CanvasSectionComponent implements OnInit {
     let canvas = <HTMLCanvasElement>document.getElementById("myCanvas");
     this.canvasUrl = canvas.toDataURL();
 
-    // this.imageService.updateItem({id: this.imageId, userId: this.userId, imageUrl: this.canvasUrl }); 
-    this.imageService.insertItem({id: this.imageId, userId: this.userId, imageUrl: this.canvasUrl }); 
+    // this.imageService.insertItem({id: this.imageId, userId: this.userId, imageUrl: this.canvasUrl }); 
     console.log("save")
     console.log(this.canvasUrl)
   }
