@@ -25,10 +25,10 @@ export class MainComponent implements OnInit {
   isOpen: boolean;
   emitIsSmallWidget: boolean;
   emitLargeWidgetsList = ["Canvas", "Activities", "Products", "Notes"];
-  emitSmallWidgetsList =["Youtube", "Weather"];
+  emitSmallWidgetsList = ["Youtube", "Weather"];
   placeholderId: string;
   target: any;
-  
+
 
   // widgets = {
   //   "Canvas": "app-weather",
@@ -67,9 +67,9 @@ export class MainComponent implements OnInit {
     this.notes = sortedNotes;
 
     this.headerTitle = this.notes.length + ' notes';
+  }
 
-    
-    
+
   initList() {
     this.target = <HTMLInputElement>event.target;
     console.log(this.target)
