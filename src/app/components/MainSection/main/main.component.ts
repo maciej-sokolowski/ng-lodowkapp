@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Output, EventEmitter, Input, DoCheck} from '@angular/core';
+import {NoteService} from '../../../services/note.service';
 
 @Component({
   selector: 'app-main',
@@ -6,14 +7,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
+  isPopupOpen: boolean;
+  isStringShow: any;
+
+  onPopupStatusChange(value: boolean) {
+    this.isPopupOpen = value;
+  }
+
+  constructor(private noteService: NoteService) {
+  }
+
+  @Input()
+  notes: any;
+
+  headerTitle = '';
 
   isOpen: boolean;
   emitIsSmallWidget: boolean;
-  emitLargeWidgetsList = ["Canvas", "Activities", "Products", "Notes"];
-  emitSmallWidgetsList =["Youtube", "Weather"];
+  emitLargeWidgetsList = ['Canvas', 'Activities', 'Products', 'Notes'];
+  emitSmallWidgetsList = ['Youtube', 'Weather'];
   placeholderId: string;
   target: any;
-  
+
 
   // widgets = {
   //   "Canvas": "app-weather",
@@ -25,27 +40,40 @@ export class MainComponent implements OnInit {
   // }
 
   widgets = {
-    "widget-1": "",
-    "widget-2": "",
-    "widget-3": "",
-    "widget-4": "",
-    "widget-5": "",
-    "widget-6": "",
-    "widget-7": "",
-  }
-
-  constructor() { }
+    'widget-1': '',
+    'widget-2': '',
+    'widget-3': '',
+    'widget-4': '',
+    'widget-5': '',
+    'widget-6': '',
+    'widget-7': '',
+  };
 
   ngOnInit() {
+    this.getNotes();
+  }
+
+
+  getNotes() {
+    const tempNotes = this.noteService.getItems().getValue();
+
+    const sortedNotes = tempNotes.sort((firstNote, secondNote) => {
+      return firstNote.date > secondNote.date ? -1 : firstNote.date < secondNote.date ? 1 : 0;
+    });
+
+    this.notes = sortedNotes;
+
+    this.headerTitle = this.notes.length + ' notes';
+
   }
 
   initList() {
-    this.target = <HTMLInputElement>event.target;
-    console.log(this.target)
-    this.placeholderId = this.target.parentElement.getAttribute("id");
-    console.log(this.placeholderId)
+    this.target = <HTMLInputElement> event.target;
+    console.log(this.target);
+    this.placeholderId = this.target.parentElement.getAttribute('id');
+    console.log(this.placeholderId);
 
-    if (this.placeholderId === "widget-4" || this.placeholderId === "widget-5") {
+    if (this.placeholderId === 'widget-4' || this.placeholderId === 'widget-5') {
       this.emitIsSmallWidget = true;
       if (this.emitSmallWidgetsList.length === 0) {
         return;
@@ -59,11 +87,12 @@ export class MainComponent implements OnInit {
     this.isOpen = true;
   }
 
+
   onClose(getEmiter) {
     this.isOpen = false;
     let widgetToAssign: string;
 
-    if (getEmiter[1] === "small") {
+    if (getEmiter[1] === 'small') {
       widgetToAssign = this.emitSmallWidgetsList[getEmiter[0]];
       // console.log(widgetToAssign)
       this.emitSmallWidgetsList.splice(getEmiter[0], 1);
@@ -89,9 +118,10 @@ export class MainComponent implements OnInit {
     // console.log(widgetPlaceholder)
 
     this.widgets[this.placeholderId] = widgetToAssign;
-    console.log(this.widgets)
+    console.log(this.widgets);
 
     // widgetToAssign = this.widgets[widgetToAssign];
     // console.log(widgetToAssign)
   }
+
 }

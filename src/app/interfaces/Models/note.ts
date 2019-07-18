@@ -1,7 +1,6 @@
 export interface Note {
   id: string;
   userId: string;
-  date: Date;
+  date: number | Date;
   message: string;
-
 }
