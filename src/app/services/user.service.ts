@@ -58,4 +58,7 @@ export class UserService implements StoreManager<User> {
       }))
     );
   }
+  public getLoggedUser() {
+    return this.users.getValue().filter(user => user.isLogged);
+  }
 }
