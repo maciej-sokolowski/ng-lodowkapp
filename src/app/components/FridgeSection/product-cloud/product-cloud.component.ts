@@ -18,7 +18,9 @@ export class ProductCloudComponent implements OnInit {
   editable: Edit;
   @Input() product: Product;
   @Output() removeSignal: EventEmitter<void> = new EventEmitter<void>();
+  @Output() needToBuyStatus: EventEmitter<boolean> = new EventEmitter<boolean>();
   public editButtonChildren = 'Edit';
+  public buyButtonChildren: string;
   public editDisable = false;
 
   constructor(private prService: ProductService) {
@@ -31,6 +33,12 @@ export class ProductCloudComponent implements OnInit {
     } else {
       this.editable = Edit.NOT;
     }
+    if (this.product.needToBuy === true) {
+      this.buyButtonChildren = 'Don\'t buy';
+    } else {
+      this.buyButtonChildren = 'To Buy';
+    }
+
   }
 
   // TODO: uncomment
@@ -61,6 +69,16 @@ export class ProductCloudComponent implements OnInit {
   updateDotColor(color) {
     this.product.dotColor = color;
     this.prService.updateItem(this.product);
+  }
+
+  emitInfoAboutChangingNeedToBuyStatus() {
+    if (this.product.needToBuy === false) {
+      this.needToBuyStatus.emit(true);
+      this.buyButtonChildren = 'Don\'t buy';
+    } else {
+      this.needToBuyStatus.emit(false);
+      this.buyButtonChildren = 'To Buy';
+    }
   }
 
 }

@@ -3,9 +3,14 @@
   <div (dblclick)="changeLabelVisibility()" class="dot__frame">
     <app-product-cloud [product]="product"
                        *ngIf="visibleLabel === 1"
-                       (removeSignal)="removeProduct()">
+                       (removeSignal)="removeProduct()"
+    (needToBuyStatus)="changeNeedToBuyStatus($event)">
     </app-product-cloud>
   </div>
+  <div *ngIf="product.needToBuy === true" class="dot__buy-label">
+    <div class="dot__buy-ico"></div>
+  </div>
+
 </div>
 
 

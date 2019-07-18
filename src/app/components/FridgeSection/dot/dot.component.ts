@@ -41,7 +41,6 @@ export class DotComponent implements OnInit {
 
 
   changeLabelVisibility() {
-    // debugger;
     if (this.ActiveLabelID === '') {
       this.ActiveLabelID = this.product.id;
       this.visibleLabel = Visible.YES;
@@ -75,6 +74,11 @@ export class DotComponent implements OnInit {
     } else {
       this.product.dotColor = '#FF4E4E';
     }
+    this.prService.updateItem(this.product);
+  }
+
+  changeNeedToBuyStatus(status: boolean) {
+    this.product.needToBuy = status;
     this.prService.updateItem(this.product);
   }
 }

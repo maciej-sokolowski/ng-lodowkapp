@@ -7,7 +7,8 @@
     </div>
 
     <div class="btn-box">
-      <button class="btn-box__btn btn-box__btn--buy">To buy</button>
+      <button class="btn-box__btn btn-box__btn--buy"
+              (click)="emitInfoAboutChangingNeedToBuyStatus()">{{buyButtonChildren}}</button>
       <button class="btn-box__btn btn-box__btn--edit" (click)="edit()"
               [disabled]="editDisable">{{editButtonChildren}}
       </button>
