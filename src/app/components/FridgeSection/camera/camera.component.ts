@@ -40,15 +40,14 @@ export class CameraComponent implements OnInit, OnDestroy {
       // @ts-ignore
       const product: Product = {
         id: uuid(),
-        fridgePosition: {x: `${$event.layerX - 30}px`, y: `${$event.layerY - 30}px`}
+        fridgePosition: {x: `${$event.layerX - 30}px`, y: `${$event.layerY - 30}px`},
+        needToBuy: false
       };
-      // this.products.push(product);
       this.prService.insertItem(product);
       console.log(this.products);
     }
   }
 
-// TODO :make fix in clean draft
   private cleanDrafts() {
     const drafts = this.products.filter(product => product.name === undefined || product.expiryDate === undefined || product.name === '' || product.expiryDate === null);
     drafts.forEach(draft => this.prService.deleteItem(draft));
