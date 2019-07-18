@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input, DoCheck } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NoteService } from '../../../services/note.service';
 
 @Component({
@@ -8,10 +8,10 @@ import { NoteService } from '../../../services/note.service';
 })
 export class MainComponent implements OnInit {
   isPopupOpen: boolean;
-  isStringShow: any;
 
   onPopupStatusChange(value: boolean) {
     this.isPopupOpen = value;
+    console.log(value, "value")
   }
 
   constructor(private noteService: NoteService) {
@@ -50,6 +50,10 @@ export class MainComponent implements OnInit {
   };
 
   ngOnInit() {
+    this.getNotes();
+  }
+
+  ngDoCheck() {
     this.getNotes();
   }
 

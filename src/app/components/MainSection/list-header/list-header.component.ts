@@ -21,7 +21,6 @@ export class ListHeaderComponent implements OnInit {
   popupOpenEvent = new EventEmitter();
 
   openPopup() {
-    console.log("działa")
     this.popupOpenEvent.emit(true);
   }
 

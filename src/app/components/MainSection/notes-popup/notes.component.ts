@@ -18,6 +18,7 @@ export class NotesComponent implements OnInit {
     this.popupCloseEvent.emit(false);
   }
 
+
   id = UUID.UUID();
   userId = '1';
   date = Date.now();
