@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/interfaces/Models/user';
 
 @Component({
   selector: 'app-main',
@@ -13,6 +14,7 @@ export class MainComponent implements OnInit {
   placeholderId: string;
   target: any;
 
+  currentUser: User;
 
   // widgets = {
   //   "Canvas": "app-weather",
@@ -36,7 +38,7 @@ export class MainComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(history.state[0]);
+    this.currentUser = history.state[0];
   }
 
   initList() {

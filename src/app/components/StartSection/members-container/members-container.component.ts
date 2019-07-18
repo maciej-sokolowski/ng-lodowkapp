@@ -52,19 +52,21 @@ export class MembersContainerComponent implements OnInit {
         return '#d14949';
       case 'inactive':
         this.isDisabled = true;
-        this.btnInnerText = 'Insert PIN';
-        return '#b8b8b8';
+        this.btnInnerText = '';
+        return '#5F7891';
     }
   }
 
   verifyPIN(event) {
-    if (event.target.value.length === 4) {
-      event.target.value === this.infoToLogin.pin ? this.btnState = 'correct' : this.btnState = 'wrong';
+    if (event.target.value.length === 4 && (event.target.value === this.infoToLogin.pin)) {
+      this.btnState = 'correct'
       setTimeout(() => {
         this.logIn();
-      }, 2500);
+      }, 500);
     } else if (event.target.value.length < 4) {
       this.btnState = 'inactive'
+    } else {
+      this.btnState = 'wrong'
     }
   }
   logIn() {
