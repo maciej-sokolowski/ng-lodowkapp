@@ -83,14 +83,6 @@ export class ProductService implements StoreManager<Product> {
     );
   }
 
-  public getItemsByPriority(priority: number) {
-    return this.products.pipe(
-      filter(products => products === products.filter(element => {
-        return element.priority === priority;
-      }))
-    );
-  }
-
   public getItemsByNeed(need: boolean) {
     return this.products.pipe(
       filter(products => products === products.filter(element => {

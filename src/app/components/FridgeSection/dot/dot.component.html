@@ -1,7 +1,16 @@
-<div class="dot" [ngStyle]="{'top': product.fridgePosition.y, 'left': product.fridgePosition.x}">
-  <div (click)="changeLabelVisibility($event)" class="dot__frame">
-    <app-product-cloud *ngIf="visibleLabel === 1"></app-product-cloud>
+<div class="dot"
+     [ngStyle]="{'top': product.fridgePosition.y, 'left': product.fridgePosition.x, 'background-color': product.dotColor}">
+  <div (dblclick)="changeLabelVisibility()" class="dot__frame">
+    <app-product-cloud [product]="product"
+                       *ngIf="visibleLabel === 1"
+                       (removeSignal)="removeProduct()"
+    (needToBuyStatus)="changeNeedToBuyStatus($event)">
+    </app-product-cloud>
   </div>
+  <div *ngIf="product.needToBuy === true" class="dot__buy-label">
+    <div class="dot__buy-ico"></div>
+  </div>
+
 </div>
 
 
