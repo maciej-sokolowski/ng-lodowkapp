@@ -32,11 +32,15 @@ export class DotComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.product.expiryDate === undefined || this.product.name === undefined) {
+      this.product.dotColor = '#bbaeb2';
+    } else {
+      this.tryChangeColorWithInit();
+    }
   }
 
 
   changeLabelVisibility() {
-    // debugger;
     if (this.ActiveLabelID === '') {
       this.ActiveLabelID = this.product.id;
       this.visibleLabel = Visible.YES;
@@ -57,4 +61,24 @@ export class DotComponent implements OnInit {
     this.cloudActiveNotification.emit(false);
   }
 
+
+  private tryChangeColorWithInit() {
+    const parsedDate = Date.parse(String(this.product.expiryDate));
+    const timeBetweenExpiry = parsedDate - Date.now().valueOf();
+    const dayTime = 86400000;
+
+    if (timeBetweenExpiry >= 10 * dayTime) {
+      this.product.dotColor = '#70D9A8';
+    } else if (timeBetweenExpiry > 0 && timeBetweenExpiry < 10 * dayTime) {
+      this.product.dotColor = '#FFCE2D';
+    } else {
+      this.product.dotColor = '#FF4E4E';
+    }
+    this.prService.updateItem(this.product);
+  }
+
+  changeNeedToBuyStatus(status: boolean) {
+    this.product.needToBuy = status;
+    this.prService.updateItem(this.product);
+  }
 }
