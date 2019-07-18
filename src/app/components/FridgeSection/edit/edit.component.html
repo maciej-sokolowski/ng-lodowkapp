@@ -1,0 +1,40 @@
+<div class="edit_box">
+  <form class="edit_box__form" action="" [formGroup]="nameDate" (keyup.enter)="emitDateAndName(nameDate)">
+    <div class="edit_box__input-container">
+      <input class="edit_box__input"
+             [ngClass]="name.valid? 'edit_box__input' : 'edit_box__input edit_box__input--invalid'" id="title"
+             placeholder="Product name" type="text" formControlName="name" required>
+      <div *ngIf="name.invalid && (name.dirty || name.touched)" class="edit_box__validator">
+        <div *ngIf="name.errors.required">
+          Name is required
+        </div>
+        <div *ngIf="name.errors.maxlength">
+          Too many characters
+        </div>
+        <div *ngIf="name.errors.pattern">
+          Only letters
+        </div>
+      </div>
+    </div>
+    <div class="edit_box__input-container">
+      <input class="edit_box__input"
+             [ngClass]="expiry.valid? 'edit_box__input' : 'edit_box__input edit_box__input--invalid'" id="date"
+             placeholder="Expiry date" type="text" formControlName="expiry">
+      <div *ngIf="expiry.invalid && (expiry.dirty || expiry.touched)" class="edit_box__validator">
+        <div *ngIf="expiry.errors.required; else isPatternValid">
+          Expiry date is required
+        </div>
+        <ng-template #isPatternValid>
+          <div *ngIf="expiry.errors.pattern; else isPastDate ">
+            Format yyyy-mm-dd
+          </div>
+        </ng-template>
+        <ng-template #isPastDate>
+          Date is past
+        </ng-template>
+      </div>
+    </div>
+
+  </form>
+
+</div>

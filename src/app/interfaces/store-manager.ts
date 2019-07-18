@@ -8,6 +8,4 @@ export interface StoreManager<T> {
   updateItem(item: T): void;
 
   deleteItem(item: T): void;
-
-  synchronizeWithLocalStorage(): void;
 }

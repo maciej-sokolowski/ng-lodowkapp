@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { emit } from 'cluster';
 
 @Component({
   selector: 'app-registersumm',
@@ -23,16 +24,14 @@ export class RegistersummComponent implements OnInit {
   @Input()
   PIN?: string;
 
-  @Output() emitPIN = new EventEmitter();
+  @Output() emitLoginInfo = new EventEmitter();
 
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
     this.setUserTypeIcon();
-    // this.userName = 'marcin';
-    // this.chosenAvatar = 'cat';
-    // this.chosenColor = 'pink';
   }
 
   setUserTypeIcon() {
@@ -42,7 +41,8 @@ export class RegistersummComponent implements OnInit {
       this.userIcon = 'child';
     }
   }
-  emitAll(event) {
-    console.log(this.infoToLogin);
+
+  emitAll($event) {
+    this.emitLoginInfo.emit(this.infoToLogin);
   }
 }

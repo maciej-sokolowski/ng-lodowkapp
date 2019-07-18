@@ -7,15 +7,16 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./usertype.component.scss']
 })
 export class UsertypeComponent implements OnInit {
-
+  @Input()
   private person: string;
+
   private isDisabled: boolean;
 
-  @Input()
-  isChecked: string;
+  private isCheckedParent: string;
+  private isCheckedChild: string;
 
   @Output()
-  emitUserType = new EventEmitter();
+  emitUserType = new EventEmitter<string>();
 
   constructor(private userService: UserService) { }
 
@@ -26,9 +27,7 @@ export class UsertypeComponent implements OnInit {
   isFirstAccount() {
     let check = this.userService.getItems();
     if (check.value.length === 0) {
-      console.log(check.value.length);
-
-      this.isChecked = 'checked';
+      this.isCheckedParent = 'checked';
       this.userParent();
       this.isDisabled = true;
     }

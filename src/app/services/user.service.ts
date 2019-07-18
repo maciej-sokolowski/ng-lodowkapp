@@ -47,7 +47,7 @@ export class UserService implements StoreManager<User> {
     this.synchronizeWithLocalStorage();
   }
 
-  public synchronizeWithLocalStorage() {
+  private synchronizeWithLocalStorage() {
     _.debounce(() => this.mdService.updateUsersToLocalStorage(this.users.getValue()), 2500)();
   }
 

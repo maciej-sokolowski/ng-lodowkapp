@@ -1,32 +1,41 @@
 // Modules
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-import { AppRoutingModule } from './app-routing.module';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {AppRoutingModule} from './app-routing.module';
+import {SocketIoModule, SocketIoConfig} from 'ngx-socket-io';
 // Components
-import { AppComponent } from './app.component';
-import { StartComponent } from './components/StartSection/start/start.component';
-import { RegisterComponent } from './components/RegisterSection/register/register.component';
-import { FridgeComponent } from './components/FridgeSection/fridge/fridge.component';
-import { ProductsComponent } from './components/FridgeSection/products/products.component';
-import { MainComponent } from './components/MainSection/main/main.component';
-import { VideoComponent } from './components/FridgeSection/video/video.component';
-import { ColorComponent } from './components/RegisterSection/color/color.component';
-import { RegistersummComponent } from './components/RegisterSection/registersumm/registersumm.component';
-import { AvatarComponent } from './components/avatar/avatar.component';
-import { WeatherComponent } from './components/MainSection/weather/weather.component';
-import { WeatherService } from './components/MainSection/weather/weather.service';
-import { TopBarComponent } from './components/MainSection/top-bar/top-bar.component';
-import { MembersContainer } from './components/StartSection/members-container/members-container.component';
-import { RegisterinputComponent } from './components/RegisterSection/registerinput/registerinput.component';
-import { UsertypeComponent } from './components/RegisterSection/usertype/usertype.component';
-import { YoutubePlayerComponent } from './components/YoutubeSection/youtube-player/youtube-player.component';
-import { SecureDomPipe } from './components/YoutubeSection/youtube-player/secure-dom.pipe';
-import { YoutubeComponent } from './components/MainSection/youtube/youtube.component';
+import {AppComponent} from './app.component';
+import {StartComponent} from './components/StartSection/start/start.component';
+import {RegisterComponent} from './components/RegisterSection/register/register.component';
+import {FridgeComponent} from './components/FridgeSection/fridge/fridge.component';
+import {ProductsComponent} from './components/FridgeSection/products/products.component';
+import {MainComponent} from './components/MainSection/main/main.component';
+import {CameraComponent} from './components/FridgeSection/camera/camera.component';
+import {ColorComponent} from './components/RegisterSection/color/color.component';
+import {RegistersummComponent} from './components/RegisterSection/registersumm/registersumm.component';
+import {AvatarComponent} from './components/avatar/avatar.component';
+import {WeatherComponent} from './components/MainSection/weather/weather.component';
+import {WeatherService} from './components/MainSection/weather/weather.service';
+import {TopBarComponent} from './components/MainSection/top-bar/top-bar.component';
+import {MembersContainerComponent} from './components/StartSection/members-container/members-container.component';
+import {RegisterinputComponent} from './components/RegisterSection/registerinput/registerinput.component';
+import {WidgetsListComponent} from './components/MainSection/widgets-list/widgets-list.component';
+import {DotComponent} from './components/FridgeSection/dot/dot.component';
+import {ProductCloudComponent} from './components/FridgeSection/product-cloud/product-cloud.component';
+import {UsertypeComponent} from './components/RegisterSection/usertype/usertype.component';
+import {YoutubePlayerComponent} from './components/YoutubeSection/youtube-player/youtube-player.component';
+import {SecureDomPipe} from './components/YoutubeSection/youtube-player/secure-dom.pipe';
+import {YoutubeComponent} from './components/MainSection/youtube/youtube.component';
+import {EditComponent} from './components/FridgeSection/edit/edit.component';
+import {InfoComponent} from './components/FridgeSection/info/info.component';
+import {DaysToTodayPipe} from './components/FridgeSection/info/days-to-today.pipe';
 import { NotesComponent } from './components/MainSection/notes-popup/notes.component';
 import { ListHeaderComponent } from './components/MainSection/list-header/list-header.component';
 import { NotesListComponent } from './components/NotesSection/notes-list/notes-list.component';
+
+const fridgeConnectionConfig: SocketIoConfig = {url: 'http://10.254.0.40:3000/', options: {}};
 
 @NgModule({
   declarations: [
@@ -35,16 +44,19 @@ import { NotesListComponent } from './components/NotesSection/notes-list/notes-l
     RegisterComponent,
     RegisterinputComponent,
     StartComponent,
-    MembersContainer,
+    MembersContainerComponent,
     FridgeComponent,
     ProductsComponent,
     MainComponent,
-    VideoComponent,
+    CameraComponent,
     ColorComponent,
     AvatarComponent,
     WeatherComponent,
     TopBarComponent,
     RegistersummComponent,
+    WidgetsListComponent,
+    DotComponent,
+    ProductCloudComponent,
     UsertypeComponent,
     YoutubePlayerComponent,
     SecureDomPipe,
@@ -52,14 +64,19 @@ import { NotesListComponent } from './components/NotesSection/notes-list/notes-l
     NotesComponent,
     ListHeaderComponent,
     NotesListComponent,
+    EditComponent,
+    InfoComponent,
+    DaysToTodayPipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    SocketIoModule.forRoot(fridgeConnectionConfig),
+    ReactiveFormsModule
   ],
-  providers: [WeatherService,],
+  providers: [WeatherService],
 
   bootstrap: [AppComponent]
 })

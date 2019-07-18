@@ -2,7 +2,11 @@
 
 .main-wrapper {
   width: 1080px;
-  height: 1920px;
+	height: 1920px;
+	background-image: url("src/assets/pexels-photo-1640777.png");
+  background-repeat: no-repeat;
+	background-position: 76% 0%;
+	background-size: 270%;
 }
 
 .widgets-wrapper {
@@ -21,6 +25,8 @@
 		border: 1px dashed #5F7891;
 		border-radius: 10px;
 		opacity: 0.4;
+		height: 420px;
+		width: 420px;
 
 		&--splited {
 			border-style: none;
@@ -28,19 +34,25 @@
 			grid-row-gap: 40px;
 			opacity: 1;
 		}
+
+		&--small {
+			height: 190px;
+		}
 	}
 
 	&__item-button {
 		display: block;
-		width: 63px;
-		height: 63px;
+		width: 100px;
+		height: 100px;
 		position: absolute;
 		left: 50%;
 		// top: 30%;
-		bottom: 50%;
+		// bottom: 50%;
+		bottom: 35%;
 		// transform: translate(-50%, -50%);
 		transform: translateX(-50%);
 		background-image: url("src/assets/add-member.png");
+		background-size: cover;
 		// opacity: 0.4;
 	}
 
@@ -48,7 +60,8 @@
 		position: absolute;
 		left: 50%;
 		transform: translateX(-50%);
-		bottom: 25%;
+		// bottom: 10%;
+		bottom: 20px;
 		font-size: 30px;
 		color: #5F7891;
 	}
