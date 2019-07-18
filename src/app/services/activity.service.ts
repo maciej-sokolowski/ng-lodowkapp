@@ -89,13 +89,13 @@ export class ActivityService implements StoreManager<Activity> {
     );
   }
 
-  public getItemsByPriority(priority: number) {
-    return this.activities.pipe(
-      filter(activities => activities === activities.filter(element => {
-        return element.priority === priority;
-      }))
-    );
-  }
+  // public getItemsByPriority(priority: number) {
+  //   return this.activities.pipe(
+  //     filter(activities => activities === activities.filter(element => {
+  //       return element.priority === priority;
+  //     }))
+  //   );
+  // }
 
 }
 

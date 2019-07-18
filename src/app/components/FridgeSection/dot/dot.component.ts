@@ -1,6 +1,9 @@
-import {Component, DoCheck, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, DoCheck, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Product} from '../../../interfaces/Models/product';
 import {ProductService} from '../../../services/product.service';
+import {Activity} from '../../../interfaces/Models/activity';
+import {v4 as uuid} from 'uuid';
+import {ActivityService} from '../../../services/activity.service';
 
 enum Visible {
   YES = 1,
@@ -18,6 +21,7 @@ export class DotComponent implements OnInit {
   @Input() product: Product;
   @Output() cloudActiveNotification = new EventEmitter<boolean>();
   visibleLabel = Visible.NOT;
+  allowToNotifyAboutExpiry: boolean = true;
 
   get ActiveLabelID() {
     return DotComponent.activeLabelID;
@@ -27,7 +31,7 @@ export class DotComponent implements OnInit {
     DotComponent.activeLabelID = value;
   }
 
-  constructor(private prService: ProductService) {
+  constructor(private prService: ProductService, private actService: ActivityService) {
 
   }
 
@@ -56,6 +60,15 @@ export class DotComponent implements OnInit {
   }
 
   removeProduct() {
+    const activity: Activity = {
+      id: uuid(),
+      userId: 'FRIDGE',
+      date: new Date(Date.now()),
+      message: `Product ${this.product.name} has been removed from fridge`,
+      messageColor: '#FF4E4E'
+    };
+    this.actService.insertItem(activity);
+
     this.prService.deleteItem(this.product);
     this.ActiveLabelID = '';
     this.cloudActiveNotification.emit(false);
@@ -73,6 +86,17 @@ export class DotComponent implements OnInit {
       this.product.dotColor = '#FFCE2D';
     } else {
       this.product.dotColor = '#FF4E4E';
+      if (this.allowToNotifyAboutExpiry) {
+        const activity: Activity = {
+          id: uuid(),
+          userId: 'FRIDGE',
+          date: new Date(Date.now()),
+          message: `${this.product.name} has expired!`,
+          messageColor: '#FF4E4E'
+        };
+        this.actService.insertItem(activity);
+        this.allowToNotifyAboutExpiry = false;
+      }
     }
     this.prService.updateItem(this.product);
   }
