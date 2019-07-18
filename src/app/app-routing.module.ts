@@ -5,6 +5,8 @@ import { RegisterComponent } from './components/RegisterSection/register/registe
 import { FridgeComponent } from './components/FridgeSection/fridge/fridge.component';
 import { MainComponent } from './components/MainSection/main/main.component';
 import { YoutubePlayerComponent } from './components/YoutubeSection/youtube-player/youtube-player.component';
+import { NotesListComponent } from './components/NotesSection/notes-list/notes-list.component';
+
 
 
 
@@ -15,7 +17,7 @@ const routes: Routes = [
   { path: 'main', component: MainComponent },
   { path: 'fridge', component: FridgeComponent },
   { path: 'youtube', component: YoutubePlayerComponent },
-
+  { path: 'notes', component: NotesListComponent },
 ];
 
 @NgModule({

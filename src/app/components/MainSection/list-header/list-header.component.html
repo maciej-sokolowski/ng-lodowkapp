@@ -1,0 +1,13 @@
+<div class="container">
+  <p class="container__title">{{headerTitle}}</p>
+  <div class="container__buttons">
+    <button [routerLink]="route" class="container__button">VIEW ALL</button>
+    <button class="container__button container__button-add" *ngIf='canAddListItem' (click)="openPopup()"></button>
+  </div>
+</div>
+<div class="wrapper">
+  <div class="wrapper__list-item" *ngFor="let item of items|slice:0:4">
+    <p class="wrapper__date">{{item.date | date: 'dd/MM/yyyy'}}</p>
+    <p class="wrapper__text">{{item.message}}</p>
+  </div>
+</div>
