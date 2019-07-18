@@ -24,6 +24,7 @@ export class MembersContainerComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getItems().subscribe(users => this.users = [...users]);
+    this.logOutUser();
   }
 
   formReset() {
@@ -37,7 +38,7 @@ export class MembersContainerComponent implements OnInit {
     this.infoToLogin = userData;
     this.displayLoginPanel = false;
     this.formReset();
-    console.log(userData);
+    console.log(userData.isLogged);
   }
 
   setBtnStatus(status?: string) {
@@ -61,7 +62,7 @@ export class MembersContainerComponent implements OnInit {
     if (event.target.value.length === 4 && (event.target.value === this.infoToLogin.pin)) {
       this.btnState = 'correct'
       setTimeout(() => {
-        this.logIn();
+        this.logIn(this.infoToLogin);
       }, 500);
     } else if (event.target.value.length < 4) {
       this.btnState = 'inactive'
@@ -69,9 +70,18 @@ export class MembersContainerComponent implements OnInit {
       this.btnState = 'wrong'
     }
   }
-  logIn() {
-    this.infoToLogin.isLogged = true;
-    this.userService.updateItem(this.infoToLogin);
+
+  logIn(user) {
+    user.isLogged = true;
+    this.userService.updateItem(user);
     this.router.navigate(['/main']);
+  }
+
+  logOutUser() {
+    let usersToLogOut = [];
+    this.userService.getItems().subscribe((users) => usersToLogOut = [...users]);
+    usersToLogOut.forEach((user) => {
+      user.isLogged === true ? user.isLogged = false : null;
+    })
   }
 }

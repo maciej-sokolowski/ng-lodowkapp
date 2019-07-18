@@ -43,7 +43,6 @@ export class MainComponent implements OnInit {
       this.currentUser = users.filter(user => user.isLogged === true)
     })
     console.log(this.currentUser);
-
   }
 
   initList() {
