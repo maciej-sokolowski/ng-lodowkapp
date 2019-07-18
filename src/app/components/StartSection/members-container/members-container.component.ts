@@ -70,6 +70,8 @@ export class MembersContainerComponent implements OnInit {
     }
   }
   logIn() {
-    this.router.navigate(['/main'], { state: [this.infoToLogin] });
+    this.infoToLogin.isLogged = true;
+    this.userService.updateItem(this.infoToLogin);
+    this.router.navigate(['/main']);
   }
 }

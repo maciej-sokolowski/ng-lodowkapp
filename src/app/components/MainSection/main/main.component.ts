@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/interfaces/Models/user';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-main',
@@ -14,7 +15,7 @@ export class MainComponent implements OnInit {
   placeholderId: string;
   target: any;
 
-  currentUser: User;
+  currentUser;
 
   // widgets = {
   //   "Canvas": "app-weather",
@@ -35,10 +36,14 @@ export class MainComponent implements OnInit {
     "widget-7": "",
   }
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.currentUser = history.state[0];
+    this.userService.getItems().subscribe((users) => {
+      this.currentUser = users.filter(user => user.isLogged === true)
+    })
+    console.log(this.currentUser);
+
   }
 
   initList() {
