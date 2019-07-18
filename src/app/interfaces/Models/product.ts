@@ -7,4 +7,5 @@ export interface Product {
   priority: number;
   needToBuy: boolean;
   fridgePosition: Coordinate;
+  dotColor: string;
 }

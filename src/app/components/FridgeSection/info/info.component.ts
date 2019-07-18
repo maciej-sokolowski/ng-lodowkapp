@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 enum labelColors {
   GREEN = 1,
@@ -15,6 +15,7 @@ export class InfoComponent implements OnInit {
 
   @Input() title: string;
   @Input() date: Date;
+  @Output() dotColor: EventEmitter<string> = new EventEmitter<string>();
   parsedDate: number;
   labelColor: labelColors;
   dayTime = 86400000;
@@ -33,10 +34,13 @@ export class InfoComponent implements OnInit {
 
     if (timeBetweenExpiry >= 10 * this.dayTime) {
       this.labelColor = labelColors.GREEN;
+      this.dotColor.emit('#70D9A8');
     } else if (timeBetweenExpiry > 0 && timeBetweenExpiry < 10 * this.dayTime) {
       this.labelColor = labelColors.YELLOW;
+      this.dotColor.emit('#FFCE2D');
     } else {
       this.labelColor = labelColors.RED;
+      this.dotColor.emit('#FF4E4E');
     }
   }
 }

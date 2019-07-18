@@ -58,5 +58,9 @@ export class ProductCloudComponent implements OnInit {
     this.removeSignal.emit();
   }
 
+  updateDotColor(color) {
+    this.product.dotColor = color;
+    this.prService.updateItem(this.product);
+  }
 
 }
