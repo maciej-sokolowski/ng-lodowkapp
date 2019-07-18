@@ -1,5 +1,10 @@
-.cloud {
+//variables
 
+$buy-color: #00C3FF;
+$edit-color: #FFCE2D;
+$remove-color: #FF4E4E;
+
+.cloud {
   position: absolute;
   bottom: 120px;
   left: -168px;
@@ -11,6 +16,7 @@
     border-radius: 10px;
     position: relative;
     padding: 19px 19px 25px 19px;
+    z-index: 15;
   }
 
   &__arrow {
@@ -22,6 +28,71 @@
     bottom: -34px;
     left: 164px;
     right: 164px;
-
+    z-index: 10;
   }
+
+}
+
+.btn-box {
+  box-sizing: border-box;
+  position: absolute;
+  height: 71px;
+  width: 358px;
+  bottom: 25px;
+  z-index: 16;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__btn {
+    width: 112px;
+    height: 100%;
+    border-radius: 10px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: normal;
+    color: #fff;
+    font-size: 24px;
+    line-height: 33px;
+    outline: none;
+    user-select: none;
+
+    &:disabled {
+      background-color: #bbaeb2;
+      border: 1px solid #ffffff;
+      color: #ffffff;
+    }
+
+    &:active {
+      background-color: #fff;
+    }
+
+    &--buy {
+      border: 1px solid $buy-color;
+      background-color: $buy-color;
+
+      &:active {
+        color: $buy-color;
+      }
+    }
+
+    &--edit {
+      border: 1px solid $edit-color;
+      background-color: $edit-color;
+
+      &:active {
+        color: $edit-color;
+      }
+    }
+
+    &--remove {
+      border: 1px solid $remove-color;
+      background-color: $remove-color;
+
+      &:active {
+        color: $remove-color;
+      }
+    }
+  }
+
+
 }

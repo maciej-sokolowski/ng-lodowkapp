@@ -4,5 +4,6 @@ export interface User {
   name: string;
   avatar: string;
   color: string;
-  pin?: string;
+  pin: string;
+  isLogged?: boolean;
 }
