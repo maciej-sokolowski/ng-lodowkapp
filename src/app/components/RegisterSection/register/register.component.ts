@@ -15,12 +15,13 @@ export class RegisterComponent implements OnInit {
   btnIsDisabled: boolean = true;
 
   // tu zbiera dane
-  userNamee = '';
-  userColor: string;
-  userAvatar: string;
-  userPIN: string = '';
+  private userNamee = '';
+  private userColor: string;
+  private userAvatar: string;
+  private userPIN1: string = '';
+  private userPIN2: string = '';
   private personType;
-  btnSwitch: Array<Number> = [0];
+  private btnSwitch: Array<Number> = [0];
 
   btnNextText = 'Next';
 
@@ -37,23 +38,29 @@ export class RegisterComponent implements OnInit {
       if (this.registerStep === 1 && this.userNamee.length === 0) {
         this.btnIsDisabled = true;
       }
-    } else if (this.registerStep === 4 && this.userPIN.length === 4) {
+    } else if (this.registerStep === 4 && this.userPIN1.length === 4 && (this.userPIN1 === this.userPIN2)) {
       this.btnNextText = 'Confirm and add family member';
       this.btnIsDisabled = false;
-    } else if (this.registerStep === 4 && this.userPIN.length < 4) {
+    } else if (this.registerStep === 4 && (this.userPIN1.length < 4 || this.userPIN2.length < 4)) {
       this.btnIsDisabled = true;
       this.btnNextText = 'First you need to enter PIN';
     } else {
       this.btnIsDisabled = true;
     }
   }
+
   activateBtn() {
     this.btnIsDisabled = false;
     this.btnSwitch.push(this.registerStep);
   }
 
-  checkLength() {
-    this.setButtonStatus(4);
+  validate(event) {
+    let regex = /[a-zA-Z]/;
+    if (event.target.value.match(regex)) {
+      event.target.value = '';
+    } else {
+      this.setButtonStatus(4);
+    }
   }
 
   onClickPrev() {
@@ -71,7 +78,7 @@ export class RegisterComponent implements OnInit {
     this.registerStep++;
     this.setButtonStatus(this.registerStep);
     if (this.registerStep === 5) {
-      let agregatedInfo = { id: uuid(), type: this.personType, name: this.userNamee, avatar: this.userAvatar, color: this.userColor, pin: this.userPIN };
+      let agregatedInfo = { id: uuid(), type: this.personType, name: this.userNamee, avatar: this.userAvatar, color: this.userColor, pin: this.userPIN1, isLogged: false };
       this.registerInfo(agregatedInfo);
     }
   }
