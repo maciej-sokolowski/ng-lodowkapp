@@ -1,18 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NameDate} from '../../../interfaces/name-date';
 import {AntiPastDateValidator} from './anti-past-date-validator';
-
-
-// export function antiPastDateValidator(control: FormControl) {
-//   const date = new Date(`${control.value}`);
-//   if (date.valueOf() < Date.now().valueOf()) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-//
-// }
 
 @Component({
   selector: 'app-edit',
