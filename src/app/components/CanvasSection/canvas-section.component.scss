@@ -4,17 +4,25 @@
   background-image: url("src/assets/pexels-photo-1640777.png");
   background-repeat: no-repeat;
 	background-position: 72% 0%;
-	background-size: 270%;
+  background-size: 270%;
 }
 
 .canvas-wrapper {
   height: 800px;
   width: 840px;
-  background-color: #F7F7F7;
+  // background-color: #F7F7F7;
   border-radius: 10px;
   position: absolute;
   left: 120px;
   top: 120px;
+}
+
+.canvas {
+  background-color: rgb(245, 245, 245);
+  width: 840px;
+  height:760px;
+  border-radius: 10px;
+  box-shadow: 15px 15px 15px #888888;
 }
 
 .buttons-wrapper {

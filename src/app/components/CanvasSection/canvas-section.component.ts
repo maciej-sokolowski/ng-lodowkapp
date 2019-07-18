@@ -38,6 +38,7 @@ export class CanvasSectionComponent implements OnInit {
     // this.imageService.getItemsByUserId(this.userID).subscribe(image => this.gettedImage = image);
     this.imageService.getItems().subscribe(image => this.listobrazow = image);
     console.log(this.listobrazow)
+    if (this.listobrazow.length === 0) {return}
     console.log(this.listobrazow[0]["userId"])
     this.canvasURL = this.listobrazow[0]["imageUrl"];
   }

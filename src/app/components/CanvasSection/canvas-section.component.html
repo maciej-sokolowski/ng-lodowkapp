@@ -1,6 +1,6 @@
 <div class="wrapper">
   <div class="canvas-wrapper">
-    <canvas #myCanvas id="myCanvas" width="840px" height="800px" style="border-radius: 10px" (touchstart)="mouseDown($event)" (touchend)="mouseUp($event)" (touchmove)="draw($event)"></canvas>
+    <canvas #myCanvas id="myCanvas" class="canvas" (touchstart)="mouseDown($event)" (touchend)="mouseUp($event)" (touchmove)="draw($event)"></canvas>
   </div>
 
   <div class="buttons-wrapper">

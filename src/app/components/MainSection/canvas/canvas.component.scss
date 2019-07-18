@@ -1,6 +1,14 @@
-.canvas {
+.wrapper {
   width: 420px;
   height: 420px;
   background-color: rgb(197, 197, 197);
-  font-size: 50px;
+  border-radius: 10px;
+}
+
+.canvas {
+  background-color: rgb(245, 245, 245);
+  border-radius: 10px;
+  box-shadow: 15px 15px 15px #888888;
+  width: 420pc;
+  height: 380px
 }
