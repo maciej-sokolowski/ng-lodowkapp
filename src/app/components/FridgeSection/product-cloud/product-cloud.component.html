@@ -2,11 +2,13 @@
   <div class="cloud__rectangle">
     <div [ngSwitch]="editable">
       <app-edit (nameAndDateEmitter)="changeNameAndDate($event)" *ngSwitchCase="1"></app-edit>
-      <app-info [title]="product.name" [date]="product.expiryDate" *ngSwitchCase="2"></app-info>
+      <app-info [title]="product.name" [date]="product.expiryDate" *ngSwitchCase="2"
+                (dotColor)="updateDotColor($event)"></app-info>
     </div>
 
     <div class="btn-box">
-      <button class="btn-box__btn btn-box__btn--buy">To buy</button>
+      <button class="btn-box__btn btn-box__btn--buy"
+              (click)="emitInfoAboutChangingNeedToBuyStatus()">{{buyButtonChildren}}</button>
       <button class="btn-box__btn btn-box__btn--edit" (click)="edit()"
               [disabled]="editDisable">{{editButtonChildren}}
       </button>

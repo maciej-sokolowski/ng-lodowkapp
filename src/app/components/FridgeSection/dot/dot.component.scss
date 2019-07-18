@@ -2,7 +2,6 @@
   position: absolute;
   width: 60px;
   height: 60px;
-  background-color: #70D9A8;
   border-radius: 30px;
   top: 0;
   left: 0;
@@ -12,5 +11,24 @@
     height: 60px;
     background-color: transparent;
     position: relative;
+  }
+
+  &__buy-label {
+    position: absolute;
+    width: 42px;
+    height: 42px;
+    background-color: #00C3FF;
+    border-radius: 21px;
+    left: -11px;
+    top: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__buy-ico {
+    background-image: url("~src/assets/shopping_list.png");
+    width: 24px;
+    height: 24px;
   }
 }
