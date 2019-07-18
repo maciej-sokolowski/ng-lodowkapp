@@ -63,7 +63,6 @@ export class MainComponent implements OnInit {
     this.userService.getItems().subscribe((users) => {
       this.currentUser = users.filter(user => user.isLogged === true)
     })
-
   }
 
   getNotes() {
