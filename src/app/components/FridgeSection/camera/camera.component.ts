@@ -41,7 +41,8 @@ export class CameraComponent implements OnInit, OnDestroy {
       const product: Product = {
         id: uuid(),
         fridgePosition: {x: `${$event.layerX - 30}px`, y: `${$event.layerY - 30}px`},
-        needToBuy: false
+        needToBuy: false,
+        dotColor: '#bbaeb2'
       };
       this.prService.insertItem(product);
       console.log(this.products);
