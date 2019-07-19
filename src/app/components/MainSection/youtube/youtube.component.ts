@@ -14,6 +14,7 @@ export class YoutubeComponent implements OnInit {
 
   videos: any[];
   thumbnail: string;
+  dataFromApi: boolean;
 
   channelId = 'UCJFp8uSYCjXOMnkUyb3CQ3Q';
   maxResult = 1;
@@ -22,6 +23,11 @@ export class YoutubeComponent implements OnInit {
   constructor(private youTubeService: YoutubeWidgetService) { }
 
   ngOnInit() {
+    this.getThumbnail();
+    this.updateThumbnail();
+  }
+
+  getThumbnail() {
     this.videos = [];
 
     this.youTubeService
@@ -29,6 +35,16 @@ export class YoutubeComponent implements OnInit {
       .pipe(takeUntil(this.subscribe))
       .subscribe(lista => {
         this.thumbnail = lista['items'][0].snippet.thumbnails.medium.url;
-      });
+        this.dataFromApi = true;
+      })
   }
+
+  updateThumbnail() {
+    setInterval(() => {
+      this.getThumbnail();
+    }, 60000)
+  }
+
+
+
 }

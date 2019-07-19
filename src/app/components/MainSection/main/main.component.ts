@@ -20,7 +20,6 @@ export class MainComponent implements OnInit {
 
 
   isPopupOpen: boolean;
-  isStringShow: any;
 
 
   @Input()
@@ -46,9 +45,14 @@ export class MainComponent implements OnInit {
     'widget-6': '',
     'widget-7': '',
   };
+  userId: string;
 
   ngOnInit() {
     this.getLoggedUser();
+    this.getNotes();
+  }
+
+  ngDoCheck() {
     this.getNotes();
   }
 
@@ -63,16 +67,16 @@ export class MainComponent implements OnInit {
     this.userService.getItems().subscribe((users) => {
       this.currentUser = users.filter(user => user.isLogged === true)
     })
-
   }
 
   getNotes() {
-    const tempNotes = this.noteService.getItems().getValue();
+    this.userId = this.userService.getLoggedUser()[0].id
 
-    const sortedNotes = tempNotes.sort((firstNote, secondNote) => {
+    const tempNotes = this.noteService.getItemsByUserId(this.userId)
+
+    const sortedNotes = tempNotes.sort(function (firstNote, secondNote) {
       return firstNote.date > secondNote.date ? -1 : firstNote.date < secondNote.date ? 1 : 0;
     });
-
     this.notes = sortedNotes;
 
     this.headerTitle = this.notes.length + ' notes';
@@ -80,9 +84,7 @@ export class MainComponent implements OnInit {
 
   initList() {
     this.target = <HTMLInputElement>event.target;
-    console.log(this.target);
     this.placeholderId = this.target.parentElement.getAttribute('id');
-    console.log(this.placeholderId);
 
     if (this.placeholderId === 'widget-4' || this.placeholderId === 'widget-5') {
       this.emitIsSmallWidget = true;
@@ -104,11 +106,9 @@ export class MainComponent implements OnInit {
 
     if (getEmiter[1] === 'small') {
       widgetToAssign = this.emitSmallWidgetsList[getEmiter[0]];
-      // console.log(widgetToAssign)
       this.emitSmallWidgetsList.splice(getEmiter[0], 1);
     } else {
       widgetToAssign = this.emitLargeWidgetsList[getEmiter[0]];
-      // console.log(widgetToAssign)
       this.emitLargeWidgetsList.splice(getEmiter[0], 1);
     }
 
@@ -127,7 +127,7 @@ export class MainComponent implements OnInit {
     // console.log(widgetPlaceholder)
 
     this.widgets[this.placeholderId] = widgetToAssign;
-    console.log(this.widgets);
+    // console.log(this.widgets);
 
     // widgetToAssign = this.widgets[widgetToAssign];
     // console.log(widgetToAssign)

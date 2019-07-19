@@ -8,20 +8,19 @@ import { YoutubeService } from '../youtube-player/youtube.service';
 })
 export class YoutubePlayerComponent implements OnInit {
 
-  videos: any[] = [];
+  videos = [];
   videoSelected: any;
   initialVideoId = '?listType=playlist&list=UUJFp8uSYCjXOMnkUyb3CQ3Q';
 
   constructor(private youtubeService: YoutubeService) {
+
     this.youtubeService.getVideos()
       .subscribe(videos => {
         this.videos = videos
-      }
-      )
+      })
   }
 
   ngOnInit() {
-
   }
 
   getVideoId() {
@@ -40,9 +39,4 @@ export class YoutubePlayerComponent implements OnInit {
       behavior: 'smooth',
     });
   }
-
-  closeModal() {
-    this.videoSelected = null;
-  }
-
 }
