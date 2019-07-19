@@ -16,6 +16,7 @@
     left: 770px;
     width: 90px;
     height: 90px;
+    z-index: 2;
   }
 }
 
@@ -34,7 +35,7 @@
     position: relative;
     border: 1px dashed #5F7891;
     border-radius: 10px;
-    opacity: 0.4;
+    // opacity: 0.4;
     height: 420px;
     width: 420px;
 
