@@ -25,8 +25,7 @@ export class RegisterComponent implements OnInit {
 
   btnNextText = 'Next';
 
-  constructor(private userService: UserService) {
-  }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
 
@@ -55,12 +54,16 @@ export class RegisterComponent implements OnInit {
   }
 
   validate(event) {
+    let input = event.target.value;
+
     let regex = /[a-zA-Z]/;
-    if (event.target.value.match(regex)) {
-      event.target.value = '';
+    if (input.charAt(input.length - 1).match(regex)) {
+      event.target.value = input.slice(0, input.length - 1)
     } else {
       this.setButtonStatus(4);
     }
+    console.log(this.userPIN1);
+
   }
 
   onClickPrev() {
