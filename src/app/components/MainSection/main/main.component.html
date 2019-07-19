@@ -4,7 +4,7 @@
     <app-registersumm class="test" (click)="contextMenu($event)" [chosenAvatar]="currentUser[0]?.avatar"
       [chosenColor]="currentUser[0]?.color" [userType]="">
     </app-registersumm>
-    <app-contextmenu [hidden]="displayMenu" [chosenColor]="currentUser[0]?.color">
+    <app-contextmenu [hidden]="displayMenu" (click)="contextMenu($event)" [chosenColor]="currentUser[0]?.color">
     </app-contextmenu>
   </div>
   <app-widgets-list *ngIf="isOpen" [isSmallWidget]="emitIsSmallWidget" [largeWidgets]="emitLargeWidgetsList"
