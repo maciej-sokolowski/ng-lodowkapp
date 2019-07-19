@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { Note } from '../interfaces/Models/note';
-import { filter, find } from 'rxjs/operators';
-import { ManageDataService } from './manage-data.service';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject} from 'rxjs';
+import {Note} from '../interfaces/Models/note';
+import {filter, find} from 'rxjs/operators';
+import {ManageDataService} from './manage-data.service';
 import * as _ from 'lodash';
-import { StoreManager } from '../interfaces/store-manager';
+import {StoreManager} from '../interfaces/store-manager';
 
 
 @Injectable({
@@ -49,6 +49,7 @@ export class NoteService implements StoreManager<Note> {
   private synchronizeWithLocalStorage() {
     _.debounce(() => this.mdService.updateNotesToLocalStorage(this.notes.getValue()), 2500)();
   }
+
 
   public getItemById(id: string) {
     return this.notes.pipe(
