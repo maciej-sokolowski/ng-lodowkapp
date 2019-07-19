@@ -17,6 +17,7 @@ export class MainComponent implements OnInit {
   placeholderId: string;
   target: any;
   currentUser;
+  displayMenu: boolean = true;
 
 
   isPopupOpen: boolean;
@@ -130,5 +131,9 @@ export class MainComponent implements OnInit {
 
     // widgetToAssign = this.widgets[widgetToAssign];
     // console.log(widgetToAssign)
+  }
+  contextMenu(event) {
+    this.displayMenu = !this.displayMenu;
+    console.log(this.displayMenu);
   }
 }
