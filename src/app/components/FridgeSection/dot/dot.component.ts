@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Product} from '../../../interfaces/Models/product';
 import {ProductService} from '../../../services/product.service';
+import {PushNotificationService} from '../../../services/push-notification.service';
 
 
 enum Visible {
@@ -28,7 +29,7 @@ export class DotComponent implements OnInit {
     DotComponent.activeLabelID = value;
   }
 
-  constructor(private prService: ProductService) {
+  constructor(private prService: ProductService, private notifyService: PushNotificationService) {
 
   }
 
@@ -55,6 +56,9 @@ export class DotComponent implements OnInit {
   }
 
   removeProduct() {
+    if (this.product.name !== undefined) {
+      this.notifyService.notifyAboutRemovedProduct(this.product);
+    }
     this.prService.deleteItem(this.product);
     this.ActiveLabelID = '';
     this.cloudActiveNotification.emit(false);

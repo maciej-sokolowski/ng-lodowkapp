@@ -2,9 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Product} from '../../../interfaces/Models/product';
 import {NameDate} from '../../../interfaces/name-date';
 import {ProductService} from '../../../services/product.service';
-import {ActivityService} from '../../../services/activity.service';
-import {Activity} from '../../../interfaces/Models/activity';
-import {v4 as uuid} from 'uuid';
+import {PushNotificationService} from '../../../services/push-notification.service';
 
 enum Edit {
   YES = 1,
@@ -26,8 +24,9 @@ export class ProductCloudComponent implements OnInit {
   public buyButtonChildren: string;
   public editDisable = false;
   public needToBuyDisable = false;
+  public isNewProduct: boolean;
 
-  constructor(private prService: ProductService) {
+  constructor(private prService: ProductService, private notifyService: PushNotificationService) {
   }
 
   ngOnInit() {
@@ -35,8 +34,10 @@ export class ProductCloudComponent implements OnInit {
       this.editDisable = true;
       this.needToBuyDisable = true;
       this.editable = Edit.YES;
+      this.isNewProduct = true;
     } else {
       this.editable = Edit.NOT;
+      this.isNewProduct = false;
     }
     if (this.product.needToBuy === true) {
       this.buyButtonChildren = 'Don\'t buy';
@@ -49,6 +50,7 @@ export class ProductCloudComponent implements OnInit {
   // TODO: uncomment
 
   changeNameAndDate(value: NameDate) {
+    const previousProductState: Product = {...this.product};
     this.product.name = value.name;
     this.product.expiryDate = new Date(value.expiry);
     this.prService.updateItem(this.product);
@@ -56,6 +58,13 @@ export class ProductCloudComponent implements OnInit {
     this.editDisable = false;
     this.needToBuyDisable = false;
     this.editButtonChildren = 'Edit';
+    if (this.isNewProduct) {
+      this.notifyService.notifyAboutNewProduct(this.product);
+      this.isNewProduct = false;
+    } else {
+
+      this.notifyService.notifyAboutEdit(previousProductState, this.product);
+    }
   }
 
   edit() {
@@ -80,6 +89,7 @@ export class ProductCloudComponent implements OnInit {
   emitInfoAboutChangingNeedToBuyStatus() {
     if (this.product.needToBuy === false) {
       this.needToBuyStatus.emit(true);
+      this.notifyService.notifyAboutBuying(this.product);
       this.buyButtonChildren = 'Don\'t buy';
     } else {
       this.needToBuyStatus.emit(false);

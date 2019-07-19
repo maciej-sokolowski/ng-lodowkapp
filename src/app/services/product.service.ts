@@ -5,6 +5,7 @@ import {filter, find} from 'rxjs/operators';
 import {ManageDataService} from './manage-data.service';
 import * as _ from 'lodash';
 import {StoreManager} from '../interfaces/store-manager';
+import {PushNotificationService} from './push-notification.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class ProductService implements StoreManager<Product> {
 
   public products: BehaviorSubject<Product[]> = new BehaviorSubject([]);
 
-  constructor(private mdService: ManageDataService) {
+  constructor(private mdService: ManageDataService, private notifyService: PushNotificationService) {
     const data: Product[] = mdService.getProductsFromLocalStorage();
     if (data !== null) {
       this.products.next(data);
@@ -42,6 +43,7 @@ export class ProductService implements StoreManager<Product> {
       return element.id !== product.id;
     });
     this.products.next([...newStore]);
+    // this.notifyService.notifyAboutRemovedProduct(product);
     this.synchronizeWithLocalStorage();
   }
 
