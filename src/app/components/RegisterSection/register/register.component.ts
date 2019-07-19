@@ -55,15 +55,12 @@ export class RegisterComponent implements OnInit {
 
   validate(event) {
     let input = event.target.value;
-
     let regex = /[a-zA-Z]/;
     if (input.charAt(input.length - 1).match(regex)) {
       event.target.value = input.slice(0, input.length - 1)
     } else {
       this.setButtonStatus(4);
     }
-    console.log(this.userPIN1);
-
   }
 
   onClickPrev() {
@@ -81,7 +78,15 @@ export class RegisterComponent implements OnInit {
     this.registerStep++;
     this.setButtonStatus(this.registerStep);
     if (this.registerStep === 5) {
-      let agregatedInfo = { id: uuid(), type: this.personType, name: this.userNamee, avatar: this.userAvatar, color: this.userColor, pin: this.userPIN1, isLogged: false };
+      let agregatedInfo = {
+        id: uuid(),
+        type: this.personType,
+        name: this.userNamee,
+        avatar: this.userAvatar,
+        color: this.userColor,
+        pin: this.userPIN1,
+        isLogged: false
+      };
       this.registerInfo(agregatedInfo);
     }
   }
