@@ -1,4 +1,5 @@
-<div class="container">
+<div *ngIf="!dataFromApi">Loading...</div>
+<div class="container" *ngIf="dataFromApi">
   <div>
     <img src="../../../assets/{{icon}}.svg" class="container__icon">
   </div>

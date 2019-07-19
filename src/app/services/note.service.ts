@@ -95,5 +95,4 @@ export class NoteService implements StoreManager<Note> {
       }))
     );
   }
-
 }

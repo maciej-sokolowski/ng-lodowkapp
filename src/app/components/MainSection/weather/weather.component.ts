@@ -16,10 +16,17 @@ export class WeatherComponent implements OnInit {
   description: string;
   icon: string;
   obs: any;
+  dataFromApi: boolean;
 
   constructor(private ws: WeatherService) { }
 
   ngOnInit() {
+    this.getCurentWeather();
+    this.updateWeather();
+  }
+
+
+  getCurentWeather() {
     this.myWeather = this.ws.weatherNow();
     navigator.geolocation.getCurrentPosition((pos) => {
       this.location = pos.coords;
@@ -34,8 +41,15 @@ export class WeatherComponent implements OnInit {
           this.temperature = data.main.temp.toFixed(1);
           this.description = data.weather[0].description;
           this.icon = data.weather[0].icon.split("").reverse().join("");
+          this.dataFromApi = true;
         }
       )
     })
+  }
+
+  updateWeather() {
+    setInterval(() => {
+      this.getCurentWeather();
+    }, 60000);
   }
 }
