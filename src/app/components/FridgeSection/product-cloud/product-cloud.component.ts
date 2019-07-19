@@ -62,7 +62,6 @@ export class ProductCloudComponent implements OnInit {
       this.notifyService.notifyAboutNewProduct(this.product);
       this.isNewProduct = false;
     } else {
-
       this.notifyService.notifyAboutEdit(previousProductState, this.product);
     }
   }

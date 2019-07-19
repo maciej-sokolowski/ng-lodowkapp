@@ -61,7 +61,17 @@ export class PushNotificationService {
     this.actService.insertItem(activity);
   }
 
-  notifyAboutExpiredProducts(product: Product) {
+  notifyAboutExpiredProducts(products: Product[]) {
+    products.forEach(product => {
+      const activity: Activity = {
+        id: uuid(),
+        userId: 'FRIDGE',
+        date: new Date(Date.now()),
+        message: `${product.name} has expired`,
+        messageColor: '#FF4E4E'
+      };
+      this.actService.insertItem(activity);
+    });
 
   }
 }

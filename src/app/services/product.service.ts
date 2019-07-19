@@ -1,11 +1,10 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, from} from 'rxjs';
 import {Product} from '../interfaces/Models/product';
 import {filter, find} from 'rxjs/operators';
 import {ManageDataService} from './manage-data.service';
 import * as _ from 'lodash';
 import {StoreManager} from '../interfaces/store-manager';
-import {PushNotificationService} from './push-notification.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +13,7 @@ export class ProductService implements StoreManager<Product> {
 
   public products: BehaviorSubject<Product[]> = new BehaviorSubject([]);
 
-  constructor(private mdService: ManageDataService, private notifyService: PushNotificationService) {
+  constructor(private mdService: ManageDataService) {
     const data: Product[] = mdService.getProductsFromLocalStorage();
     if (data !== null) {
       this.products.next(data);
@@ -43,7 +42,6 @@ export class ProductService implements StoreManager<Product> {
       return element.id !== product.id;
     });
     this.products.next([...newStore]);
-    // this.notifyService.notifyAboutRemovedProduct(product);
     this.synchronizeWithLocalStorage();
   }
 
@@ -53,11 +51,7 @@ export class ProductService implements StoreManager<Product> {
   }
 
   public getItemById(id: string) {
-    return this.products.pipe(
-      find(products => products === products.filter(element => {
-        return element.id === id;
-      }))
-    );
+    return this.products.getValue().find(products => products.id === id);
   }
 
   public getItemByName(name: string) {
@@ -70,26 +64,18 @@ export class ProductService implements StoreManager<Product> {
 
 
   public getItemsBeforeExpiry() {
-    return this.products.pipe(
-      filter(products => products === products.filter(element => {
-        return element.expiryDate.valueOf() >= Date.now().valueOf();
-      }))
-    );
+    const source = from(this.products.getValue());
+    return source.pipe(filter(product => Date.parse(String(product.expiryDate)) > Date.now().valueOf()));
   }
 
-  public getItemsAfterExpiry(date: Date) {
-    return this.products.pipe(
-      filter(products => products === products.filter(element => {
-        return element.expiryDate.valueOf() < Date.now().valueOf();
-      }))
-    );
+  public getExpiredItems() {
+    const source = from(this.products.getValue());
+    return source.pipe(filter(product => Date.parse(String(product.expiryDate)) < Date.now().valueOf()));
   }
 
   public getItemsByNeed(need: boolean) {
-    return this.products.pipe(
-      filter(products => products === products.filter(element => {
-        return element.needToBuy === need;
-      }))
-    );
+    const source = from(this.products.getValue());
+    return source.pipe(filter(product => product.needToBuy === true));
+
   }
 }
