@@ -1,3 +1,13 @@
+.hidden-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vh;
+  height: 100vh;
+  background-color: rgba(39, 193, 49, 0);
+  z-index: -1;
+}
+
 .wrapper {
   margin-top: 16px;
   font-size: 24px;
@@ -16,7 +26,7 @@
     }
 
     &--WIP {
-      color: blanchedalmond;
+      color: palegoldenrod;
     }
   }
 
