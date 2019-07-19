@@ -25,8 +25,7 @@ export class RegisterComponent implements OnInit {
 
   btnNextText = 'Next';
 
-  constructor(private userService: UserService) {
-  }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
 
@@ -43,8 +42,12 @@ export class RegisterComponent implements OnInit {
       this.btnIsDisabled = false;
     } else if (this.registerStep === 4 && (this.userPIN1.length < 4 || this.userPIN2.length < 4)) {
       this.btnIsDisabled = true;
-      this.btnNextText = 'First you need to enter PIN';
-    } else {
+      this.btnNextText = 'Please insert PIN';
+    } else if (this.userPIN2.length === 4 && this.userPIN1 !== this.userPIN2) {
+      this.btnIsDisabled = true;
+      this.btnNextText = 'PIN codes are not equal';
+    }
+    else {
       this.btnIsDisabled = true;
     }
   }
@@ -55,9 +58,10 @@ export class RegisterComponent implements OnInit {
   }
 
   validate(event) {
+    let input = event.target.value;
     let regex = /[a-zA-Z]/;
-    if (event.target.value.match(regex)) {
-      event.target.value = '';
+    if (input.charAt(input.length - 1).match(regex)) {
+      event.target.value = input.slice(0, input.length - 1)
     } else {
       this.setButtonStatus(4);
     }
@@ -78,7 +82,15 @@ export class RegisterComponent implements OnInit {
     this.registerStep++;
     this.setButtonStatus(this.registerStep);
     if (this.registerStep === 5) {
-      let agregatedInfo = { id: uuid(), type: this.personType, name: this.userNamee, avatar: this.userAvatar, color: this.userColor, pin: this.userPIN1, isLogged: false };
+      let agregatedInfo = {
+        id: uuid(),
+        type: this.personType,
+        name: this.userNamee,
+        avatar: this.userAvatar,
+        color: this.userColor,
+        pin: this.userPIN1,
+        isLogged: false
+      };
       this.registerInfo(agregatedInfo);
     }
   }
