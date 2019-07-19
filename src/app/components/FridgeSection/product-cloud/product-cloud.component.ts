@@ -27,7 +27,7 @@ export class ProductCloudComponent implements OnInit {
   public editDisable = false;
   public needToBuyDisable = false;
 
-  constructor(private prService: ProductService, private actService: ActivityService) {
+  constructor(private prService: ProductService) {
   }
 
   ngOnInit() {
@@ -56,15 +56,6 @@ export class ProductCloudComponent implements OnInit {
     this.editDisable = false;
     this.needToBuyDisable = false;
     this.editButtonChildren = 'Edit';
-
-    const acivity: Activity = {
-      id: uuid(),
-      userId: 'FRIDGE',
-      date: new Date(Date.now()),
-      message: `Added new product ${value.name}`,
-      messageColor: '#70D9A8'
-    };
-    this.actService.insertItem(acivity);
   }
 
   edit() {
