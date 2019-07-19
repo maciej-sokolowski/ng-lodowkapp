@@ -34,7 +34,7 @@ import { DaysToTodayPipe } from './components/FridgeSection/info/days-to-today.p
 import { NotesComponent } from './components/MainSection/notes-popup/notes.component';
 import { ListHeaderComponent } from './components/MainSection/list-header/list-header.component';
 import { NotesListComponent } from './components/NotesSection/notes-list/notes-list.component';
-import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import { ListItemComponent } from './components/FridgeSection/list-item/list-item.component';
 
 const fridgeConnectionConfig: SocketIoConfig = { url: 'http://10.254.0.40:3000/', options: {} };
 
@@ -68,6 +68,7 @@ const fridgeConnectionConfig: SocketIoConfig = { url: 'http://10.254.0.40:3000/'
     EditComponent,
     InfoComponent,
     DaysToTodayPipe,
+    ListItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,7 +77,6 @@ const fridgeConnectionConfig: SocketIoConfig = { url: 'http://10.254.0.40:3000/'
     FormsModule,
     SocketIoModule.forRoot(fridgeConnectionConfig),
     ReactiveFormsModule,
-    Ng4LoadingSpinnerModule
   ],
   providers: [WeatherService],
 
