@@ -42,8 +42,12 @@ export class RegisterComponent implements OnInit {
       this.btnIsDisabled = false;
     } else if (this.registerStep === 4 && (this.userPIN1.length < 4 || this.userPIN2.length < 4)) {
       this.btnIsDisabled = true;
-      this.btnNextText = 'First you need to enter PIN';
-    } else {
+      this.btnNextText = 'Please insert PIN';
+    } else if (this.userPIN2.length === 4 && this.userPIN1 !== this.userPIN2) {
+      this.btnIsDisabled = true;
+      this.btnNextText = 'PIN codes are not equal';
+    }
+    else {
       this.btnIsDisabled = true;
     }
   }
