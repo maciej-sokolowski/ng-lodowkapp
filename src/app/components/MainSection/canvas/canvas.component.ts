@@ -34,7 +34,7 @@ export class CanvasComponent implements OnInit {
     } else {
       this.isChild = false;
     }
-    console.log(this.currentUser)
+    // console.log(this.currentUser)
   }
 
   userImageVerification() {
@@ -43,8 +43,8 @@ export class CanvasComponent implements OnInit {
     if (this.myImage) {
       this.myImageUrl = this.myImage["imageUrl"];
     }
-    console.log(this.allImages);
-    console.log(this.myImage);
+    // console.log(this.allImages);
+    // console.log(this.myImage);
   }
 
 

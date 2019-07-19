@@ -1,11 +1,10 @@
 <div class="wrapper">
   <div class="canvas-wrapper" *ngIf="isChild" routerLink="/canvas"> 
     <img [src]="myImageUrl" *ngIf="myImage" class="img" routerLink="/canvas">
-    <div class="img" *ngIf="!myImage"></div>
+    <div class="img" *ngIf="!myImage">
+      <img class="img__icon" src="../../../../assets/pencil.svg">
+    </div>
   </div>
 
-  <div class="canvas-wrapper" *ngIf="!isChild">
-    <div></div>   <!--   *ngIf- jezeli aray obrazow nie jest pusty   *ngFor- let laurka of importowaneLaurki-->
-    <p>Nie ma laurek</p>   <!--    *ngIf- jezeli aray obrazow jest pusty  -->
-  </div>
+  <app-parents-canvas *ngIf="!isChild"></app-parents-canvas>
 </div>

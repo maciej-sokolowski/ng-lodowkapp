@@ -37,6 +37,7 @@ import {DaysToTodayPipe} from './components/FridgeSection/info/days-to-today.pip
 import { NotesComponent } from './components/MainSection/notes-popup/notes.component';
 import { ListHeaderComponent } from './components/MainSection/list-header/list-header.component';
 import { NotesListComponent } from './components/NotesSection/notes-list/notes-list.component';
+import { ParentsCanvasComponent } from './components/MainSection/canvas/parents-canvas/parents-canvas.component';
 
 
 const fridgeConnectionConfig: SocketIoConfig = {url: 'http://10.254.0.40:3000/', options: {}};
@@ -73,6 +74,7 @@ const fridgeConnectionConfig: SocketIoConfig = {url: 'http://10.254.0.40:3000/',
     EditComponent,
     InfoComponent,
     DaysToTodayPipe,
+    ParentsCanvasComponent,
   ],
   imports: [
     BrowserModule,
