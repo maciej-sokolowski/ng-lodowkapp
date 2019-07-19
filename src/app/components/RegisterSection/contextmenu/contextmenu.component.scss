@@ -1,0 +1,34 @@
+.wrapper {
+  margin-top: 16px;
+  font-size: 24px;
+  color: rgb(68, 68, 68);
+  width: max-content;
+  border-radius: 10%;
+  padding: 10px;
+  user-select: none;
+  box-shadow: 11px 11px 14px -8px rgba(0, 0, 0, 0.75);
+
+  &__item {
+    margin: 0 0 20px;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &--WIP {
+      color: blanchedalmond;
+    }
+  }
+
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -36px;
+    left: 30px;
+    width: 30px;
+    height: 30px;
+    transform: rotate(45deg);
+    background-color: inherit;
+  }
+}
