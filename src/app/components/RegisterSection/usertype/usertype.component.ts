@@ -9,6 +9,7 @@ import { UserService } from 'src/app/services/user.service';
 export class UsertypeComponent implements OnInit {
   @Input()
   private person: string;
+  private headerToDisplay: number = 0;
 
   private isDisabled: boolean;
 
@@ -30,6 +31,8 @@ export class UsertypeComponent implements OnInit {
       this.isCheckedParent = 'checked';
       this.userParent();
       this.isDisabled = true;
+    } else {
+      this.headerToDisplay = 1;
     }
   }
 
