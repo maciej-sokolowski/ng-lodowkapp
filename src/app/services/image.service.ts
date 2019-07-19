@@ -45,6 +45,8 @@ export class ImageService implements StoreManager<Image> {
     this.synchronizeWithLocalStorage();
   }
 
+
+
   private synchronizeWithLocalStorage() {
     _.debounce(() => this.mdService.updateImagesToLocalStorage(this.images.getValue()), 2500)();
   }

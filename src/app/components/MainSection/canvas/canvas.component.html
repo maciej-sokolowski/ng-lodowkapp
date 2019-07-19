@@ -1,6 +1,7 @@
 <div class="wrapper">
-  <div class="canvas-wrapper" *ngIf="isChild" routerLink="/canvas">   
-    <img [src]="myImageUrl" class="img" routerLink="/canvas">
+  <div class="canvas-wrapper" *ngIf="isChild" routerLink="/canvas"> 
+    <img [src]="myImageUrl" *ngIf="myImage" class="img" routerLink="/canvas">
+    <div class="img" *ngIf="!myImage"></div>
   </div>
 
   <div class="canvas-wrapper" *ngIf="!isChild">

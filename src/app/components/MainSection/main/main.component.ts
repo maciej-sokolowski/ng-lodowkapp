@@ -63,7 +63,6 @@ export class MainComponent implements OnInit {
     this.userService.getItems().subscribe((users) => {
       this.currentUser = users.filter(user => user.isLogged === true)
     })
-
   }
 
   getNotes() {
@@ -80,9 +79,9 @@ export class MainComponent implements OnInit {
 
   initList() {
     this.target = <HTMLInputElement>event.target;
-    console.log(this.target);
+    // console.log(this.target);
     this.placeholderId = this.target.parentElement.getAttribute('id');
-    console.log(this.placeholderId);
+    // console.log(this.placeholderId);
 
     if (this.placeholderId === 'widget-4' || this.placeholderId === 'widget-5') {
       this.emitIsSmallWidget = true;
@@ -120,17 +119,8 @@ export class MainComponent implements OnInit {
     widgetPlaceholder.removeChild(placeholderDescription);
     widgetPlaceholder.style.border = "none";
     widgetPlaceholder.style.opacity = "1";
-    // while (widgetPlaceholder.firstChild) {
-    //   widgetPlaceholder.removeChild(widgetPlaceholder.firstChild);
-    // }
-    // console.log(this.placeholderId)
-    // console.log(widgetToAssign);
-    // console.log(widgetPlaceholder)
 
     this.widgets[this.placeholderId] = widgetToAssign;
-    console.log(this.widgets);
-
-    // widgetToAssign = this.widgets[widgetToAssign];
-    // console.log(widgetToAssign)
+    // console.log(this.widgets);
   }
 }

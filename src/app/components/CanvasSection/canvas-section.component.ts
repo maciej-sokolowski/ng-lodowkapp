@@ -22,32 +22,51 @@ export class CanvasSectionComponent implements OnInit {
   loggedUser: User;
   userId: string;
 
-  imageId: string;
-  myImage: Image[];
+  allImages: Image[];
+  myImage: Image;
   canvasUrl: string;
+
 
 
   constructor(private imageService: ImageService, private usersService: UserService) { }
 
   ngAfterViewInit(): void {
-    this.ctx = (<HTMLCanvasElement>this.myCanvas.nativeElement).getContext('2d');   //tego nie usuwać!!
+    this.ctx = (<HTMLCanvasElement>this.myCanvas.nativeElement).getContext('2d');
+    this.drawPreviousPicture();
+  }
+  
+  
+  ngOnInit() {
+    this.userVerification();
+    this.previousImageVerification();
+  }
 
+  userVerification() {
+    this.usersService.getItems().subscribe(items => this.users = items);
+    this.loggedUser = this.users.find(item => item["isLogged"] === true);
+    this.userId = this.loggedUser["id"];
+
+    console.log(this.loggedUser)
+    // console.log(this.users)
+    // console.log(this.userId)
+  }
+
+  previousImageVerification() {
+    this.imageService.getItems().subscribe(items => this.allImages = items);
+    console.log(this.allImages)
+    this.myImage = this.allImages.find(item => item.userId === this.userId);
+    if (this.myImage) {
+      this.canvasUrl = this.myImage["imageUrl"];
+    }
+    console.log(this.myImage);
+  }
+
+  drawPreviousPicture() {
     if (this.canvasUrl) {
       let img = new Image;
       img.src = this.canvasUrl;
       this.ctx.drawImage(img, 0, 0)
     }
-  }
-
-
-  ngOnInit() {
-    this.usersService.getItems().subscribe(item => this.users = item);
-    this.loggedUser = this.users.find(item => item.isLogged === true);
-    this.userId = this.loggedUser["id"];
-    
-
-    this.imageService.getItemsByUserId(this.userId).subscribe(image => this.myImage = image);
-    this.imageId = this.userId;
   }
 
   mouseDown(event: TouchEvent) {
@@ -105,12 +124,16 @@ export class CanvasSectionComponent implements OnInit {
 
 
   saveCanvas() {
+    this.imageService.deleteItem({userId: this.userId, imageUrl: this.canvasUrl});
+
     let canvas = <HTMLCanvasElement>document.getElementById("myCanvas");
     this.canvasUrl = canvas.toDataURL();
 
-    // this.imageService.insertItem({id: this.imageId, userId: this.userId, imageUrl: this.canvasUrl }); 
-    console.log("save")
-    console.log(this.canvasUrl)
+    this.imageService.insertItem({userId: this.userId, imageUrl: this.canvasUrl});
+
+
+    console.log("save canvasUrl")
+    // console.log(this.canvasUrl)
   }
 
 }
