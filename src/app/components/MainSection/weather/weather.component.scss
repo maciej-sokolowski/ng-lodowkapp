@@ -26,3 +26,44 @@
     height: 125px;
   }
 }
+
+.loading {
+  height: 100%;
+  text-align: center;
+  line-height: 190px;
+  font-size: 40px;
+  color: #5F7891;
+
+  &__dot {
+    font-size: 60px;
+  }
+
+  &__dot:nth-of-type(1) {
+    animation: jump 2s infinite;
+  }
+
+  &__dot:nth-of-type(2) {
+    animation: jump 2s .5s infinite;
+
+  }
+
+  &__dot:nth-of-type(3) {
+    animation: jump 2s 1s infinite;
+
+  }
+}
+
+@keyframes jump {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+
+  }
+}

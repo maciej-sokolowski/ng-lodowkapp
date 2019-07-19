@@ -1,7 +1,7 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {NameDate} from '../../../interfaces/name-date';
-import {AntiPastDateValidator} from './anti-past-date-validator';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NameDate } from '../../../interfaces/name-date';
+import { AntiPastDateValidator } from './anti-past-date-validator';
 
 @Component({
   selector: 'app-edit',
@@ -17,10 +17,10 @@ export class EditComponent implements OnInit {
 
   public nameDate = new FormGroup({
     name: new FormControl('', [
-        Validators.required,
-        Validators.maxLength(25),
-        Validators.pattern('^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ ]*$')
-      ]
+      Validators.required,
+      Validators.maxLength(25),
+      Validators.pattern('^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ ]*$')
+    ]
     ),
     expiry: new FormControl('', [
       Validators.required,
@@ -42,9 +42,9 @@ export class EditComponent implements OnInit {
 
   emitDateAndName(formValue: FormGroup) {
     if (formValue.valid) {
-      console.log(formValue.value);
-      const data: NameDate = {...formValue.value};
-      console.log(data);
+      // console.log(formValue.value);
+      const data: NameDate = { ...formValue.value };
+      // console.log(data);
       this.nameAndDateEmitter.emit(data);
       this.nameDate.reset({});
     }
