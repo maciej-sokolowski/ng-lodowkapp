@@ -17,6 +17,7 @@ export class CanvasComponent implements OnInit {
   myImageUrl: string;
 
   isChild: boolean;  
+  isEmpty: boolean = true;
 
   constructor(private imageService: ImageService) { }
 
@@ -34,20 +35,20 @@ export class CanvasComponent implements OnInit {
     } else {
       this.isChild = false;
     }
-    // console.log(this.currentUser)
   }
 
   userImageVerification() {
     this.imageService.getItems().subscribe(items => this.allImages = items);
     this.myImage = this.allImages.find(item => item["userId"] === this.userId);
     if (this.myImage) {
-      this.myImageUrl = this.myImage["imageUrl"];
+      if (this.myImage["isEmpty"] === true) {
+        this.isEmpty = true;
+      } else {
+        this.isEmpty = false;
+        this.myImageUrl = this.myImage["imageUrl"];
+      }
     }
-    // console.log(this.allImages);
-    // console.log(this.myImage);
   }
-
-
 
 }
 

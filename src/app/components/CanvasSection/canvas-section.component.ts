@@ -26,7 +26,7 @@ export class CanvasSectionComponent implements OnInit {
   myImage: Image;
   canvasUrl: string;
 
-
+  isEmpty: boolean;
 
   constructor(private imageService: ImageService, private usersService: UserService) { }
 
@@ -45,20 +45,14 @@ export class CanvasSectionComponent implements OnInit {
     this.usersService.getItems().subscribe(items => this.users = items);
     this.loggedUser = this.users.find(item => item["isLogged"] === true);
     this.userId = this.loggedUser["id"];
-
-    console.log(this.loggedUser)
-    // console.log(this.users)
-    // console.log(this.userId)
   }
 
   previousImageVerification() {
     this.imageService.getItems().subscribe(items => this.allImages = items);
-    console.log(this.allImages)
     this.myImage = this.allImages.find(item => item.userId === this.userId);
     if (this.myImage) {
       this.canvasUrl = this.myImage["imageUrl"];
     }
-    console.log(this.myImage);
   }
 
   drawPreviousPicture() {
@@ -72,13 +66,11 @@ export class CanvasSectionComponent implements OnInit {
   mouseDown(event: TouchEvent) {
     this.drawing = true;
     this.draw(event);
-    console.log("touch down")
   }
 
   mouseUp(event: TouchEvent) {
     this.drawing = false;
     this.ctx.beginPath();
-    console.log("touch up")
   }
 
   draw(event: TouchEvent) {
@@ -103,37 +95,34 @@ export class CanvasSectionComponent implements OnInit {
     this.ctx.stroke();
     this.ctx.beginPath();
     this.ctx.moveTo(posX, posY);
-
-    console.log("drawing")
   }
 
   pencilMode() {
     this.isRubber = false;
-    console.log("pencil mode")
   }
 
   rubberMode() {
     this.isRubber = true;
-    console.log("rubber mode")
   }
 
   clearCanvas() {
     this.ctx.clearRect(0, 0, 840, 800);
-    console.log("clear")
   }
 
+  isCanvasEmpty(item) {
+    let context = item.getContext('2d');
+    let buffer = new Uint32Array(
+      context.getImageData(0, 0, item.width, item.height).data.buffer
+    );
+    return this.isEmpty = !buffer.some(color => color !== 0);
+  }
 
   saveCanvas() {
     this.imageService.deleteItem({userId: this.userId, imageUrl: this.canvasUrl});
-
     let canvas = <HTMLCanvasElement>document.getElementById("myCanvas");
+    this.isCanvasEmpty(canvas);
     this.canvasUrl = canvas.toDataURL();
-
-    this.imageService.insertItem({userId: this.userId, imageUrl: this.canvasUrl});
-
-
-    console.log("save canvasUrl")
-    // console.log(this.canvasUrl)
+    this.imageService.insertItem({userId: this.userId, imageUrl: this.canvasUrl, isEmpty: this.isEmpty});
   }
 
 }

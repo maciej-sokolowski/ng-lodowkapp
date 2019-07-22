@@ -1,6 +1,8 @@
 <div class="canvas-wrapper" (touchstart)="drag($event)" (touchend)="noDrag()" (touchmove)="dragImage($event)">
-  <!-- <img class="img-{{ imgType }}"> -->
-  <img src="{{ topImgSrc }}" [ngStyle]="top()" [ngClass]="classes1()">
-  <img src="{{ middleImgSrc }}" [ngStyle]="middle()" [ngClass]="classes2()">
-  <img src="{{ bottomImgSrc }}" [ngStyle]="bottom()" [ngClass]="classes3()">
+  <p class="empty-canvas" *ngIf="isEmpty">Brak laurek</p>
+  <div *ngIf="!isEmpty">
+    <img src="{{ imgSrc1 }}" [ngStyle]="top()" [ngClass]="classes1()">
+    <img *ngIf="imagesUrls.length > 1" src="{{ imgSrc2 }}" [ngStyle]="middle()" [ngClass]="classes2()">
+    <img *ngIf="imagesUrls.length > 2" src="{{ imgSrc3 }}" [ngStyle]="bottom()" [ngClass]="classes3()">
+  </div>
 </div>
