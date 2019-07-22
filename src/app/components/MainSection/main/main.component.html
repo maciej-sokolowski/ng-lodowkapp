@@ -1,9 +1,11 @@
 <div class="main-wrapper">
   <app-top-bar></app-top-bar>
   <div class="main-wrapper__logged">
-    <app-registersumm class="test" [chosenAvatar]="currentUser[0]?.avatar" [chosenColor]="currentUser[0]?.color"
-      [userType]="">
+    <app-registersumm class="test" (click)="contextMenu($event)" [chosenAvatar]="currentUser[0]?.avatar"
+      [chosenColor]="currentUser[0]?.color" [userType]="">
     </app-registersumm>
+    <app-contextmenu [hidden]="displayMenu" (click)="contextMenu($event)" [chosenColor]="currentUser[0]?.color">
+    </app-contextmenu>
   </div>
   <app-notes *ngIf=" isPopupOpen" (popupCloseEvent)="onPopupStatusChange($event)"></app-notes>
 
