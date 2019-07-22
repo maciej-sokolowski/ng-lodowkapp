@@ -11,6 +11,7 @@
   padding: 0 20px;
   margin-bottom: 1px;
 
+
   &__title {
     font-size: 20px;
   }
@@ -36,38 +37,7 @@
     &:active {
       transform: translateY(2px);
     }
-  }
 
-  &__button-add {
-    width: 40px;
-    background: rgba(255, 255, 255, .2) url("../../../../assets/plus.svg") no-repeat 10px, 10px;
   }
 }
 
-.wrapper {
-  width: 420px;
-  color: #5F7891;
-
-  &__list-item {
-    position: relative;
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 1px 24px 42px -8px rgba(0, 0, 0, 0.75);
-  }
-
-  &__date {
-    opacity: .5;
-  }
-
-  &__text {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    font-weight: bold;
-    margin-top: 5px;
-
-    &::first-letter {
-      text-transform: uppercase;
-    }
-  }
-}

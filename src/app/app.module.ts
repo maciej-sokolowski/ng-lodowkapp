@@ -36,6 +36,7 @@ import { ListHeaderComponent } from './components/MainSection/list-header/list-h
 import { NotesListComponent } from './components/NotesSection/notes-list/notes-list.component';
 import { ListItemComponent } from './components/FridgeSection/list-item/list-item.component';
 import { ContextmenuComponent } from './components/RegisterSection/contextmenu/contextmenu.component';
+import { ProductsWidgetComponent } from './components/MainSection/products-widget/products-widget.component';
 
 const fridgeConnectionConfig: SocketIoConfig = { url: 'http://10.254.0.40:3000/', options: {} };
 
@@ -71,6 +72,7 @@ const fridgeConnectionConfig: SocketIoConfig = { url: 'http://10.254.0.40:3000/'
     DaysToTodayPipe,
     ListItemComponent,
     ContextmenuComponent,
+    ProductsWidgetComponent,
   ],
   imports: [
     BrowserModule,

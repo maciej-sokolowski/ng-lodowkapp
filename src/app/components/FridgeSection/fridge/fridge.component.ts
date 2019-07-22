@@ -13,7 +13,7 @@ enum ActiveView {
 
 export class FridgeComponent implements OnInit {
 
-  active = ActiveView.Fridge;
+  active = ActiveView.List;
 
   constructor() {
   }

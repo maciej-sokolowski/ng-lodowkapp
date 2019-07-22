@@ -1,0 +1,9 @@
+<div class="container">
+  <p class="container__title">{{products.length}} products</p>
+  <div class="container__buttons">
+    <button routerLink="/fridge" class="container__button">VIEW ALL</button>
+  </div>
+</div>
+<div class="list" *ngFor="let product of products | slice:0:4">
+  <app-list-item [product]="product"></app-list-item>
+</div>
