@@ -1,10 +1,10 @@
-import {Injectable} from '@angular/core';
-import {filter, find} from 'rxjs/operators';
-import {BehaviorSubject} from 'rxjs';
-import {Activity} from '../interfaces/Models/activity';
-import {ManageDataService} from './manage-data.service';
+import { Injectable } from '@angular/core';
+import { filter, find } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
+import { Activity } from '../interfaces/Models/activity';
+import { ManageDataService } from './manage-data.service';
 import * as _ from 'lodash';
-import {StoreManager} from '../interfaces/store-manager';
+import { StoreManager } from '../interfaces/store-manager';
 
 @Injectable({
   providedIn: 'root'

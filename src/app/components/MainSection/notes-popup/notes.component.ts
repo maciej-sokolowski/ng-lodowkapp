@@ -11,7 +11,7 @@ import { UUID } from 'angular2-uuid';
 })
 export class NotesComponent implements OnInit {
   @Input()
-  message: string = "";
+  message: string = '';
 
   @Output()
   popupCloseEvent = new EventEmitter();

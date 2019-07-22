@@ -6,6 +6,8 @@ import { FridgeComponent } from './components/FridgeSection/fridge/fridge.compon
 import { MainComponent } from './components/MainSection/main/main.component';
 import { YoutubePlayerComponent } from './components/YoutubeSection/youtube-player/youtube-player.component';
 import { NotesListComponent } from './components/NotesSection/notes-list/notes-list.component';
+import { ActivitiesListComponent } from './components/ActivitiesSection/activities-list/activities-list.component';
+
 
 
 
@@ -18,6 +20,7 @@ const routes: Routes = [
   { path: 'fridge', component: FridgeComponent },
   { path: 'youtube', component: YoutubePlayerComponent },
   { path: 'notes', component: NotesListComponent },
+  { path: 'activities', component: ActivitiesListComponent }
 ];
 
 @NgModule({

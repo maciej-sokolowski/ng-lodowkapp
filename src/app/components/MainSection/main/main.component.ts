@@ -1,7 +1,8 @@
-import { User } from 'src/app/interfaces/Models/user';
 import { UserService } from 'src/app/services/user.service';
-import { Component, OnInit, Output, EventEmitter, Input, DoCheck } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NoteService } from '../../../services/note.service';
+import { ActivityService } from '../../../services/activity.service';
+
 
 @Component({
   selector: 'app-main',
@@ -18,15 +19,18 @@ export class MainComponent implements OnInit {
   target: any;
   currentUser;
   displayMenu: boolean = true;
-
-
   isPopupOpen: boolean;
+  headerTitleNotes: string;
+  headerTitleActivities: string;
+  userId: string;
 
 
   @Input()
   notes: any;
+  activities: any;
+  products: any;
 
-  headerTitle = '';
+
 
   // widgets = {
   //   "Canvas": "app-weather",
@@ -46,18 +50,20 @@ export class MainComponent implements OnInit {
     'widget-6': '',
     'widget-7': '',
   };
-  userId: string;
 
   ngOnInit() {
     this.getLoggedUser();
     this.getNotes();
+    this.getActivities();
   }
 
   ngDoCheck() {
     this.getNotes();
+    this.getActivities();
   }
 
-  constructor(private userService: UserService, private noteService: NoteService) { }
+  constructor(private userService: UserService, private noteService: NoteService,
+    private activitysService: ActivityService) { }
 
   onPopupStatusChange(value: boolean) {
     this.isPopupOpen = value;
@@ -80,8 +86,27 @@ export class MainComponent implements OnInit {
     });
     this.notes = sortedNotes;
 
-    this.headerTitle = this.notes.length + ' notes';
+    this.headerTitleNotes = this.notes.length + ' notes';
   }
+
+  getActivities() {
+    this.userId = this.userService.getLoggedUser()[0].id
+
+    this.products = this.activitysService.getItems().getValue();
+
+    const notSortedActivities = this.notes.concat(this.products);
+
+    const sortedActivities = notSortedActivities.sort(function (firstNote: { date: number; }, secondNote: { date: number; }) {
+      return firstNote.date > secondNote.date ? -1 : firstNote.date < secondNote.date ? 1 : 0;
+    });
+
+    this.activities = sortedActivities;
+
+    this.headerTitleActivities = 'Latest activities';
+  }
+
+
+
 
   initList() {
     this.target = <HTMLInputElement>event.target;

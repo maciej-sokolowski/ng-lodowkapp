@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
-import {ActivityService} from './activity.service';
-import {Product} from '../interfaces/Models/product';
-import {Activity} from '../interfaces/Models/activity';
-import {v4 as uuid} from 'uuid';
+import { Injectable } from '@angular/core';
+import { ActivityService } from './activity.service';
+import { Product } from '../interfaces/Models/product';
+import { Activity } from '../interfaces/Models/activity';
+import { v4 as uuid } from 'uuid';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class PushNotificationService {
     const activity: Activity = {
       id: uuid(),
       userId: 'FRIDGE',
-      date: new Date(Date.now()),
+      date: Date.now(),
       message: `Added new product: ${product.name}`,
       messageColor: '#70D9A8'
     };
@@ -30,7 +30,7 @@ export class PushNotificationService {
     const activity: Activity = {
       id: uuid(),
       userId: 'FRIDGE',
-      date: new Date(Date.now()),
+      date: Date.now(),
       message: `${product.name} has been removed`,
       messageColor: '#70D9A8'
     };
@@ -42,7 +42,7 @@ export class PushNotificationService {
       const activity: Activity = {
         id: uuid(),
         userId: 'FRIDGE',
-        date: new Date(Date.now()),
+        date: Date.now(),
         message: `${previousState.name} has been changed to ${actualState.name}`,
         messageColor: '#FFCE2D'
       };
@@ -54,7 +54,7 @@ export class PushNotificationService {
     const activity: Activity = {
       id: uuid(),
       userId: 'FRIDGE',
-      date: new Date(Date.now()),
+      date: Date.now(),
       message: `${product.name} has been added to shop list`,
       messageColor: '#00C3FF'
     };
@@ -66,7 +66,7 @@ export class PushNotificationService {
       const activity: Activity = {
         id: uuid(),
         userId: 'FRIDGE',
-        date: new Date(Date.now()),
+        date: Date.now(),
         message: `${product.name} has expired`,
         messageColor: '#FF4E4E'
       };

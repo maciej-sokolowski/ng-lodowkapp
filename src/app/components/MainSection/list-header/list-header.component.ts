@@ -27,7 +27,7 @@ export class ListHeaderComponent implements OnInit {
   @Input()
   items: any;
 
-  constructor(private noteService: NoteService) { }
+  constructor() { }
 
 
   ngOnInit() {
