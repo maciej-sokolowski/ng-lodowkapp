@@ -27,7 +27,7 @@ export class UserService implements StoreManager<User> {
 
   public insertItem(user: User) {
     this.users.next([...this.users.getValue(), user]);
-    console.log('my store: ', this.users.getValue());
+    // console.log('my store: ', this.users.getValue());
     this.synchronizeWithLocalStorage();
   }
 

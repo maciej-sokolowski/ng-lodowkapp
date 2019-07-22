@@ -1,0 +1,11 @@
+<div class="item">
+  <h3 class="item__title">{{product.name}}</h3>
+  <div [ngSwitch]="labelColor">
+    <div *ngSwitchCase="1" class="item__date item__date--full">{{product.expiryDate | date: 'yyyy-MM-dd'}}</div>
+    <div *ngSwitchCase="2" class="item__date item__date--number">{{product.expiryDate | daysToToday}}</div>
+    <div *ngSwitchCase="3" class="item__date item__date--expired">{{product.expiryDate | daysToToday}}</div>
+  </div>
+  <div *ngIf="product.needToBuy === true" class="buy-label">
+    <div class="buy-label__ico"></div>
+  </div>
+</div>

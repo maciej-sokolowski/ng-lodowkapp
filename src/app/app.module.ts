@@ -1,10 +1,10 @@
 // Modules
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {AppRoutingModule} from './app-routing.module';
-import {SocketIoModule, SocketIoConfig} from 'ngx-socket-io';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app-routing.module';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 // Components
 import {AppComponent} from './app.component';
 import {StartComponent} from './components/StartSection/start/start.component';
@@ -38,9 +38,11 @@ import { NotesComponent } from './components/MainSection/notes-popup/notes.compo
 import { ListHeaderComponent } from './components/MainSection/list-header/list-header.component';
 import { NotesListComponent } from './components/NotesSection/notes-list/notes-list.component';
 import { ParentsCanvasComponent } from './components/MainSection/canvas/parents-canvas/parents-canvas.component';
+import { ListItemComponent } from './components/FridgeSection/list-item/list-item.component';
+import { ContextmenuComponent } from './components/RegisterSection/contextmenu/contextmenu.component';
 
 
-const fridgeConnectionConfig: SocketIoConfig = {url: 'http://10.254.0.40:3000/', options: {}};
+const fridgeConnectionConfig: SocketIoConfig = { url: 'http://10.254.0.40:3000/', options: {} };
 
 @NgModule({
   declarations: [
@@ -75,6 +77,8 @@ const fridgeConnectionConfig: SocketIoConfig = {url: 'http://10.254.0.40:3000/',
     InfoComponent,
     DaysToTodayPipe,
     ParentsCanvasComponent,
+    ListItemComponent,
+    ContextmenuComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,7 +86,7 @@ const fridgeConnectionConfig: SocketIoConfig = {url: 'http://10.254.0.40:3000/',
     HttpClientModule,
     FormsModule,
     SocketIoModule.forRoot(fridgeConnectionConfig),
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [WeatherService],
 

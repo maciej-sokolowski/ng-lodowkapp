@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-enum labelColors {
+export enum labelColors {
   GREEN = 1,
   YELLOW = 2,
   RED = 3
@@ -27,11 +27,11 @@ export class InfoComponent implements OnInit {
   ngOnInit() {
     this.parsedDate = Date.parse(String(this.date));
     this.setLabel();
-    setInterval(() => this.setLabel(), 900000);
+    setInterval(() => this.setLabel(), 9000000);
   }
 
   private setLabel() {
-    console.log('change colors');
+    // console.log('change colors');
     const timeBetweenExpiry = this.parsedDate - Date.now().valueOf();
 
     if (timeBetweenExpiry >= 10 * this.dayTime) {

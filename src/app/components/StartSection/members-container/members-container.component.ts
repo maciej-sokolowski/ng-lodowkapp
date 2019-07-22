@@ -44,7 +44,7 @@ export class MembersContainerComponent implements OnInit {
     switch (status) {
       case 'correct':
         this.isDisabled = false;
-        this.btnInnerText = 'Correct! Click to log in';
+        this.btnInnerText = 'Correct! Logged in.';
         return '#60d149';
       case 'wrong':
         this.isDisabled = true;
