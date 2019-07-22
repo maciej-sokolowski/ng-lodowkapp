@@ -5,6 +5,7 @@ import { Activity } from '../interfaces/Models/activity';
 import { ManageDataService } from './manage-data.service';
 import * as _ from 'lodash';
 import { StoreManager } from '../interfaces/store-manager';
+import { element } from 'protractor';
 
 @Injectable({
   providedIn: 'root'
@@ -59,11 +60,7 @@ export class ActivityService implements StoreManager<Activity> {
   }
 
   public getItemsByUserId(userId: string) {
-    return this.activities.pipe(
-      filter(activities => activities === activities.filter(element => {
-        return element.userId === userId;
-      }))
-    );
+    return this.activities.value.filter(element => element.userId === userId)
   }
 
   public getItemsByDate(date: Date) {

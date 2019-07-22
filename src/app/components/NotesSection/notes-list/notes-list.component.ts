@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NoteService } from '../../../services/note.service';
 import { UserService } from '../../../services/user.service';
+import { PushNotificationService } from '../../../services/push-notification.service';
+
 
 
 @Component({
@@ -10,7 +12,7 @@ import { UserService } from '../../../services/user.service';
 })
 export class NotesListComponent implements OnInit {
 
-  constructor(private noteService: NoteService, private userService: UserService) { }
+  constructor(private noteService: NoteService, private userService: UserService, private notifyService: PushNotificationService) { }
 
   notes: any;
   userId: string;
@@ -36,6 +38,7 @@ export class NotesListComponent implements OnInit {
   }
 
   deleteNote(note: any) {
+    this.notifyService.notifyAboutRemoveNote(note);
     this.noteService.deleteItem(note);
   }
 }

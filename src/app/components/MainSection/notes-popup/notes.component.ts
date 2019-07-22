@@ -1,6 +1,8 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { NoteService } from '../../../services/note.service';
 import { UserService } from '../../../services/user.service';
+import { PushNotificationService } from '../../../services/push-notification.service';
+
 
 import { UUID } from 'angular2-uuid';
 
@@ -26,7 +28,7 @@ export class NotesComponent implements OnInit {
   date = Date.now();
   placeholderId: string;
   target: any;
-  constructor(private noteService: NoteService, private userService: UserService) { }
+  constructor(private noteService: NoteService, private userService: UserService, private notifyService: PushNotificationService) { }
 
   ngOnInit() {
     this.getUserId()
@@ -45,6 +47,7 @@ export class NotesComponent implements OnInit {
     }
 
     if (this.message) {
+      this.notifyService.notifyAboutNewNote(note)
       this.noteService.insertItem(note);
     }
   }

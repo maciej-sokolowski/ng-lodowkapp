@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { ActivityService } from './activity.service';
 import { Product } from '../interfaces/Models/product';
 import { Activity } from '../interfaces/Models/activity';
+import { Note } from '../interfaces/Models/note';
 import { v4 as uuid } from 'uuid';
+import { UserService } from 'src/app/services/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +12,33 @@ import { v4 as uuid } from 'uuid';
 export class PushNotificationService {
 
   products: Product[];
+  notes: Note[];
 
-  constructor(private actService: ActivityService) {
+  constructor(private actService: ActivityService, private userService: UserService) {
 
+  }
+
+
+  notifyAboutNewNote(note: Note) {
+    const activity: Activity = {
+      id: uuid(),
+      userId: this.userService.getLoggedUser()[0].id,
+      date: Date.now(),
+      message: `New note: ${note.message}`,
+      messageColor: ''
+    };
+    this.actService.insertItem(activity);
+  }
+
+  notifyAboutRemoveNote(note: Note) {
+    const activity: Activity = {
+      id: uuid(),
+      userId: this.userService.getLoggedUser()[0].id,
+      date: Date.now(),
+      message: `Remove note: ${note.message}`,
+      messageColor: ''
+    };
+    this.actService.insertItem(activity);
   }
 
   notifyAboutNewProduct(product: Product) {

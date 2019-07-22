@@ -5,6 +5,7 @@ import { filter, find } from 'rxjs/operators';
 import { ManageDataService } from './manage-data.service';
 import * as _ from 'lodash';
 import { StoreManager } from '../interfaces/store-manager';
+import { element } from 'protractor';
 
 
 @Injectable({
@@ -60,7 +61,7 @@ export class NoteService implements StoreManager<Note> {
   }
 
   public getItemsByUserId(userId: string) {
-    return this.notes.value.filter(note => note.userId === userId)
+    return this.notes.value.filter(element => element.userId === userId)
   }
 
   public getItemsByDate(date: Date) {

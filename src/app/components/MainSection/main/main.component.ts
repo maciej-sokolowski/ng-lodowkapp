@@ -90,14 +90,14 @@ export class MainComponent implements OnInit {
   }
 
   getActivities() {
-    this.userId = this.userService.getLoggedUser()[0].id
+    const tempActNote = this.activitysService.getItemsByUserId(this.userId)
 
-    this.products = this.activitysService.getItems().getValue();
+    const tempActFridge = this.activitysService.getItemsByUserId('FRIDGE')
 
-    const notSortedActivities = this.notes.concat(this.products);
+    const notSortedActivities = tempActNote.concat(tempActFridge)
 
-    const sortedActivities = notSortedActivities.sort(function (firstNote: { date: number; }, secondNote: { date: number; }) {
-      return firstNote.date > secondNote.date ? -1 : firstNote.date < secondNote.date ? 1 : 0;
+    const sortedActivities = notSortedActivities.sort(function (firstActi, secondActi) {
+      return firstActi.date > secondActi.date ? -1 : firstActi.date < secondActi.date ? 1 : 0;
     });
 
     this.activities = sortedActivities;
