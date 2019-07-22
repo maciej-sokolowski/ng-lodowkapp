@@ -119,19 +119,10 @@ export class MainComponent implements OnInit {
 
     widgetPlaceholder.removeChild(placeholderSpan);
     widgetPlaceholder.removeChild(placeholderDescription);
-    widgetPlaceholder.style.border = 'none';
-    // while (widgetPlaceholder.firstChild) {
-    //   widgetPlaceholder.removeChild(widgetPlaceholder.firstChild);
-    // }
-    // console.log(this.placeholderId)
-    // console.log(widgetToAssign);
-    // console.log(widgetPlaceholder)
+    widgetPlaceholder.style.border = "none";
+    widgetPlaceholder.style.opacity = "1";
 
     this.widgets[this.placeholderId] = widgetToAssign;
-    // console.log(this.widgets);
-
-    // widgetToAssign = this.widgets[widgetToAssign];
-    // console.log(widgetToAssign)
   }
   contextMenu(event) {
     this.displayMenu = !this.displayMenu;

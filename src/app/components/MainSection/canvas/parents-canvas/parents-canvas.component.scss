@@ -1,0 +1,51 @@
+.canvas-wrapper {
+  width: 420px;
+  height: 420px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.empty-canvas {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 51%;
+  font-size: 40px;
+  color: #FF4E4E;
+}
+
+.img-top {
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 8px 8px 15px #888888;
+  position: absolute;
+  top: 0px;
+  width: 420px;
+  height: 380px;
+  z-index: 3;
+}
+
+.img-middle {
+  @extend .img-top;
+  background-color: rgb(235, 235, 235);
+  top: 40px;
+  left: 15px;
+  width: 390px;
+  height: 360px;
+  z-index: 2;
+}
+
+.img-bottom {
+  @extend .img-top;
+  background-color: rgb(210, 210, 210);
+  top: 80px;
+  left: 30px;
+  width: 360px;
+  height: 340px;
+  z-index: 1;
+}
+
+.transition {
+  transition: .6s, z-index .1s;
+}

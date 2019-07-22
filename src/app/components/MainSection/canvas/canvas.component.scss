@@ -1,0 +1,30 @@
+.wrapper {
+  width: 420px;
+  height: 420px;
+  border-radius: 10px;
+}
+
+.canvas-wrapper {
+  width: 420px;
+  height: 420px;
+}
+
+.img {
+  background-color: rgb(245, 245, 245);
+  border-radius: 10px;
+  box-shadow: 15px 15px 15px #888888;
+  width: 420px;
+  height: 380px;
+  position: relative;
+
+  &__icon {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #00C3FF;
+    height: 100px;
+    border-radius: 50%;
+    padding: 15px;
+  }
+}

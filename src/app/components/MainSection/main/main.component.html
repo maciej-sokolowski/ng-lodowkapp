@@ -15,7 +15,7 @@
     <div id="widget-1" class="widgets-wrapper__item">
       <span class="widgets-wrapper__item-button" (click)="initList()"></span>
       <p class="widgets-wrapper__item-description">Add widget</p>
-      <!-- <app-canvas *ngIf="widgets['widget-1'] === 'Canvas'"></app-canvas> -->
+      <app-canvas *ngIf="widgets['widget-1'] === 'Canvas'" [currentUser]="currentUser"></app-canvas>
       <!-- <app-products *ngIf="widgets['widget-1'] === 'Products'"></app-products> -->
       <!-- <app-activities *ngIf="widgets['widget-1'] === 'Activities'"></app-activities> -->
       <app-list-header [headerTitle]="headerTitle" route="/notes" [canAddListItem]="true"
@@ -26,7 +26,7 @@
     <div id="widget-2" class="widgets-wrapper__item">
       <span class="widgets-wrapper__item-button" (click)="initList()"></span>
       <p class="widgets-wrapper__item-description">Add widget</p>
-      <!-- <app-canvas *ngIf="widgets['widget-2'] === 'Canvas'"></app-canvas> -->
+      <app-canvas *ngIf="widgets['widget-2'] === 'Canvas'" [currentUser]="currentUser"></app-canvas>
       <!-- <app-products *ngIf="widgets['widget-2'] === 'Products'"></app-products> -->
       <!-- <app-activities *ngIf="widgets['widget-2'] === 'Activities'"></app-activities> -->
       <app-list-header [headerTitle]="headerTitle" route="/notes" [canAddListItem]="true"
@@ -37,7 +37,7 @@
     <div id="widget-3" class="widgets-wrapper__item">
       <span class="widgets-wrapper__item-button" (click)="initList()"></span>
       <p class="widgets-wrapper__item-description">Add widget</p>
-      <!-- <app-canvas *ngIf="widgets['widget-3'] === 'Canvas'"></app-canvas> -->
+      <app-canvas *ngIf="widgets['widget-3'] === 'Canvas'" [currentUser]="currentUser"></app-canvas>
       <!-- <app-products *ngIf="widgets['widget-3'] === 'Products'"></app-products> -->
       <!-- <app-activities *ngIf="widgets['widget-3'] === 'Activities'"></app-activities> -->
       <app-list-header [headerTitle]="headerTitle" route="/notes" [canAddListItem]="true"
@@ -64,9 +64,19 @@
     <div id="widget-6" class="widgets-wrapper__item">
       <span class="widgets-wrapper__item-button" (click)="initList()"></span>
       <p class="widgets-wrapper__item-description">Add widget</p>
-      <!-- <app-canvas *ngIf="widgets['widget-6'] === 'Canvas'"></app-canvas> -->
+      <app-canvas *ngIf="widgets['widget-6'] === 'Canvas'" [currentUser]="currentUser"></app-canvas>
       <!-- <app-products *ngIf="widgets['widget-6'] === 'Products'"></app-products> -->
       <!-- <app-activities *ngIf="widgets['widget-6'] === 'Activities'"></app-activities> -->
+      <!-- <app-notes *ngIf="widgets['widget-6'] === 'Notes'"></app-notes> -->
+    </div>
+
+    <div id="widget-7" class="widgets-wrapper__item">
+      <span class="widgets-wrapper__item-button" (click)="initList()"></span>
+      <p class="widgets-wrapper__item-description">Add widget</p>
+      <app-canvas *ngIf="widgets['widget-7'] === 'Canvas'" [currentUser]="currentUser"></app-canvas>
+      <!-- <app-products *ngIf="widgets['widget-7'] === 'Products'"></app-products> -->
+      <!-- <app-activities *ngIf="widgets['widget-7'] === 'Activities'"></app-activities> -->
+      <!-- <app-notes *ngIf="widgets['widget-7'] === 'Notes'"></app-notes> -->
       <app-list-header [headerTitle]="headerTitle" route="/notes" [canAddListItem]="true"
         (popupOpenEvent)="onPopupStatusChange($event)" [items]="notes" *ngIf="widgets['widget-6'] === 'Notes'">
       </app-list-header>

@@ -1,0 +1,49 @@
+.wrapper {
+  width: 1080px;
+  height: 1920px;
+  background-image: url("src/assets/pexels-photo-1640777.png");
+  background-repeat: no-repeat;
+	background-position: 72% 0%;
+  background-size: 270%;
+}
+
+.canvas-wrapper {
+  height: 800px;
+  width: 840px;
+  border-radius: 10px;
+  position: absolute;
+  left: 120px;
+  top: 120px;
+}
+
+.canvas {
+  background-color: rgb(245, 245, 245);
+  border-radius: 10px;
+  box-shadow: 15px 15px 15px #888888;
+}
+
+.buttons-wrapper {
+  width: 800px;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 1010px;
+  left: 140px;
+}
+
+.button {
+  border-style: none;
+  width:165px;
+  height: 70px;
+  font-size: 24px;
+  border-radius: 10px;
+  background-color: #00C3FF;
+  color: white;
+  line-height: 24px;
+
+  &__img {
+    color: white;
+    height: 50px;
+  }
+}
