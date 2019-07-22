@@ -134,6 +134,5 @@ export class MainComponent implements OnInit {
   }
   contextMenu(event) {
     this.displayMenu = !this.displayMenu;
-    console.log(this.displayMenu);
   }
 }
