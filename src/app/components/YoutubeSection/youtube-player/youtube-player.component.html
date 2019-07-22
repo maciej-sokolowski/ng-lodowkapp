@@ -1,5 +1,5 @@
 <div class="youtube-content">
-  <a class="youtube-content__button youtube-content__button--href" href="/main">&lt;</a>
+  <a class="youtube-content__button youtube-content__button--href" [routerLink]="['/main']">&lt;</a>
   <div class="youtube-content__container">
     <iframe class="youtube-content__player" [src]="getVideoId() | secureDom" frameborder="0" allow="autoplay"></iframe>
     <div class=" youtube-content__wrapper">

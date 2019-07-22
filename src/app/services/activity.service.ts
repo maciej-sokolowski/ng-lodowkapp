@@ -10,7 +10,9 @@ import {StoreManager} from '../interfaces/store-manager';
   providedIn: 'root'
 })
 export class ActivityService implements StoreManager<Activity> {
+
   public activities: BehaviorSubject<Activity[]> = new BehaviorSubject([]);
+
 
   constructor(private mdService: ManageDataService) {
     const data: Activity[] = mdService.getActivitiesFromLocalStorage();
@@ -29,7 +31,6 @@ export class ActivityService implements StoreManager<Activity> {
   }
 
   public updateItem(activity: Activity) {
-
     const newStore = this.activities.getValue().filter((element) => {
       return element.id !== activity.id;
     });

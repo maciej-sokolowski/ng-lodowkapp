@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { Note } from '../interfaces/Models/note';
-import { filter, find } from 'rxjs/operators';
-import { ManageDataService } from './manage-data.service';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject} from 'rxjs';
+import {Note} from '../interfaces/Models/note';
+import {filter, find} from 'rxjs/operators';
+import {ManageDataService} from './manage-data.service';
 import * as _ from 'lodash';
-import { StoreManager } from '../interfaces/store-manager';
+import {StoreManager} from '../interfaces/store-manager';
 
 
 @Injectable({
@@ -50,6 +50,7 @@ export class NoteService implements StoreManager<Note> {
     _.debounce(() => this.mdService.updateNotesToLocalStorage(this.notes.getValue()), 2500)();
   }
 
+
   public getItemById(id: string) {
     return this.notes.pipe(
       find(notes => notes === notes.filter(element => {
@@ -59,11 +60,17 @@ export class NoteService implements StoreManager<Note> {
   }
 
   public getItemsByUserId(userId: string) {
-    return this.notes.pipe(
-      filter(notes => notes === notes.filter(element => {
-        return element.userId === userId;
-      }))
-    );
+    // console.log('pipe', this.notes.pipe(
+    //   filter(notes => notes === notes.filter(element => {
+    //     return element.userId === userId;
+    //   }))))
+
+    // return this.notes.pipe(
+    //   filter(notes => notes === notes.filter(element => {
+    //     return element.userId === userId;
+    //   }))
+    // );
+    return this.notes.value.filter(note => note.userId === userId)
   }
 
   public getItemsByDate(date: Date) {
@@ -89,5 +96,4 @@ export class NoteService implements StoreManager<Note> {
       }))
     );
   }
-
 }

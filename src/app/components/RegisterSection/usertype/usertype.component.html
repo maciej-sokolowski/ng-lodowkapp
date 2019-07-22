@@ -1,4 +1,11 @@
 <div class="wrapper">
+  <ng-container *ngIf="headerToDisplay===0">
+    <h2 class="wrapper__headline">First account needs to be a parent</h2>
+  </ng-container>
+  <ng-container *ngIf="headerToDisplay>0">
+    <h2 class="wrapper__headline">Chose type of account to add new member</h2>
+  </ng-container>
+
   <label class="container">
     <input (click)="userParent()" type="radio" name="radio" checked={{isCheckedParent}}>
     <span class="checkmark checkmark--parent"></span>
