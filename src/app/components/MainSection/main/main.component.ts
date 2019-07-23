@@ -18,7 +18,7 @@ export class MainComponent implements OnInit {
   placeholderId: string;
   target: any;
   currentUser;
-  displayMenu: boolean = true;
+  displayMenu = true;
   isPopupOpen: boolean;
   headerTitleNotes: string;
   headerTitleActivities: string;
@@ -59,7 +59,7 @@ export class MainComponent implements OnInit {
   getNotes() {
     const notSortedNotes = this.noteService.getItemsByUserId(this.userId);
 
-    const sortedNotes = notSortedNotes.sort(function(firstNote, secondNote) {
+    const sortedNotes = notSortedNotes.sort((firstNote, secondNote) => {
       return firstNote.date > secondNote.date ? -1 : firstNote.date < secondNote.date ? 1 : 0;
     });
     this.notes = sortedNotes;
@@ -74,7 +74,7 @@ export class MainComponent implements OnInit {
 
     const notSortedActivities = tempActNote.concat(tempActFridge);
 
-    const sortedActivities = notSortedActivities.sort(function(firstActi, secondActi) {
+    const sortedActivities = notSortedActivities.sort((firstActi, secondActi) => {
       return firstActi.date > secondActi.date ? -1 : firstActi.date < secondActi.date ? 1 : 0;
     });
 

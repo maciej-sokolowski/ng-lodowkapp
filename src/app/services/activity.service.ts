@@ -1,11 +1,9 @@
-import { Injectable } from '@angular/core';
-import { filter, find } from 'rxjs/operators';
-import { BehaviorSubject } from 'rxjs';
-import { Activity } from '../interfaces/Models/activity';
-import { ManageDataService } from './manage-data.service';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject} from 'rxjs';
+import {Activity} from '../interfaces/Models/activity';
+import {ManageDataService} from './manage-data.service';
 import * as _ from 'lodash';
-import { StoreManager } from '../interfaces/store-manager';
-import { element } from 'protractor';
+import {StoreManager} from '../interfaces/store-manager';
 
 @Injectable({
   providedIn: 'root'
@@ -51,49 +49,10 @@ export class ActivityService implements StoreManager<Activity> {
     _.debounce(() => this.mdService.updateActivitiesToLocalStorage(this.activities.getValue()), 2500)();
   }
 
-  public getItemById(id: string) {
-    return this.activities.pipe(
-      find(activities => activities === activities.filter(element => {
-        return element.id === id;
-      }))
-    );
-  }
-
   public getItemsByUserId(userId: string) {
-    return this.activities.value.filter(element => element.userId === userId)
+    return this.activities.getValue().filter(element => element.userId === userId);
   }
 
-  public getItemsByDate(date: Date) {
-    return this.activities.pipe(
-      filter(activities => activities === activities.filter(element => {
-        return element.date === date;
-      }))
-    );
-  }
-
-  public getItemsBefore(date: Date) {
-    return this.activities.pipe(
-      filter(activities => activities === activities.filter(element => {
-        return element.date.valueOf() < date.valueOf();
-      }))
-    );
-  }
-
-  public getItemsAfter(date: Date) {
-    return this.activities.pipe(
-      filter(activities => activities === activities.filter(element => {
-        return element.date.valueOf() >= date.valueOf();
-      }))
-    );
-  }
-
-  // public getItemsByPriority(priority: number) {
-  //   return this.activities.pipe(
-  //     filter(activities => activities === activities.filter(element => {
-  //       return element.priority === priority;
-  //     }))
-  //   );
-  // }
 
 }
 
