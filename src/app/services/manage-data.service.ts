@@ -10,7 +10,7 @@ import {DataManager} from '../interfaces/data-manager';
 @Injectable({
   providedIn: 'root'
 })
-export class ManageDataService implements DataManager{
+export class ManageDataService implements DataManager {
 
   constructor() {
   }
@@ -53,6 +53,14 @@ export class ManageDataService implements DataManager{
 
   updateImagesToLocalStorage(images: Array<Image>) {
     localStorage.setItem('images', JSON.stringify(images));
+  }
+
+  getWidgetSetFromLocalStorage() {
+    return JSON.parse(localStorage.getItem('widgetSet'));
+  }
+
+  updateWidgetSetToLocalStorage(widgetSet: object) {
+    localStorage.setItem('widgetSet', JSON.stringify(widgetSet));
   }
 
 }
