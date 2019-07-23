@@ -14,15 +14,15 @@ import { ActivitiesListComponent } from './components/ActivitiesSection/activiti
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'start', pathMatch: 'full' },
-  { path: 'start', component: StartComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'main', component: MainComponent },
-  { path: 'fridge', component: FridgeComponent },
-  { path: 'youtube', component: YoutubePlayerComponent },
-  { path: 'canvas', component: CanvasSectionComponent },
-  { path: 'notes', component: NotesListComponent },
-  { path: 'activities', component: ActivitiesListComponent }
+  { path: '', redirectTo: 'start', pathMatch: 'full', data: { animation: 'HomePage' } },
+  { path: 'start', component: StartComponent, data: { animation: 'HomePage' } },
+  { path: 'register', component: RegisterComponent, data: { animation: 'AboutPage' } },
+  { path: 'main', component: MainComponent, data: { animation: 'AboutPage' } },
+  { path: 'fridge', component: FridgeComponent, data: { animation: 'FilterPage' } },
+  { path: 'youtube', component: YoutubePlayerComponent, data: { animation: 'FilterPage' } },
+  { path: 'canvas', component: CanvasSectionComponent, data: { animation: 'FilterPage' } },
+  { path: 'notes', component: NotesListComponent, data: { animation: 'FilterPage' } },
+  { path: 'activities', component: ActivitiesListComponent, data: { animation: 'FilterPage' } }
 ];
 
 @NgModule({

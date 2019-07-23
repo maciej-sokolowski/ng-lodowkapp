@@ -6,7 +6,8 @@
   background-repeat: no-repeat;
   display: flex;
   justify-content: center;
-  animation: show 1s;
+  width: 1080px;
+  height: 1920px;
 
   &__wrapper {
     width: 800px;
@@ -32,9 +33,9 @@
   }
 
   &__button-back {
-    position: fixed;
+    position: absolute;
     top: 0;
-    left: 5%;
+    left: -100px;
     background-color: #00C3FF;
     border: none;
     border-radius: 10px;
@@ -68,15 +69,5 @@
     word-wrap: break-word;
     margin: 10px 0;
     font-weight: bold;
-  }
-}
-
-@keyframes show {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
   }
 }
