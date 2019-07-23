@@ -1,6 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NoteService } from '../../../services/note.service';
 import { UserService } from '../../../services/user.service';
+import { PushNotificationService } from '../../../services/push-notification.service';
+
 
 
 @Component({
@@ -10,7 +12,7 @@ import { UserService } from '../../../services/user.service';
 })
 export class NotesListComponent implements OnInit {
 
-  constructor(private noteService: NoteService, private userService: UserService) { }
+  constructor(private noteService: NoteService, private userService: UserService, private notifyService: PushNotificationService) { }
 
   notes: any;
   userId: string;
@@ -27,15 +29,16 @@ export class NotesListComponent implements OnInit {
   getNotes() {
     this.userId = this.userService.getLoggedUser()[0].id
 
-    const tempNotes = this.noteService.getItemsByUserId(this.userId)
+    const notSortedNotes = this.noteService.getItemsByUserId(this.userId)
 
-    const sortedNotes = tempNotes.sort(function (firstNote, secondNote) {
+    const sortedNotes = notSortedNotes.sort(function (firstNote, secondNote) {
       return firstNote.date > secondNote.date ? -1 : firstNote.date < secondNote.date ? 1 : 0;
     });
     this.notes = sortedNotes;
   }
 
   deleteNote(note: any) {
+    this.notifyService.notifyAboutRemoveNote(note);
     this.noteService.deleteItem(note);
   }
 }
