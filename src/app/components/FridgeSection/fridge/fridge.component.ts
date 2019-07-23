@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {ProductService} from '../../../services/product.service';
 
-enum ActiveView {
+export enum ActiveView {
   Fridge = 1,
   List = 2,
 }
@@ -13,9 +14,15 @@ enum ActiveView {
 
 export class FridgeComponent implements OnInit {
 
-  active = ActiveView.Fridge;
+  active = ActiveView.List;
 
-  constructor() {
+  constructor(private prService: ProductService) {
+    if (prService.fridgeTab === undefined) {
+      this.active = ActiveView.Fridge;
+    } else {
+      this.active = prService.fridgeTab;
+    }
+
   }
 
   ngOnInit() {

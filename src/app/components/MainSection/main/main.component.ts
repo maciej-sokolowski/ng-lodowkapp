@@ -1,7 +1,7 @@
-import { User } from 'src/app/interfaces/Models/user';
-import { UserService } from 'src/app/services/user.service';
-import { Component, OnInit, Output, EventEmitter, Input, DoCheck } from '@angular/core';
-import { NoteService } from '../../../services/note.service';
+import {User} from 'src/app/interfaces/Models/user';
+import {UserService} from 'src/app/services/user.service';
+import {Component, OnInit, Output, EventEmitter, Input, DoCheck} from '@angular/core';
+import {NoteService} from '../../../services/note.service';
 
 @Component({
   selector: 'app-main',
@@ -12,8 +12,8 @@ export class MainComponent implements OnInit {
 
   isOpen: boolean;
   emitIsSmallWidget: boolean;
-  emitLargeWidgetsList = ["Canvas", "Activities", "Products", "Notes"];
-  emitSmallWidgetsList = ["Youtube", "Weather"];
+  emitLargeWidgetsList = ['Canvas', 'Activities', 'Products', 'Notes'];
+  emitSmallWidgetsList = ['Youtube', 'Weather'];
   placeholderId: string;
   target: any;
   currentUser;
@@ -53,11 +53,9 @@ export class MainComponent implements OnInit {
     this.getNotes();
   }
 
-  ngDoCheck() {
-    this.getNotes();
-  }
 
-  constructor(private userService: UserService, private noteService: NoteService) { }
+  constructor(private userService: UserService, private noteService: NoteService) {
+  }
 
   onPopupStatusChange(value: boolean) {
     this.isPopupOpen = value;
@@ -66,16 +64,16 @@ export class MainComponent implements OnInit {
 
   getLoggedUser() {
     this.userService.getItems().subscribe((users) => {
-      this.currentUser = users.filter(user => user.isLogged === true)
-    })
+      this.currentUser = users.filter(user => user.isLogged === true);
+    });
   }
 
   getNotes() {
-    this.userId = this.userService.getLoggedUser()[0].id
+    this.userId = this.userService.getLoggedUser()[0].id;
 
-    const tempNotes = this.noteService.getItemsByUserId(this.userId)
+    const tempNotes = this.noteService.getItemsByUserId(this.userId);
 
-    const sortedNotes = tempNotes.sort(function (firstNote, secondNote) {
+    const sortedNotes = tempNotes.sort((firstNote, secondNote) => {
       return firstNote.date > secondNote.date ? -1 : firstNote.date < secondNote.date ? 1 : 0;
     });
     this.notes = sortedNotes;
@@ -83,8 +81,9 @@ export class MainComponent implements OnInit {
     this.headerTitle = this.notes.length + ' notes';
   }
 
+
   initList() {
-    this.target = <HTMLInputElement>event.target;
+    this.target = <HTMLInputElement> event.target;
     this.placeholderId = this.target.parentElement.getAttribute('id');
 
     if (this.placeholderId === 'widget-4' || this.placeholderId === 'widget-5') {
@@ -124,6 +123,7 @@ export class MainComponent implements OnInit {
 
     this.widgets[this.placeholderId] = widgetToAssign;
   }
+
   contextMenu(event) {
     this.displayMenu = !this.displayMenu;
   }

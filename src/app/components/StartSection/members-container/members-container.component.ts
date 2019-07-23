@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/services/user.service';
-import { User } from 'src/app/interfaces/Models/user';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {UserService} from 'src/app/services/user.service';
+import {User} from 'src/app/interfaces/Models/user';
+import {Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-members-container',
@@ -13,13 +14,13 @@ export class MembersContainerComponent implements OnInit {
   users: User[] = [];
 
   infoToLogin;
-  inputReset: string = '';
-  displayLoginPanel: boolean = true;
-  isDisabled: boolean = true;
-  btnInnerText: string = "Insert PIN";
-  btnState: string = 'inactive';
+  inputReset = '';
+  displayLoginPanel = true;
+  isDisabled = true;
+  btnInnerText = 'Insert PIN';
+  btnState = 'inactive';
 
-  constructor(private userService: UserService, public router: Router) {
+  constructor(private userService: UserService, private router: Router) {
   }
 
   ngOnInit() {
@@ -59,14 +60,14 @@ export class MembersContainerComponent implements OnInit {
 
   verifyPIN(event) {
     if (event.target.value.length === 4 && (event.target.value === this.infoToLogin.pin)) {
-      this.btnState = 'correct'
+      this.btnState = 'correct';
       setTimeout(() => {
         this.logIn(this.infoToLogin);
       }, 500);
     } else if (event.target.value.length < 4) {
-      this.btnState = 'inactive'
+      this.btnState = 'inactive';
     } else {
-      this.btnState = 'wrong'
+      this.btnState = 'wrong';
     }
   }
 
@@ -81,6 +82,6 @@ export class MembersContainerComponent implements OnInit {
     this.userService.getItems().subscribe((users) => usersToLogOut = [...users]);
     usersToLogOut.forEach((user) => {
       user.isLogged === true ? user.isLogged = false : null;
-    })
+    });
   }
 }
