@@ -5,6 +5,8 @@
   background-repeat: no-repeat;
   background-position: 76% 0%;
   background-size: 270%;
+  position: relative;
+  overflow: hidden;
 
   &__test {
     border-radius: 40px;
