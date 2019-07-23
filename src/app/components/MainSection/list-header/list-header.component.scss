@@ -40,7 +40,10 @@
 
   &__button-add {
     width: 40px;
-    background: rgba(255, 255, 255, .2) url("../../../../assets/plus.svg") no-repeat 10px, 10px;
+    background: url("../../../../assets/plus.svg");
+    background-repeat: no-repeat;
+    background-color: rgba(255, 255, 255, .2);
+    background-position: 10px, 10px;
   }
 }
 

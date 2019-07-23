@@ -38,6 +38,14 @@
       transform: translateY(2px);
     }
 
+    &--add {
+      width: 40px;
+      background: url("../../../../assets/plus.svg");
+      background-repeat: no-repeat;
+      background-color: rgba(255, 255, 255, .2);
+      background-position: 10px, 10px;
+    }
+
   }
 }
 

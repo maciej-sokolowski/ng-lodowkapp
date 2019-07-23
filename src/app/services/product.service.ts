@@ -5,13 +5,25 @@ import {filter, find} from 'rxjs/operators';
 import {ManageDataService} from './manage-data.service';
 import * as _ from 'lodash';
 import {StoreManager} from '../interfaces/store-manager';
+import {ActiveView} from '../components/FridgeSection/fridge/fridge.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService implements StoreManager<Product> {
 
-  public products: BehaviorSubject<Product[]> = new BehaviorSubject([]);
+
+  private products: BehaviorSubject<Product[]> = new BehaviorSubject([]);
+  // tslint:disable-next-line:variable-name
+  private _fridgeTab: ActiveView;
+
+  get fridgeTab(): ActiveView {
+    return this._fridgeTab;
+  }
+
+  set fridgeTab(value: ActiveView) {
+    this._fridgeTab = value;
+  }
 
   constructor(private mdService: ManageDataService) {
     const data: Product[] = mdService.getProductsFromLocalStorage();

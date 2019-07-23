@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Product} from '../../../interfaces/Models/product';
 import {ProductService} from '../../../services/product.service';
+import {ActiveView} from '../../FridgeSection/fridge/fridge.component';
 
 @Component({
   selector: 'app-products-widget',
@@ -13,7 +14,7 @@ export class ProductsWidgetComponent implements OnInit {
 
   constructor(private prService: ProductService) {
     prService.getItems().subscribe(products => this.products = products.sort((pr1, pr2) => {
-      return Date.parse(String(pr1.expiryDate)) > Date.parse(String(pr2.expiryDate)) ? -1 : 1;
+      return Date.parse(String(pr1.expiryDate)) < Date.parse(String(pr2.expiryDate)) ? -1 : 1;
     }));
   }
 
@@ -21,5 +22,12 @@ export class ProductsWidgetComponent implements OnInit {
 
   }
 
+  setFridgeTab() {
+    this.prService.fridgeTab = ActiveView.Fridge;
+  }
+
+  setListTab() {
+    this.prService.fridgeTab = ActiveView.List;
+  }
 
 }
