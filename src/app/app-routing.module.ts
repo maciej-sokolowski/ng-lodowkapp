@@ -7,19 +7,26 @@ import { MainComponent } from './components/MainSection/main/main.component';
 import { YoutubePlayerComponent } from './components/YoutubeSection/youtube-player/youtube-player.component';
 import { CanvasSectionComponent } from './components/CanvasSection/canvas-section.component';
 import { NotesListComponent } from './components/NotesSection/notes-list/notes-list.component';
+import { AuthGuard } from './auth.guard'
 
 
 
 
 const routes: Routes = [
   { path: '', redirectTo: 'start', pathMatch: 'full' },
-  { path: 'start', component: StartComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'main', component: MainComponent },
-  { path: 'fridge', component: FridgeComponent },
-  { path: 'youtube', component: YoutubePlayerComponent },
-  { path: 'canvas', component: CanvasSectionComponent },
-  { path: 'notes', component: NotesListComponent },
+  {
+    path: 'start', component: StartComponent, children: [
+      { path: 'register', component: RegisterComponent },
+      {
+        path: 'main', component: MainComponent, children: [
+          { path: 'fridge', component: FridgeComponent },
+          { path: 'youtube', component: YoutubePlayerComponent },
+          { path: 'canvas', component: CanvasSectionComponent },
+          { path: 'notes', component: NotesListComponent },
+        ]
+      },
+    ]
+  },
 ];
 
 @NgModule({
