@@ -15,6 +15,8 @@ export interface DataManager {
 
   getImagesFromLocalStorage(): Image[];
 
+  getWidgetSetFromLocalStorage(): object;
+
   updateUsersToLocalStorage(users: Array<User>): void;
 
   updateProductsToLocalStorage(products: Array<Product>): void;
@@ -24,4 +26,8 @@ export interface DataManager {
   updateActivitiesToLocalStorage(activities: Array<Activity>): void;
 
   updateImagesToLocalStorage(images: Array<Image>): void;
+
+  updateWidgetSetToLocalStorage(widgetSet: object): void;
+
+
 }
