@@ -7,19 +7,20 @@ import { MainComponent } from './components/MainSection/main/main.component';
 import { YoutubePlayerComponent } from './components/YoutubeSection/youtube-player/youtube-player.component';
 import { CanvasSectionComponent } from './components/CanvasSection/canvas-section.component';
 import { NotesListComponent } from './components/NotesSection/notes-list/notes-list.component';
-import { AuthGuard } from './auth.guard'
+import { AuthGuard } from './guards/auth.guard'
 import { ActivitiesListComponent } from './components/ActivitiesSection/activities-list/activities-list.component';
+import { ParentAuthGuard } from './guards/parent-auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'start', pathMatch: 'full' },
   { path: 'start', component: StartComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'register', component: RegisterComponent, canActivate: [ParentAuthGuard] },
   { path: 'main', component: MainComponent, canActivate: [AuthGuard] },
-  { path: 'fridge', component: FridgeComponent },
-  { path: 'youtube', component: YoutubePlayerComponent },
-  { path: 'canvas', component: CanvasSectionComponent },
-  { path: 'notes', component: NotesListComponent },
-  { path: 'activities', component: ActivitiesListComponent }
+  { path: 'fridge', component: FridgeComponent, canActivate: [AuthGuard] },
+  { path: 'youtube', component: YoutubePlayerComponent, canActivate: [AuthGuard] },
+  { path: 'canvas', component: CanvasSectionComponent, canActivate: [AuthGuard] },
+  { path: 'notes', component: NotesListComponent, canActivate: [AuthGuard] },
+  { path: 'activities', component: ActivitiesListComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

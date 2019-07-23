@@ -89,5 +89,7 @@ export class MembersContainerComponent implements OnInit {
       }
     });
     console.log(this.userService.getLoggedUser());
+    console.log(this.userService.getItems().value.length);
+
   }
 }
