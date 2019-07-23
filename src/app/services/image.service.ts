@@ -51,14 +51,6 @@ export class ImageService implements StoreManager<Image> {
     _.debounce(() => this.mdService.updateImagesToLocalStorage(this.images.getValue()), 2500)();
   }
 
-  // public getItemById(id: string) {                //do usuniecia
-  //   return this.images.pipe(
-  //     find(images => images === images.filter(element => {
-  //       return element.id === id;
-  //     }))
-  //   );
-  // }
-
   public getItemsByUserId(userId: string) {
     return this.images.pipe(
       filter(images => images === images.filter(element => {

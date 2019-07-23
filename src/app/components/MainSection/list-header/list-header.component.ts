@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { NoteService } from '../../../services/note.service';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {NoteService} from '../../../services/note.service';
 
 @Component({
   selector: 'app-list-header',
@@ -12,10 +12,10 @@ export class ListHeaderComponent implements OnInit {
   canAddListItem = false;
 
   @Input()
-  headerTitle = "";
+  headerTitle = '';
 
   @Input()
-  route = "";
+  route = '';
 
   @Output()
   popupOpenEvent = new EventEmitter();

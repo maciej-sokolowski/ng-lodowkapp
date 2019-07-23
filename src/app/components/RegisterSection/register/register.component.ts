@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/interfaces/Models/user';
-import { UserService } from 'src/app/services/user.service';
-import { v4 as uuid } from 'uuid';
+import {Component, OnInit} from '@angular/core';
+import {User} from 'src/app/interfaces/Models/user';
+import {UserService} from 'src/app/services/user.service';
+import {v4 as uuid} from 'uuid';
 
 
 @Component({
@@ -18,14 +18,15 @@ export class RegisterComponent implements OnInit {
   private userNamee = '';
   private userColor: string;
   private userAvatar: string;
-  private userPIN1: string = '';
-  private userPIN2: string = '';
+  private userPIN1 = '';
+  private userPIN2 = '';
   private personType;
-  private btnSwitch: Array<Number> = [0];
+  private btnSwitch: number[] = [0];
 
   btnNextText = 'Next';
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) {
+  }
 
   ngOnInit() {
 
@@ -46,8 +47,7 @@ export class RegisterComponent implements OnInit {
     } else if (this.userPIN2.length === 4 && this.userPIN1 !== this.userPIN2) {
       this.btnIsDisabled = true;
       this.btnNextText = 'PIN codes are not equal';
-    }
-    else {
+    } else {
       this.btnIsDisabled = true;
     }
   }
@@ -61,7 +61,7 @@ export class RegisterComponent implements OnInit {
     let input = event.target.value;
     let regex = /[a-zA-Z]/;
     if (input.charAt(input.length - 1).match(regex)) {
-      event.target.value = input.slice(0, input.length - 1)
+      event.target.value = input.slice(0, input.length - 1);
     } else {
       this.setButtonStatus(4);
     }
@@ -106,7 +106,7 @@ export class RegisterComponent implements OnInit {
       this.userNamee = user;
     } else if (user.length === 0) {
       // console.log(user.length);
-      this.userNamee = "";
+      this.userNamee = '';
       this.setButtonStatus(this.registerStep);
     }
   }
