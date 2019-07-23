@@ -1,7 +1,7 @@
 export interface Activity {
   id: string;
   userId: string | 'FRIDGE';
-  date: Date;
+  date: number | Date;
   message: string;
   messageColor: string;
 }

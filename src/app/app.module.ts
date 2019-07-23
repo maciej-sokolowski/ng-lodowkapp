@@ -40,6 +40,8 @@ import { NotesListComponent } from './components/NotesSection/notes-list/notes-l
 import { ParentsCanvasComponent } from './components/MainSection/canvas/parents-canvas/parents-canvas.component';
 import { ListItemComponent } from './components/FridgeSection/list-item/list-item.component';
 import { ContextmenuComponent } from './components/RegisterSection/contextmenu/contextmenu.component';
+import { ActivitiesListComponent } from './components/ActivitiesSection/activities-list/activities-list.component';
+import { ProductsWidgetComponent } from './components/MainSection/products-widget/products-widget.component';
 
 
 const fridgeConnectionConfig: SocketIoConfig = { url: 'http://10.254.0.40:3000/', options: {} };
@@ -79,6 +81,8 @@ const fridgeConnectionConfig: SocketIoConfig = { url: 'http://10.254.0.40:3000/'
     ParentsCanvasComponent,
     ListItemComponent,
     ContextmenuComponent,
+    ActivitiesListComponent,
+    ProductsWidgetComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,7 +92,7 @@ const fridgeConnectionConfig: SocketIoConfig = { url: 'http://10.254.0.40:3000/'
     SocketIoModule.forRoot(fridgeConnectionConfig),
     ReactiveFormsModule,
   ],
-  providers: [WeatherService],
+  providers: [],
 
   bootstrap: [AppComponent]
 })

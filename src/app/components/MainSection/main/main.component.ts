@@ -1,7 +1,8 @@
-import { User } from 'src/app/interfaces/Models/user';
 import { UserService } from 'src/app/services/user.service';
-import { Component, OnInit, Output, EventEmitter, Input, DoCheck } from '@angular/core';
 import { NoteService } from '../../../services/note.service';
+import { ActivityService } from '../../../services/activity.service';
+import {User} from 'src/app/interfaces/Models/user';
+import {Component, OnInit, Output, EventEmitter, Input, DoCheck} from '@angular/core';
 
 @Component({
   selector: 'app-main',
@@ -12,30 +13,21 @@ export class MainComponent implements OnInit {
 
   isOpen: boolean;
   emitIsSmallWidget: boolean;
-  emitLargeWidgetsList = ["Canvas", "Activities", "Products", "Notes"];
-  emitSmallWidgetsList = ["Youtube", "Weather"];
+  emitLargeWidgetsList = ['Canvas', 'Activities', 'Products', 'Notes'];
+  emitSmallWidgetsList = ['Youtube', 'Weather'];
   placeholderId: string;
   target: any;
   currentUser;
   displayMenu: boolean = true;
-
-
   isPopupOpen: boolean;
+  headerTitleNotes: string;
+  headerTitleActivities: string;
 
 
   @Input()
   notes: any;
-
-  headerTitle = '';
-
-  // widgets = {
-  //   "Canvas": "app-weather",
-  //   "Activities": "app-weather",
-  //   "Products": "app-weather",
-  //   "Notes": "app-weather",
-  //   "Youtube - Tasty chanel": "app-weather",
-  //   "Weather": "app-weather",
-  // }
+  activities: any;
+  products: any;
 
   widgets = {
     'widget-1': '',
@@ -46,18 +38,20 @@ export class MainComponent implements OnInit {
     'widget-6': '',
     'widget-7': '',
   };
-  userId: string;
 
   ngOnInit() {
     this.getLoggedUser();
     this.getNotes();
+    this.getActivities();
   }
 
   ngDoCheck() {
     this.getNotes();
+    this.getActivities();
   }
 
-  constructor(private userService: UserService, private noteService: NoteService) { }
+  constructor(private userService: UserService, private noteService: NoteService,
+    private activitysService: ActivityService) { }
 
   onPopupStatusChange(value: boolean) {
     this.isPopupOpen = value;
@@ -66,25 +60,42 @@ export class MainComponent implements OnInit {
 
   getLoggedUser() {
     this.userService.getItems().subscribe((users) => {
-      this.currentUser = users.filter(user => user.isLogged === true)
-    })
+      this.currentUser = users.filter(user => user.isLogged === true);
+    });
   }
 
+  userId = this.userService.getLoggedUser()[0].id
+
   getNotes() {
-    this.userId = this.userService.getLoggedUser()[0].id
+    const notSortedNotes = this.noteService.getItemsByUserId(this.userId)
 
-    const tempNotes = this.noteService.getItemsByUserId(this.userId)
-
-    const sortedNotes = tempNotes.sort(function (firstNote, secondNote) {
+    const sortedNotes = notSortedNotes.sort(function (firstNote, secondNote) {
       return firstNote.date > secondNote.date ? -1 : firstNote.date < secondNote.date ? 1 : 0;
     });
     this.notes = sortedNotes;
 
-    this.headerTitle = this.notes.length + ' notes';
+    this.headerTitleNotes = this.notes.length + ' notes';
   }
 
+  getActivities() {
+    const tempActNote = this.activitysService.getItemsByUserId(this.userId)
+
+    const tempActFridge = this.activitysService.getItemsByUserId('FRIDGE')
+
+    const notSortedActivities = tempActNote.concat(tempActFridge)
+
+    const sortedActivities = notSortedActivities.sort(function (firstActi, secondActi) {
+      return firstActi.date > secondActi.date ? -1 : firstActi.date < secondActi.date ? 1 : 0;
+    });
+
+    this.activities = sortedActivities;
+
+    this.headerTitleActivities = 'Latest activities';
+  }
+
+
   initList() {
-    this.target = <HTMLInputElement>event.target;
+    this.target = <HTMLInputElement> event.target;
     this.placeholderId = this.target.parentElement.getAttribute('id');
 
     if (this.placeholderId === 'widget-4' || this.placeholderId === 'widget-5') {
@@ -124,6 +135,7 @@ export class MainComponent implements OnInit {
 
     this.widgets[this.placeholderId] = widgetToAssign;
   }
+
   contextMenu(event) {
     this.displayMenu = !this.displayMenu;
   }
