@@ -1,17 +1,23 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {filter, find} from 'rxjs/operators';
 import {Image} from '../interfaces/Models/image';
 import {BehaviorSubject} from 'rxjs';
+import {ManageDataService} from './manage-data.service';
+import * as _ from 'lodash';
+import {StoreManager} from '../interfaces/store-manager';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ImageService {
+export class ImageService implements StoreManager<Image> {
 
+  public images: BehaviorSubject<Image[]> = new BehaviorSubject([]);
 
-  public images = new BehaviorSubject(Array<Image>());
-
-  constructor() {
+  constructor(private mdService: ManageDataService) {
+    const data: Image[] = mdService.getImagesFromLocalStorage();
+    if (data !== null) {
+      this.images.next(data);
+    }
   }
 
   public getItems() {
@@ -20,30 +26,29 @@ export class ImageService {
 
   public insertItem(image: Image) {
     this.images.next([...this.images.getValue(), image]);
+    this.synchronizeWithLocalStorage();
   }
 
   public updateItem(image: Image) {
-
     const newStore = this.images.getValue().filter((element) => {
-      return element.id !== image.id;
+      return element.userId !== image.userId;
     });
     this.images.next([...newStore, image]);
+    this.synchronizeWithLocalStorage();
   }
 
   public deleteItem(image: Image) {
     const newStore = this.images.getValue().filter((element) => {
-      return element.id !== image.id;
+      return element.userId !== image.userId;
     });
     this.images.next([...newStore]);
+    this.synchronizeWithLocalStorage();
   }
 
 
-  public getItemById(id: string) {
-    return this.images.pipe(
-      find(images => images === images.filter(element => {
-        return element.id === id;
-      }))
-    );
+
+  private synchronizeWithLocalStorage() {
+    _.debounce(() => this.mdService.updateImagesToLocalStorage(this.images.getValue()), 2500)();
   }
 
   public getItemsByUserId(userId: string) {
@@ -53,4 +58,6 @@ export class ImageService {
       }))
     );
   }
+
+
 }

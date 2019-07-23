@@ -1,16 +1,25 @@
-import {Injectable} from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
-import {Note} from '../interfaces/Models/note';
-import {filter, find} from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { Note } from '../interfaces/Models/note';
+import { filter, find } from 'rxjs/operators';
+import { ManageDataService } from './manage-data.service';
+import * as _ from 'lodash';
+import { StoreManager } from '../interfaces/store-manager';
+import { element } from 'protractor';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class NoteService {
+export class NoteService implements StoreManager<Note> {
 
- public notes = new BehaviorSubject(Array<Note>());
+  public notes: BehaviorSubject<Note[]> = new BehaviorSubject([]);
 
-  constructor() {
+  constructor(private mdService: ManageDataService) {
+    const data: Note[] = mdService.getNotesFromLocalStorage();
+    if (data !== null) {
+      this.notes.next(data);
+    }
   }
 
   public getItems() {
@@ -19,6 +28,7 @@ export class NoteService {
 
   public insertItem(note: Note) {
     this.notes.next([...this.notes.getValue(), note]);
+    this.synchronizeWithLocalStorage();
   }
 
   public updateItem(note: Note) {
@@ -26,6 +36,7 @@ export class NoteService {
       return element.id !== note.id;
     });
     this.notes.next([...newStore, note]);
+    this.synchronizeWithLocalStorage();
   }
 
   public deleteItem(note: Note) {
@@ -33,7 +44,13 @@ export class NoteService {
       return element.id !== note.id;
     });
     this.notes.next([...newStore]);
+    this.synchronizeWithLocalStorage();
   }
+
+  private synchronizeWithLocalStorage() {
+    _.debounce(() => this.mdService.updateNotesToLocalStorage(this.notes.getValue()), 2500)();
+  }
+
 
   public getItemById(id: string) {
     return this.notes.pipe(
@@ -44,11 +61,7 @@ export class NoteService {
   }
 
   public getItemsByUserId(userId: string) {
-    return this.notes.pipe(
-      filter(notes => notes === notes.filter(element => {
-        return element.userId === userId;
-      }))
-    );
+    return this.notes.value.filter(element => element.userId === userId)
   }
 
   public getItemsByDate(date: Date) {

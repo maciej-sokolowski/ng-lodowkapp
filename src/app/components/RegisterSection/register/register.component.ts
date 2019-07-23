@@ -1,74 +1,127 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from 'src/app/interfaces/Models/user';
+import {UserService} from 'src/app/services/user.service';
+import {v4 as uuid} from 'uuid';
 
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss', './../registerinput/registerinput.component.scss']
 })
 export class RegisterComponent implements OnInit {
 
-  public registerStep: number = 1;
-  userInfo: User;
+  public registerStep: number = 0;
   btnIsDisabled: boolean = true;
 
   // tu zbiera dane
-  userNamee = '';
-  userColor: string;
-  userAvatar: string;
+  private userNamee = '';
+  private userColor: string;
+  private userAvatar: string;
+  private userPIN1 = '';
+  private userPIN2 = '';
+  private personType;
+  private btnSwitch: number[] = [0];
 
-  logicArray: Array<boolean>;
+  btnNextText = 'Next';
 
-  constructor() {
-
+  constructor(private userService: UserService) {
   }
 
   ngOnInit() {
 
   }
 
-  setButtonStatus() {
-    if (this.registerStep) {
+  setButtonStatus(step: number) {
+    if (this.btnSwitch.includes(step)) {
+      this.btnIsDisabled = false;
+      if (this.registerStep === 1 && this.userNamee.length === 0) {
+        this.btnIsDisabled = true;
+      }
+    } else if (this.registerStep === 4 && this.userPIN1.length === 4 && (this.userPIN1 === this.userPIN2)) {
+      this.btnNextText = 'Confirm and add family member';
+      this.btnIsDisabled = false;
+    } else if (this.registerStep === 4 && (this.userPIN1.length < 4 || this.userPIN2.length < 4)) {
+      this.btnIsDisabled = true;
+      this.btnNextText = 'Please insert PIN';
+    } else if (this.userPIN2.length === 4 && this.userPIN1 !== this.userPIN2) {
+      this.btnIsDisabled = true;
+      this.btnNextText = 'PIN codes are not equal';
+    } else {
       this.btnIsDisabled = true;
     }
-    console.log(this.btnIsDisabled);
+  }
 
+  activateBtn() {
+    this.btnIsDisabled = false;
+    this.btnSwitch.push(this.registerStep);
+  }
+
+  validate(event) {
+    let input = event.target.value;
+    let regex = /[a-zA-Z]/;
+    if (input.charAt(input.length - 1).match(regex)) {
+      event.target.value = input.slice(0, input.length - 1);
+    } else {
+      this.setButtonStatus(4);
+    }
   }
 
   onClickPrev() {
-
     this.registerStep--;
-    console.log('prev', this.registerStep, this.userNamee, this.userColor, this.userAvatar);
-
+    this.setButtonStatus(this.registerStep);
+    if (this.registerStep < 0) {
+      this.registerStep = 0; //out to /start path
+      return;
+    } else if (this.registerStep === 3) {
+      this.btnNextText = 'Next';
+    }
   }
 
   onClickNext() {
-    this.setButtonStatus();
     this.registerStep++;
-    console.log('next', this.registerStep, this.userNamee, this.userColor, this.userAvatar);
+    this.setButtonStatus(this.registerStep);
+    if (this.registerStep === 5) {
+      let agregatedInfo = {
+        id: uuid(),
+        type: this.personType,
+        name: this.userNamee,
+        avatar: this.userAvatar,
+        color: this.userColor,
+        pin: this.userPIN1,
+        isLogged: false
+      };
+      this.registerInfo(agregatedInfo);
+    }
+  }
 
+  getUserType(userType: string) {
+    this.personType = userType;
+    this.activateBtn();
   }
 
   getName(user: string) {
-    console.log(user.length, 'z emmitera');
     if (user.length > 0) {
-      this.btnIsDisabled = false;
+      this.activateBtn();
       this.userNamee = user;
-    } else if (user.length == 0) {
-      this.btnIsDisabled = true;
+    } else if (user.length === 0) {
+      // console.log(user.length);
+      this.userNamee = '';
+      this.setButtonStatus(this.registerStep);
     }
   }
 
   getColor(color: string) {
     this.userColor = color;
-    console.log(color, 'z emmitera');
-    this.btnIsDisabled = false;
+    this.activateBtn();
   }
 
   getAvatar(avatar: string) {
     this.userAvatar = avatar;
-    console.log(avatar, 'z emmitera');
-    this.btnIsDisabled = false;
+    this.activateBtn();
+  }
+
+  registerInfo(userInfo: User) {
+    this.userService.insertItem(userInfo); //push user to store and  out to /start path
   }
 }

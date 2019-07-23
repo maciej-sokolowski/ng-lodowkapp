@@ -1,0 +1,26 @@
+.widgets-list {
+  width: 750px;
+  // height: 500px;
+  position: absolute;
+  left: 165px;
+  top: 580px;
+  border-radius: 10px;
+  z-index: 5;
+
+  &__title {
+    background-color: #5F7891;
+    font-size: 35px;
+    color: white;
+    padding: 25px;
+    border-radius: 10px;
+  }
+
+  &__item {
+    background-color: #70D9A8;
+    color: #5F7891;
+    font-size: 30px;
+    padding: 20px 25px;
+    border-radius: 10px;
+    margin-top: 5px;
+  }
+}

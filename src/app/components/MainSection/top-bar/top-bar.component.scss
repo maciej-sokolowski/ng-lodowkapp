@@ -3,7 +3,10 @@
   color: #5F7891;
   display: flex;
   justify-content: space-between;
-  width: 800px;
+  width: 880px;
+  position: absolute;
+  left: 100px;
+  top: 95px;
 
   &__wrapper {
     display: flex;
@@ -20,6 +23,12 @@
   &__time {
     font-size: 110px;
     font-weight: 300;
+  }
+
+  &__img {
+    width: 60%;
+    height: 60%;
+
   }
 
   &__button {

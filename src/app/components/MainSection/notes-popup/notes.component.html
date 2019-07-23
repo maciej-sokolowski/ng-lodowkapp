@@ -1,0 +1,7 @@
+<div class="blur" (click)="closePopup()"></div>
+<div class="container">
+  <button class="container__button-close" (click)="closePopup()"></button>
+  <p class="container__title">Write your note</p>
+  <input class="container__text" [value]="message" (input)="emitNoteMessage($event)" type="text">
+  <button class="container__button" (click)="addNote()" (click)="closePopup()">OK</button>
+</div>

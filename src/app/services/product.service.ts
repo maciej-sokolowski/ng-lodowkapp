@@ -1,16 +1,35 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, from} from 'rxjs';
 import {Product} from '../interfaces/Models/product';
 import {filter, find} from 'rxjs/operators';
+import {ManageDataService} from './manage-data.service';
+import * as _ from 'lodash';
+import {StoreManager} from '../interfaces/store-manager';
+import {ActiveView} from '../components/FridgeSection/fridge/fridge.component';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
+export class ProductService implements StoreManager<Product> {
 
-  public products = new BehaviorSubject(Array<Product>());
 
-  constructor() {
+  private products: BehaviorSubject<Product[]> = new BehaviorSubject([]);
+  // tslint:disable-next-line:variable-name
+  private _fridgeTab: ActiveView;
+
+  get fridgeTab(): ActiveView {
+    return this._fridgeTab;
+  }
+
+  set fridgeTab(value: ActiveView) {
+    this._fridgeTab = value;
+  }
+
+  constructor(private mdService: ManageDataService) {
+    const data: Product[] = mdService.getProductsFromLocalStorage();
+    if (data !== null) {
+      this.products.next(data);
+    }
   }
 
   public getItems() {
@@ -19,6 +38,7 @@ export class ProductService {
 
   public insertItem(product: Product) {
     this.products.next([...this.products.getValue(), product]);
+    this.synchronizeWithLocalStorage();
   }
 
   public updateItem(product: Product) {
@@ -26,6 +46,7 @@ export class ProductService {
       return element.id !== product.id;
     });
     this.products.next([...newStore, product]);
+    this.synchronizeWithLocalStorage();
   }
 
   public deleteItem(product: Product) {
@@ -33,14 +54,17 @@ export class ProductService {
       return element.id !== product.id;
     });
     this.products.next([...newStore]);
+    this.synchronizeWithLocalStorage();
   }
 
+  private synchronizeWithLocalStorage() {
+    _.debounce(() => this.mdService.updateProductsToLocalStorage(this.products.getValue()), 2500)();
+
+  }
+
+
   public getItemById(id: string) {
-    return this.products.pipe(
-      find(products => products === products.filter(element => {
-        return element.id === id;
-      }))
-    );
+    return this.products.getValue().find(products => products.id === id);
   }
 
   public getItemByName(name: string) {
@@ -53,35 +77,18 @@ export class ProductService {
 
 
   public getItemsBeforeExpiry() {
-    return this.products.pipe(
-      filter(products => products === products.filter(element => {
-        return element.expiryDate.valueOf() >= Date.now().valueOf();
-      }))
-    );
+    const source = from(this.products.getValue());
+    return source.pipe(filter(product => Date.parse(String(product.expiryDate)) > Date.now().valueOf()));
   }
 
-  public getItemsAfterExpiry(date: Date) {
-    return this.products.pipe(
-      filter(products => products === products.filter(element => {
-        return element.expiryDate.valueOf() < Date.now().valueOf();
-      }))
-    );
-  }
-
-  public getItemsByPriority(priority: number) {
-    return this.products.pipe(
-      filter(products => products === products.filter(element => {
-        return element.priority === priority;
-      }))
-    );
+  public getExpiredItems() {
+    const source = from(this.products.getValue());
+    return source.pipe(filter(product => Date.parse(String(product.expiryDate)) < Date.now().valueOf()));
   }
 
   public getItemsByNeed(need: boolean) {
-    return this.products.pipe(
-      filter(products => products === products.filter(element => {
-        return element.needToBuy === need;
-      }))
-    );
-  }
+    const source = from(this.products.getValue());
+    return source.pipe(filter(product => product.needToBuy === true));
 
+  }
 }

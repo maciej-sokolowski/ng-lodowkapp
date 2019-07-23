@@ -1,0 +1,94 @@
+.blur {
+  height: 100vh;
+  width: 100vw;
+  background-color: #fff;
+  opacity: .8;
+  position: absolute;
+  z-index: 1;
+}
+
+.container {
+  background-color: #5f7891;
+  width: 420px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 10px;
+  margin: 20px 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: showPopup .5s;
+  z-index: 2;
+
+  &__button-close {
+    height: 40px;
+    width: 40px;
+    background: url("../../../../assets/plus.svg");
+    background-repeat: no-repeat;
+    background-position: 10px, 10px;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, .2);
+    outline: none;
+    transition: .1s;
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    transform: rotate(45deg);
+
+    &:active {
+      transform: translateY(2px) rotate(45deg);
+    }
+  }
+
+  &__title {
+    font-size: 30px;
+    color: #fff;
+    font-weight: bold;
+
+  }
+
+  &__text {
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    padding: 0 20px;
+    height: 30px;
+    width: 90%;
+    color: #5f7891;
+  }
+
+  &__button {
+    height: 40px;
+    width: 100px;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #fff;
+    background-color: rgba(255, 255, 255, .2);
+    padding: 0 16px;
+    outline: none;
+    transition: .1s;
+
+    &:active {
+      transform: translateY(2px);
+    }
+  }
+}
+
+@keyframes showPopup {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

@@ -8,34 +8,91 @@
   transform: translateX(-50%);
   top: 908px;
 
-&__card {
-  position: relative;
+  &__card {
+    position: relative;
+    width: 214px;
+    height: 255px;
+    background-color: white;
+    border: 1px solid #5F7891;
+    border-radius: 30px;
+    margin: 0 20px 20px;
+  }
+
+  &__card-button {
+    background-image: url("src/assets/add-member.png");
+    width: 63px;
+    height: 63px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 65px;
+  }
+
+  &__card-description {
+    font-size: 19px;
+    color: #5F7891;
+    height: 51px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 53px;
+    text-align: center;
+  }
+}
+
+.logged {
   width: 214px;
   height: 255px;
-  background-color: white;
-  border: 1px solid #5F7891;
-  border-radius: 30px;
   margin: 0 20px 20px;
+  font-size: 22px;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
-&__card-button {
-  background-image: url("src/assets/add-member.png");
-  width: 63px;
-  height: 63px;
+.login-panel {
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 65px;
-}
-
-&__card-description {
-  font-size: 19px;
-  color: #5F7891;
-  height: 51px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 53px;
   text-align: center;
-}
+  color: #5F7891;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  &__headline {
+    margin-bottom: 4px;
+    font-size: 46px;
+    font-weight: 300;
+  }
+
+  &__paragraph {
+    font-size: 16px;
+  }
+
+  &__input {
+    margin-top: 35px;
+    margin-bottom: 10px;
+    color: #5F7891;
+    font-size: 24px;
+    padding: 0 20px 0;
+    border-color: #5F7891;
+    border-radius: 10px;
+    border-style: solid;
+    width: 330px;
+    height: 60px;
+    outline: none;
+  }
+
+  &__btn {
+    background-color: transparent;
+    color: #5F7891;
+    margin: 0 10px 0;
+    font-size: 24px;
+    padding: 0 15px;
+    border-style: none;
+    width: 330px;
+    height: 60px;
+    transition: .3s;
+    outline: none;
+  }
 }

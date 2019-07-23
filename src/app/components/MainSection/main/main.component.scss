@@ -1,0 +1,80 @@
+.main-wrapper {
+  width: 1080px;
+  height: 1920px;
+  background-image: url("src/assets/pexels-photo-1640777.png");
+  background-repeat: no-repeat;
+  background-position: 76% 0%;
+  background-size: 270%;
+  position: relative;
+  overflow: hidden;
+
+  &__test {
+    border-radius: 40px;
+  }
+
+  &__logged {
+    position: absolute;
+    top: 95px;
+    left: 770px;
+    width: 90px;
+    height: 90px;
+    z-index: 2;
+  }
+}
+
+.widgets-wrapper {
+  width: 880px;
+  height: 1340px;
+  position: absolute;
+  left: 100px;
+  top: 350px;
+  display: grid;
+  grid-gap: 40px;
+  grid-template-columns: 420px 420px;
+  grid-template-rows: 420px 420px 420px;
+
+  &__item {
+    position: relative;
+    border: 1px dashed #5F7891;
+    border-radius: 10px;
+    height: 420px;
+    width: 420px;
+
+    &--splited {
+      border-style: none;
+      display: grid;
+      grid-row-gap: 40px;
+      opacity: 1;
+    }
+
+    &--small {
+      height: 190px;
+    }
+  }
+
+  &__item-button {
+    display: block;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: 50%;
+    // top: 30%;
+    // bottom: 50%;
+    bottom: 35%;
+    // transform: translate(-50%, -50%);
+    transform: translateX(-50%);
+    background-image: url("src/assets/add-member.png");
+    background-size: cover;
+    // opacity: 0.4;
+  }
+
+  &__item-description {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    // bottom: 10%;
+    bottom: 20px;
+    font-size: 30px;
+    color: #5F7891;
+  }
+}
