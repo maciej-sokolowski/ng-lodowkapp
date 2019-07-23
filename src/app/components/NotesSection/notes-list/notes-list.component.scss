@@ -54,7 +54,7 @@
   &__list-item {
     min-height: 80px;
     padding: 20px;
-    margin: 50px 0;
+    margin: 20px 0;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 1px 24px 42px -8px rgba(0, 0, 0, 0.75);
@@ -68,10 +68,6 @@
     word-wrap: break-word;
     margin: 10px 0;
     font-weight: bold;
-
-    &::first-letter {
-      text-transform: uppercase;
-    }
   }
 }
 

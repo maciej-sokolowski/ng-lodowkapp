@@ -29,9 +29,9 @@ export class NotesListComponent implements OnInit {
   getNotes() {
     this.userId = this.userService.getLoggedUser()[0].id
 
-    const tempNotes = this.noteService.getItemsByUserId(this.userId)
+    const notSortedNotes = this.noteService.getItemsByUserId(this.userId)
 
-    const sortedNotes = tempNotes.sort(function (firstNote, secondNote) {
+    const sortedNotes = notSortedNotes.sort(function (firstNote, secondNote) {
       return firstNote.date > secondNote.date ? -1 : firstNote.date < secondNote.date ? 1 : 0;
     });
     this.notes = sortedNotes;

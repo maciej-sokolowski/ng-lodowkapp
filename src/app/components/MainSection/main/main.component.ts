@@ -22,24 +22,12 @@ export class MainComponent implements OnInit {
   isPopupOpen: boolean;
   headerTitleNotes: string;
   headerTitleActivities: string;
-  userId: string;
 
 
   @Input()
   notes: any;
   activities: any;
   products: any;
-
-
-
-  // widgets = {
-  //   "Canvas": "app-weather",
-  //   "Activities": "app-weather",
-  //   "Products": "app-weather",
-  //   "Notes": "app-weather",
-  //   "Youtube - Tasty chanel": "app-weather",
-  //   "Weather": "app-weather",
-  // }
 
   widgets = {
     'widget-1': '',
@@ -76,12 +64,12 @@ export class MainComponent implements OnInit {
     })
   }
 
+  userId = this.userService.getLoggedUser()[0].id
+
   getNotes() {
-    this.userId = this.userService.getLoggedUser()[0].id
+    const notSortedNotes = this.noteService.getItemsByUserId(this.userId)
 
-    const tempNotes = this.noteService.getItemsByUserId(this.userId)
-
-    const sortedNotes = tempNotes.sort(function (firstNote, secondNote) {
+    const sortedNotes = notSortedNotes.sort(function (firstNote, secondNote) {
       return firstNote.date > secondNote.date ? -1 : firstNote.date < secondNote.date ? 1 : 0;
     });
     this.notes = sortedNotes;
@@ -104,9 +92,6 @@ export class MainComponent implements OnInit {
 
     this.headerTitleActivities = 'Latest activities';
   }
-
-
-
 
   initList() {
     this.target = <HTMLInputElement>event.target;

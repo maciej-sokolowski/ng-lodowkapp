@@ -1,7 +1,7 @@
 <div class="container">
   <div class="container__wrapper">
     <button class="container__button-back" routerLink="/main">&lt;</button>
-    <div class="container__list-item" *ngFor='let activitie of activities|slice:0:12'>
+    <div class="container__list-item" *ngFor='let activitie of activities|slice:0:10'>
       <p class="container__date">{{activitie.date | date: 'dd/MM/yyyy'}}</p>
       <p class="container__text">{{activitie.message}}</p>
     </div>
