@@ -13,6 +13,7 @@ import { ParentAuthGuard } from './guards/parent-auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'start', pathMatch: 'full' },
+  // { path: '**', component: StartComponent },
   { path: 'start', component: StartComponent },
   { path: 'register', component: RegisterComponent, canActivate: [ParentAuthGuard] },
   { path: 'main', component: MainComponent, canActivate: [AuthGuard] },
