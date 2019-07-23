@@ -31,7 +31,7 @@ export class ImageService implements StoreManager<Image> {
 
   public updateItem(image: Image) {
     const newStore = this.images.getValue().filter((element) => {
-      return element.id !== image.id;
+      return element.userId !== image.userId;
     });
     this.images.next([...newStore, image]);
     this.synchronizeWithLocalStorage();
@@ -39,22 +39,16 @@ export class ImageService implements StoreManager<Image> {
 
   public deleteItem(image: Image) {
     const newStore = this.images.getValue().filter((element) => {
-      return element.id !== image.id;
+      return element.userId !== image.userId;
     });
     this.images.next([...newStore]);
     this.synchronizeWithLocalStorage();
   }
 
+
+
   private synchronizeWithLocalStorage() {
     _.debounce(() => this.mdService.updateImagesToLocalStorage(this.images.getValue()), 2500)();
-  }
-
-  public getItemById(id: string) {
-    return this.images.pipe(
-      find(images => images === images.filter(element => {
-        return element.id === id;
-      }))
-    );
   }
 
   public getItemsByUserId(userId: string) {
