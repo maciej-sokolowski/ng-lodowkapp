@@ -53,6 +53,5 @@ export class ActivityService implements StoreManager<Activity> {
     return this.activities.getValue().filter(element => element.userId === userId);
   }
 
-
 }
 

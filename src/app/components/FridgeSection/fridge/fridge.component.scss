@@ -1,13 +1,14 @@
 .fridge-wrapper {
   width: 1080px;
   height: 1920px;
-  margin: 160px auto 170px auto;
+  margin: 0 auto 0 auto;
   background-image: url("~src/assets/fridgeBackground.png");
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   padding: 81px 100px 120px 100px;
+  position: relative;
 
   &__header {
     font-size: 46px;
@@ -17,6 +18,26 @@
     color: #5F7891;
     margin-bottom: 21px;
   }
+
+  &__back {
+    position: absolute;
+    top: 115px;
+    left: 101px;
+    background-color: #00C3FF;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    color: #fff;
+    width: 70px;
+    height: 70px;
+    font-size: 30px;
+    transition: .1s;
+
+    &:active {
+      transform: translateY(2px);
+    }
+  }
+
 }
 
 .nav-buttons {
