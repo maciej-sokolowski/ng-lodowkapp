@@ -49,7 +49,7 @@ export class ProductService implements StoreManager<Product> {
     _.debounce(() => this.mdService.updateProductsToLocalStorage(this.products.getValue()), 2500)();
 
   }
-  
+
 
   public getItemById(id: string) {
     return this.products.getValue().find(products => products.id === id);

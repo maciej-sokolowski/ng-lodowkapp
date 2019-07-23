@@ -12,7 +12,9 @@ export class ProductsWidgetComponent implements OnInit {
   products: Product[];
 
   constructor(private prService: ProductService) {
-    prService.getItems().subscribe(products => this.products = products);
+    prService.getItems().subscribe(products => this.products = products.sort((pr1, pr2) => {
+      return Date.parse(String(pr1.expiryDate)) > Date.parse(String(pr2.expiryDate)) ? -1 : 1;
+    }));
   }
 
   ngOnInit() {
