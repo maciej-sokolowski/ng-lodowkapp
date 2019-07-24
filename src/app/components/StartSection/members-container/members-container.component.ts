@@ -1,13 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {UserService} from 'src/app/services/user.service';
-import {User} from 'src/app/interfaces/Models/user';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/interfaces/Models/user';
+import { Router } from '@angular/router';
+import { fadeIn, ShowOpacity } from 'src/app/animations';
 
 
 @Component({
   selector: 'app-members-container',
   templateUrl: './members-container.component.html',
-  styleUrls: ['./members-container.component.scss']
+  styleUrls: ['./members-container.component.scss'],
+  animations: [fadeIn, ShowOpacity]
+
 })
 export class MembersContainerComponent implements OnInit {
 

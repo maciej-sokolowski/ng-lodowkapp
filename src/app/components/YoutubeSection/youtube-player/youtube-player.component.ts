@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { YoutubeService } from '../youtube-player/youtube.service';
+import { fadeIn, ShowOpacity, listItemYoutube } from '../../../animations'
 
 @Component({
   selector: 'app-youtube-player',
   templateUrl: './youtube-player.component.html',
-  styleUrls: ['./youtube-player.component.scss']
+  styleUrls: ['./youtube-player.component.scss'],
+  animations: [listItemYoutube]
 })
 export class YoutubePlayerComponent implements OnInit {
 
