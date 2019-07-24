@@ -72,6 +72,15 @@ export const listItem =
         ])
     ])
 
+export const listItemYoutube =
+    trigger('Show', [
+        state('state', style({ opacity: 1, })),
+        transition(':enter', [
+            style({ opacity: 0 }),
+            animate('1s 300ms ease-in')
+        ]),
+    ])
+
 export const deleteItem =
     trigger('Delete', [
         state('state', style({ opacity: 1, minHeight: '79px' })),
