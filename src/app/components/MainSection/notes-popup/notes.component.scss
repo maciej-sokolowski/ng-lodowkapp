@@ -4,7 +4,7 @@
   background-color: #fff;
   opacity: .8;
   position: absolute;
-  z-index: 2;
+  z-index: 6;
 }
 
 .container {
@@ -21,7 +21,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 2;
+  z-index: 7;
 
   &__button-close {
     height: 40px;

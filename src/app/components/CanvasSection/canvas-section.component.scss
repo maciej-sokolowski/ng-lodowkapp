@@ -3,8 +3,10 @@
   height: 1920px;
   background-image: url("src/assets/pexels-photo-1640777.png");
   background-repeat: no-repeat;
-	background-position: 72% 0%;
+  background-position: 72% 0%;
   background-size: 270%;
+  margin: 0 auto;
+  position: relative;
 }
 
 .canvas-wrapper {
@@ -14,10 +16,12 @@
   position: absolute;
   left: 120px;
   top: 120px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .canvas {
-  background-color: rgb(245, 245, 245);
+  background-color: rgb(248, 285, 248);
   border-radius: 10px;
   box-shadow: 15px 15px 15px #888888;
 }
@@ -34,7 +38,7 @@
 
 .button {
   border-style: none;
-  width:165px;
+  width: 165px;
   height: 70px;
   font-size: 24px;
   border-radius: 10px;
