@@ -48,6 +48,11 @@ export class MainComponent implements OnInit {
     this.checkPlaceholders();
   }
 
+  ngDoCheck() {
+    this.getNotes();
+    this.getActivities();
+  }
+
   getLoggedUser() {
     this.userService.getItems().subscribe((users) => {
       this.currentUser = users.filter(user => user.isLogged === true);
