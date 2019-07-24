@@ -1,0 +1,39 @@
+.wrapper {
+  background-color: transparent;
+  width: 1080px;
+  height: 1920px;
+  display: flex;
+  // margin: 160px auto 170px auto;
+  text-align: center;
+  color: #5F7891;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Open Sans';
+  background-image: url("src/assets/pexels-photo-1640777.png");
+  background-repeat: no-repeat;
+  background-position: 30% 50%;
+
+  &__img {
+    width: 400px;
+    height: 400px;
+    background-image: url("src/assets/potato.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 30% 50%;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__title {
+    font-size: 68px;
+    font-weight: 300;
+  }
+
+  &__describe {
+    font-size: 48px;
+    font-weight: 300;
+  }
+}
