@@ -11,6 +11,7 @@ import { AuthGuard } from './guards/auth.guard'
 import { ActivitiesListComponent } from './components/ActivitiesSection/activities-list/activities-list.component';
 import { ParentAuthGuard } from './guards/parent-auth.guard';
 import { ChildAuthGuard } from './guards/child-auth.guard';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'start', pathMatch: 'full', data: { animation: 'HomePage' } },
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'youtube', component: YoutubePlayerComponent, data: { animation: 'FilterPage' }, canActivate: [AuthGuard] },
   { path: 'canvas', component: CanvasSectionComponent, data: { animation: 'FilterPage' }, canActivate: [ChildAuthGuard] },
   { path: 'notes', component: NotesListComponent, data: { animation: 'FilterPage' }, canActivate: [AuthGuard] },
-  { path: 'activities', component: ActivitiesListComponent, data: { animation: 'FilterPage' }, canActivate: [AuthGuard] }
+  { path: 'activities', component: ActivitiesListComponent, data: { animation: 'FilterPage' }, canActivate: [AuthGuard] },
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
