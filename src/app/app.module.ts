@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // Components
 import { AppComponent } from './app.component';
 import { StartComponent } from './components/StartSection/start/start.component';
@@ -17,11 +18,9 @@ import { ColorComponent } from './components/RegisterSection/color/color.compone
 import { RegistersummComponent } from './components/RegisterSection/registersumm/registersumm.component';
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { WeatherComponent } from './components/MainSection/weather/weather.component';
-import { WeatherService } from './components/MainSection/weather/weather.service';
 import { TopBarComponent } from './components/MainSection/top-bar/top-bar.component';
 import { MembersContainerComponent } from './components/StartSection/members-container/members-container.component';
 import { RegisterinputComponent } from './components/RegisterSection/registerinput/registerinput.component';
-
 import { WidgetsListComponent } from './components/MainSection/widgets-list/widgets-list.component';
 import { DotComponent } from './components/FridgeSection/dot/dot.component';
 import { ProductCloudComponent } from './components/FridgeSection/product-cloud/product-cloud.component';
@@ -91,6 +90,7 @@ const fridgeConnectionConfig: SocketIoConfig = { url: 'http://10.254.0.40:3000/'
     FormsModule,
     SocketIoModule.forRoot(fridgeConnectionConfig),
     ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
 

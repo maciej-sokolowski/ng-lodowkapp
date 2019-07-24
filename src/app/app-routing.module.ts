@@ -13,16 +13,15 @@ import { ParentAuthGuard } from './guards/parent-auth.guard';
 import { ChildAuthGuard } from './guards/child-auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'start', pathMatch: 'full' },
-  // { path: '**', component: StartComponent },
-  { path: 'start', component: StartComponent },
-  { path: 'register', component: RegisterComponent, canActivate: [ParentAuthGuard] },
-  { path: 'main', component: MainComponent, canActivate: [AuthGuard] },
-  { path: 'fridge', component: FridgeComponent, canActivate: [AuthGuard] },
-  { path: 'youtube', component: YoutubePlayerComponent, canActivate: [AuthGuard] },
-  { path: 'canvas', component: CanvasSectionComponent, canActivate: [ChildAuthGuard] },
-  { path: 'notes', component: NotesListComponent, canActivate: [AuthGuard] },
-  { path: 'activities', component: ActivitiesListComponent, canActivate: [AuthGuard] }
+  { path: '', redirectTo: 'start', pathMatch: 'full', data: { animation: 'HomePage' } },
+  { path: 'start', component: StartComponent, data: { animation: 'HomePage' } },
+  { path: 'register', component: RegisterComponent, data: { animation: 'AboutPage' }, canActivate: [ParentAuthGuard] },
+  { path: 'main', component: MainComponent, data: { animation: 'AboutPage' }, canActivate: [AuthGuard] },
+  { path: 'fridge', component: FridgeComponent, data: { animation: 'FilterPage' }, canActivate: [AuthGuard] },
+  { path: 'youtube', component: YoutubePlayerComponent, data: { animation: 'FilterPage' }, canActivate: [AuthGuard] },
+  { path: 'canvas', component: CanvasSectionComponent, data: { animation: 'FilterPage' }, canActivate: [ChildAuthGuard] },
+  { path: 'notes', component: NotesListComponent, data: { animation: 'FilterPage' }, canActivate: [AuthGuard] },
+  { path: 'activities', component: ActivitiesListComponent, data: { animation: 'FilterPage' }, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
