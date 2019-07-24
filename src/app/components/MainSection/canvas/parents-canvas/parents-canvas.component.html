@@ -1,5 +1,5 @@
 <div class="canvas-wrapper" (touchstart)="drag($event)" (touchend)="noDrag()" (touchmove)="dragImage($event)">
-  <p class="empty-canvas" *ngIf="isEmpty">Brak laurek</p>
+  <p class="empty-canvas" *ngIf="isEmpty">No cards</p>
   <div *ngIf="!isEmpty">
     <img src="{{ imgSrc1 }}" [ngStyle]="top()" [ngClass]="classes1()">
     <img *ngIf="imagesUrls.length > 1" src="{{ imgSrc2 }}" [ngStyle]="middle()" [ngClass]="classes2()">
