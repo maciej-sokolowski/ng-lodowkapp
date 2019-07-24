@@ -1,5 +1,5 @@
 <div class="main-wrapper">
-  <app-top-bar></app-top-bar>
+  <app-top-bar [allWidgetsAssigned]="allWidgetsAssigned"></app-top-bar>
   <div class="main-wrapper__logged">
     <app-registersumm class="test" (click)="contextMenu($event)" [chosenAvatar]="currentUser[0]?.avatar"
       [chosenColor]="currentUser[0]?.color" [userType]="">
@@ -56,15 +56,15 @@
       <div id="widget-4" class="widgets-wrapper__item widgets-wrapper__item--small">
         <span class="widgets-wrapper__item-button" (click)="initList()"></span>
         <p class="widgets-wrapper__item-description">Add widget</p>
-        <!-- <app-weather *ngIf="widgets['widget-4'] === 'Weather'"></app-weather> -->
-        <!-- <app-youtube *ngIf="widgets['widget-4'] === 'Youtube'"></app-youtube> -->
+        <app-weather *ngIf="widgets['widget-4'] === 'Weather'"></app-weather>
+        <app-youtube *ngIf="widgets['widget-4'] === 'Youtube'"></app-youtube>
       </div>
 
       <div id="widget-5" class="widgets-wrapper__item widgets-wrapper__item--small">
         <span class="widgets-wrapper__item-button" (click)="initList()"></span>
         <p class="widgets-wrapper__item-description">Add widget</p>
-        <!-- <app-weather *ngIf="widgets['widget-5'] === 'Weather'"></app-weather> -->
-        <!-- <app-youtube *ngIf="widgets['widget-5'] === 'Youtube'"></app-youtube> -->
+        <app-weather *ngIf="widgets['widget-5'] === 'Weather'"></app-weather>
+        <app-youtube *ngIf="widgets['widget-5'] === 'Youtube'"></app-youtube>
       </div>
     </div>
 
@@ -80,5 +80,6 @@
         (popupOpenEvent)="onPopupStatusChange($event)" [items]="notes" *ngIf="widgets['widget-6'] === 'Notes'">
       </app-list-header>
     </div>
+
   </div>
 </div>

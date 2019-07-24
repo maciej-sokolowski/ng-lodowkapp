@@ -1,10 +1,13 @@
-import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import {NoteService} from '../../../services/note.service';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { listItem } from '../../../animations'
 
 @Component({
   selector: 'app-list-header',
   templateUrl: './list-header.component.html',
-  styleUrls: ['./list-header.component.scss']
+  styleUrls: ['./list-header.component.scss'],
+  animations: [
+    listItem
+  ]
 })
 export class ListHeaderComponent implements OnInit {
 

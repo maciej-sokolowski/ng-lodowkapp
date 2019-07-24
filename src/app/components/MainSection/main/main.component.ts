@@ -7,7 +7,7 @@ import {WidgetMemoryService} from '../../../services/widget-memory.service';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
 
@@ -23,6 +23,7 @@ export class MainComponent implements OnInit {
   headerTitleNotes: string;
   headerTitleActivities: string;
   widgets: object;
+  allWidgetsAssigned: boolean = false;
 
 
   @Input()
@@ -46,6 +47,7 @@ export class MainComponent implements OnInit {
     this.getNotes();
     this.getActivities();
     this.checkPlaceholders();
+    this.areAllWidgetsAssigned();
   }
 
   ngDoCheck() {
@@ -107,6 +109,16 @@ export class MainComponent implements OnInit {
     this.isOpen = true;
   }
 
+  areAllWidgetsAssigned() {
+    for (let widget in this.widgets) {
+      if (this.widgets[widget] !== "") {
+        this.allWidgetsAssigned = true;
+      } else {
+        return this.allWidgetsAssigned = false;
+      }
+    }
+  }
+
   onClose(getEmiter) {
     this.isOpen = false;
     let widgetToAssign: string;
@@ -130,6 +142,11 @@ export class MainComponent implements OnInit {
     widgetPlaceholder.removeChild(placeholderDescription);
     widgetPlaceholder.style.border = 'none';                   // 3 linijki wyżej
     widgetPlaceholder.style.opacity = '1';
+
+    this.areAllWidgetsAssigned();
+
+    console.log(this.widgets)
+    console.log(this.allWidgetsAssigned)
   }
 
 

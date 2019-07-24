@@ -1,9 +1,9 @@
 <div class="avatars">
   <div class="avatars__header-container">
-    <div class="avatars__title">What is your favorite animal?</div>
-    <div class="avatars__text">You will be able to log in by tapping your avatar.</div>
+    <div [@Show]="'show'" class="avatars__title">What is your favorite animal?</div>
+    <div [@Show]="'show'" class="avatars__text">You will be able to log in by tapping your avatar.</div>
   </div>
-  <div class="avatars__buttons-container">
+  <div [@FadeIn]="'up'" class="avatars__buttons-container">
     <button *ngFor="let avatar of avatars" class="avatars__btn avatars__btn--{{avatar}}" (click)="chooseAvatar(avatar)"
       [class.opacity]="chosenAvatar && (chosenAvatar !== avatar)">
     </button>

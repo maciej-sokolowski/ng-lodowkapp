@@ -1,9 +1,9 @@
 <div class="colors">
   <div class="colors__header-container">
-    <div class="colors__title">What is your favorite color?</div>
-    <div class="colors__text">You will be able to log in by tapping your avatar.</div>
+    <div [@Show]="'show'" class="colors__title">What is your favorite color?</div>
+    <div [@Show]="'show'" class="colors__text">You will be able to log in by tapping your avatar.</div>
   </div>
-  <div class="colors__buttons-container">
+  <div [@FadeIn]="'FadeIn'" class="colors__buttons-container">
     <button *ngFor="let color of colors" class="colors__btn colors__btn--{{color}}" (click)="chooseColor(color)"
       [class.opacity]="chosenColor && (chosenColor !== color)">
     </button>

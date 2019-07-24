@@ -1,9 +1,12 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { fadeIn, ShowOpacity } from 'src/app/animations';
 
 @Component({
   selector: 'app-registersumm',
   templateUrl: './registersumm.component.html',
-  styleUrls: ['./../../avatar/avatar.component.scss', './../color/color.component.scss', './../usertype/usertype.component.scss', './registersumm.component.scss']
+  styleUrls: ['./../../avatar/avatar.component.scss', './../color/color.component.scss', './../usertype/usertype.component.scss', './registersumm.component.scss'],
+  animations: [fadeIn, ShowOpacity]
+
 })
 export class RegistersummComponent implements OnInit {
 

@@ -2,14 +2,14 @@ import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { NoteService } from '../../../services/note.service';
 import { UserService } from '../../../services/user.service';
 import { PushNotificationService } from '../../../services/push-notification.service';
-
-
+import { showWidget } from '../../../animations';
 import { UUID } from 'angular2-uuid';
 
 @Component({
   selector: 'app-notes',
   templateUrl: './notes.component.html',
-  styleUrls: ['./notes.component.scss']
+  styleUrls: ['./notes.component.scss'],
+  animations: [showWidget]
 })
 export class NotesComponent implements OnInit {
   @Input()
