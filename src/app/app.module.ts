@@ -41,6 +41,7 @@ import { ListItemComponent } from './components/FridgeSection/list-item/list-ite
 import { ContextmenuComponent } from './components/RegisterSection/contextmenu/contextmenu.component';
 import { ActivitiesListComponent } from './components/ActivitiesSection/activities-list/activities-list.component';
 import { ProductsWidgetComponent } from './components/MainSection/products-widget/products-widget.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 const fridgeConnectionConfig: SocketIoConfig = { url: 'http://10.254.0.40:3000/', options: {} };
 
@@ -81,6 +82,7 @@ const fridgeConnectionConfig: SocketIoConfig = { url: 'http://10.254.0.40:3000/'
     ContextmenuComponent,
     ActivitiesListComponent,
     ProductsWidgetComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/interfaces/Models/user';
 import { Router } from '@angular/router';
+<<<<<<< HEAD
 import { fadeIn, ShowOpacity } from 'src/app/animations';
+=======
+>>>>>>> develop
 
 
 @Component({
@@ -84,7 +87,12 @@ export class MembersContainerComponent implements OnInit {
     let usersToLogOut = [];
     this.userService.getItems().subscribe((users) => usersToLogOut = [...users]);
     usersToLogOut.forEach((user) => {
-      user.isLogged === true ? user.isLogged = false : null;
+      if (user.isLogged) {
+        user.isLogged = false;
+        this.userService.updateItem(user);
+      } else {
+        return '';
+      }
     });
   }
 }

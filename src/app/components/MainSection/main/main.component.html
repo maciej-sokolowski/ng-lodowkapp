@@ -1,5 +1,5 @@
 <div class="main-wrapper">
-  <app-top-bar></app-top-bar>
+  <app-top-bar [allWidgetsAssigned]="allWidgetsAssigned"></app-top-bar>
   <div class="main-wrapper__logged">
     <app-registersumm class="test" (click)="contextMenu($event)" [chosenAvatar]="currentUser[0]?.avatar"
       [chosenColor]="currentUser[0]?.color" [userType]="">
@@ -80,5 +80,6 @@
         (popupOpenEvent)="onPopupStatusChange($event)" [items]="notes" *ngIf="widgets['widget-6'] === 'Notes'">
       </app-list-header>
     </div>
+
   </div>
 </div>
