@@ -43,7 +43,6 @@ import { ContextmenuComponent } from './components/RegisterSection/contextmenu/c
 import { ActivitiesListComponent } from './components/ActivitiesSection/activities-list/activities-list.component';
 import { ProductsWidgetComponent } from './components/MainSection/products-widget/products-widget.component';
 
-
 const fridgeConnectionConfig: SocketIoConfig = { url: 'http://10.254.0.40:3000/', options: {} };
 
 @NgModule({
