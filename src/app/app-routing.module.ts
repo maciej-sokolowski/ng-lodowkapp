@@ -23,7 +23,8 @@ const routes: Routes = [
   { path: 'canvas', component: CanvasSectionComponent, data: { animation: 'FilterPage' }, canActivate: [ChildAuthGuard] },
   { path: 'notes', component: NotesListComponent, data: { animation: 'FilterPage' }, canActivate: [AuthGuard] },
   { path: 'activities', component: ActivitiesListComponent, data: { animation: 'FilterPage' }, canActivate: [AuthGuard] },
-  { path: '**', component: PageNotFoundComponent }
+  { path: '404', component: PageNotFoundComponent },
+  { path: '**', redirectTo: '404' }
 ];
 
 @NgModule({

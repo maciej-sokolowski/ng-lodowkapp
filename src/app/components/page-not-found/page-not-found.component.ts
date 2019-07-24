@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageNotFoundComponent implements OnInit {
 
+  private information;
+
   constructor() { }
 
   ngOnInit() {
+    this.information = history.state.data;
   }
-
 }

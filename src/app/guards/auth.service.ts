@@ -1,15 +1,20 @@
 import { Injectable } from '@angular/core';
 import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private user: UserService) { }
+  constructor(private user: UserService, private router: Router) { }
+  goToPageNotFound() {
+    this.router.navigate(['404'], { state: { data: { name: 'for not logged user.' } } })
+  }
 
   isLogged() {
     if (this.user.getLoggedUser()[0] === undefined) {
+      this.goToPageNotFound();
       return false
     } else {
       return this.user.getLoggedUser()[0].isLogged;
@@ -18,14 +23,23 @@ export class AuthService {
 
   userTypeAuth(type: string) {
     let isAnyoneLogged: boolean;
-    if (this.user.getLoggedUser()[0] === undefined) {
-      console.log('nikt nie zalogowany');
-      isAnyoneLogged = false;
-      return;
-    } else if (this.user.getLoggedUser()[0].type === type) {
+
+    if (this.user.getItems().value.length === 0) {
       isAnyoneLogged = true;
+    } else {
+      if (this.user.getLoggedUser()[0] === undefined) {
+        console.log('nikt nie zalogowany');
+        this.goToPageNotFound();
+        isAnyoneLogged = false;
+        return;
+      } else if (this.user.getLoggedUser()[0].type === type) {
+        isAnyoneLogged = true;
+      } else if (this.user.getLoggedUser()[0].type !== type) {
+        this.router.navigate(['404'], { state: { data: { name: 'for this user type.' } } })
+        isAnyoneLogged = false;
+      }
     }
-    return ((this.user.getItems().value.length === 0) || (isAnyoneLogged));
+    return isAnyoneLogged;
   }
 
   isParent() {
@@ -33,6 +47,11 @@ export class AuthService {
   }
 
   isChild() {
-    return this.userTypeAuth('CHILDREN')
+    if (this.user.getItems().value.length === 0) {
+      this.goToPageNotFound();
+      return false;
+    } else {
+      return this.userTypeAuth('CHILDREN')
+    }
   }
 }
