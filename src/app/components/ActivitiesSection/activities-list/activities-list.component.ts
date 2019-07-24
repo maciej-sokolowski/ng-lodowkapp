@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../../services/user.service';
-import { ActivityService } from '../../../services/activity.service';
-import { NoteService } from '../../../services/note.service';
+import {Component, OnInit} from '@angular/core';
+import {UserService} from '../../../services/user.service';
+import {ActivityService} from '../../../services/activity.service';
+import {NoteService} from '../../../services/note.service';
 
 
 @Component({
@@ -12,22 +12,24 @@ import { NoteService } from '../../../services/note.service';
 export class ActivitiesListComponent implements OnInit {
 
   constructor(private userService: UserService, private activitysService: ActivityService,
-    private noteService: NoteService) { }
+              private noteService: NoteService) {
+  }
+
   notes: any;
   products: any;
   userId: string;
   activities: any;
 
   getActivities() {
-    this.userId = this.userService.getLoggedUser()[0].id
+    this.userId = this.userService.getLoggedUser()[0].id;
 
-    const tempActNote = this.activitysService.getItemsByUserId(this.userId)
+    const tempActNote = this.activitysService.getItemsByUserId(this.userId);
 
-    const tempActFridge = this.activitysService.getItemsByUserId('FRIDGE')
+    const tempActFridge = this.activitysService.getItemsByUserId('FRIDGE');
 
-    const notSortedActivities = tempActNote.concat(tempActFridge)
+    const notSortedActivities = tempActNote.concat(tempActFridge);
 
-    const sortedActivities = notSortedActivities.sort(function (firstActi, secondActi) {
+    const sortedActivities = notSortedActivities.sort((firstActi, secondActi) => {
       return firstActi.date > secondActi.date ? -1 : firstActi.date < secondActi.date ? 1 : 0;
     });
 

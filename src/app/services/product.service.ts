@@ -62,33 +62,9 @@ export class ProductService implements StoreManager<Product> {
 
   }
 
-
-  public getItemById(id: string) {
-    return this.products.getValue().find(products => products.id === id);
-  }
-
-  public getItemByName(name: string) {
-    return this.products.pipe(
-      filter(products => products === products.filter(element => {
-        return element.name === name;
-      }))
-    );
-  }
-
-
-  public getItemsBeforeExpiry() {
-    const source = from(this.products.getValue());
-    return source.pipe(filter(product => Date.parse(String(product.expiryDate)) > Date.now().valueOf()));
-  }
-
   public getExpiredItems() {
     const source = from(this.products.getValue());
     return source.pipe(filter(product => Date.parse(String(product.expiryDate)) < Date.now().valueOf()));
   }
 
-  public getItemsByNeed(need: boolean) {
-    const source = from(this.products.getValue());
-    return source.pipe(filter(product => product.needToBuy === true));
-
-  }
 }

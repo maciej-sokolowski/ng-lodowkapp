@@ -6,11 +6,13 @@
             (click)="setCameraVisible()">
       Fridge
     </button>
+    <button class="nav-buttons__back" routerLink="/main"><</button>
     <button class="nav-buttons__btn"
             [class.nav-buttons__btn--activated]="active === 2"
             (click)="setListVisible()">
       List
     </button>
+
   </div>
   <p *ngIf="active === 1" class="instruction">
     <span class="instruction__strong">Tap on products</span> to add them to the list
