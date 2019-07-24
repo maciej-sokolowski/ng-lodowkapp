@@ -1,10 +1,13 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
+import { fadeIn, ShowOpacity } from 'src/app/animations';
 
 @Component({
   selector: 'app-usertype',
   templateUrl: './usertype.component.html',
-  styleUrls: ['./usertype.component.scss']
+  styleUrls: ['./usertype.component.scss'],
+  animations: [fadeIn, ShowOpacity]
+
 })
 export class UsertypeComponent implements OnInit {
   @Input()

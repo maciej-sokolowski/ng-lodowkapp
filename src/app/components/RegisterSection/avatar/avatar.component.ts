@@ -1,9 +1,12 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { fadeIn } from 'src/app/animations';
 
 @Component({
   selector: 'app-avatar',
   templateUrl: './avatar.component.html',
-  styleUrls: ['./avatar.component.scss']
+  styleUrls: ['./avatar.component.scss'],
+  animations: [fadeIn]
+
 })
 export class AvatarComponent implements OnInit {
 

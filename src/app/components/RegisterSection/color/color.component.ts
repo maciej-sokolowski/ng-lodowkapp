@@ -1,10 +1,11 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
-import { Observable } from 'rxjs';
+import { fadeIn, ShowOpacity } from 'src/app/animations';
 
 @Component({
   selector: 'app-color',
   templateUrl: './color.component.html',
-  styleUrls: ['./color.component.scss']
+  styleUrls: ['./color.component.scss'],
+  animations: [fadeIn, ShowOpacity]
 })
 export class ColorComponent implements OnInit {
 

@@ -1,13 +1,13 @@
-import { UserService } from 'src/app/services/user.service';
-import { NoteService } from '../../../services/note.service';
-import { ActivityService } from '../../../services/activity.service';
-import { Component, OnInit, Input } from '@angular/core';
-import { WidgetMemoryService } from '../../../services/widget-memory.service';
+import {UserService} from 'src/app/services/user.service';
+import {NoteService} from '../../../services/note.service';
+import {ActivityService} from '../../../services/activity.service';
+import {Component, OnInit, Input} from '@angular/core';
+import {WidgetMemoryService} from '../../../services/widget-memory.service';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
 
@@ -18,7 +18,7 @@ export class MainComponent implements OnInit {
   placeholderId: string;
   target: any;
   currentUser;
-  displayMenu: boolean = true;
+  displayMenu = true;
   isPopupOpen: boolean;
   headerTitleNotes: string;
   headerTitleActivities: string;
@@ -31,7 +31,7 @@ export class MainComponent implements OnInit {
   products: any;
 
   constructor(private userService: UserService, private noteService: NoteService,
-    private activitysService: ActivityService, private widgetMemo: WidgetMemoryService) {
+              private activitysService: ActivityService, private widgetMemo: WidgetMemoryService) {
     widgetMemo.getWidgetsSet().subscribe(set => this.widgets = set);
 
   }
@@ -64,7 +64,7 @@ export class MainComponent implements OnInit {
   getNotes() {
     const notSortedNotes = this.noteService.getItemsByUserId(this.userId);
 
-    const sortedNotes = notSortedNotes.sort(function (firstNote, secondNote) {
+    const sortedNotes = notSortedNotes.sort((firstNote, secondNote) => {
       return firstNote.date > secondNote.date ? -1 : firstNote.date < secondNote.date ? 1 : 0;
     });
     this.notes = sortedNotes;
@@ -79,7 +79,7 @@ export class MainComponent implements OnInit {
 
     const notSortedActivities = tempActNote.concat(tempActFridge);
 
-    const sortedActivities = notSortedActivities.sort(function (firstActi, secondActi) {
+    const sortedActivities = notSortedActivities.sort((firstActi, secondActi) => {
       return firstActi.date > secondActi.date ? -1 : firstActi.date < secondActi.date ? 1 : 0;
     });
 
@@ -90,7 +90,7 @@ export class MainComponent implements OnInit {
 
 
   initList() {
-    this.target = <HTMLInputElement>event.target;
+    this.target = <HTMLInputElement> event.target;
     this.placeholderId = this.target.parentElement.getAttribute('id');
 
     if (this.placeholderId === 'widget-4' || this.placeholderId === 'widget-5') {

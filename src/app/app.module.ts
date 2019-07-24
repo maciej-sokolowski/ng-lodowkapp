@@ -43,7 +43,6 @@ import { ActivitiesListComponent } from './components/ActivitiesSection/activiti
 import { ProductsWidgetComponent } from './components/MainSection/products-widget/products-widget.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
-
 const fridgeConnectionConfig: SocketIoConfig = { url: 'http://10.254.0.40:3000/', options: {} };
 
 @NgModule({

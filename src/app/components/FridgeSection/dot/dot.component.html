@@ -1,10 +1,11 @@
 <div class="dot"
      [ngStyle]="{'top': product.fridgePosition.y, 'left': product.fridgePosition.x, 'background-color': product.dotColor}">
-  <div (dblclick)="changeLabelVisibility()" class="dot__frame">
+  <div (mouseup)="changeLabelVisible()" class="dot__frame">
     <app-product-cloud [product]="product"
                        *ngIf="visibleLabel === 1"
                        (removeSignal)="removeProduct()"
-    (needToBuyStatus)="changeNeedToBuyStatus($event)">
+                       (needToBuyStatus)="changeNeedToBuyStatus($event)"
+                       (mouseleave)="changeLabelInvisible()">
     </app-product-cloud>
   </div>
   <div *ngIf="product.needToBuy === true" class="dot__buy-label">
