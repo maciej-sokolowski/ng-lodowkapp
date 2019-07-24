@@ -4,7 +4,7 @@
   background-color: #fff;
   opacity: .8;
   position: absolute;
-  z-index: 1;
+  z-index: 2;
 }
 
 .container {
@@ -21,7 +21,6 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  animation: showPopup .5s;
   z-index: 2;
 
   &__button-close {
@@ -80,15 +79,5 @@
     &:active {
       transform: translateY(2px);
     }
-  }
-}
-
-@keyframes showPopup {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
   }
 }

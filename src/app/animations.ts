@@ -1,4 +1,4 @@
-import { trigger, style, animate, transition, query, group, animateChild } from '@angular/animations';
+import { trigger, style, animate, transition, query, group, state } from '@angular/animations';
 
 export const slideInAnimation =
     trigger('routeAnimations', [
@@ -59,3 +59,51 @@ export const slideInAnimation =
             ]),
         ])
     ]);
+
+export const listItem =
+    trigger('EnterLeave', [
+        state('state', style({ opacity: 1, height: '79px' })),
+        transition(':enter', [
+            style({ opacity: 0, height: 0 }),
+            animate('0.5s 300ms ease-in')
+        ]),
+        transition(':leave', [
+            animate('0.8s ease-out', style({ transform: 'translateY(100%)', opacity: 0 }))
+        ])
+    ])
+
+export const deleteItem =
+    trigger('Delete', [
+        state('state', style({ opacity: 1, minHeight: '79px' })),
+        transition(':leave', [
+            animate('0.8s ease-out', style({ transform: 'translateY(-100%)', opacity: 0 }))
+        ])
+    ])
+
+export const showWidget =
+    trigger('Show', [
+        state('state', style({ opacity: 0.8 })),
+        transition(':enter', [
+            style({ opacity: 0 }),
+            animate('0.5s')
+        ])
+    ])
+
+export const fadeIn =
+    trigger('FadeIn', [
+        state('up', style({ opacity: 1 })),
+        transition(':enter', [
+            style({ transform: 'translateY(100%)', opacity: 0 }),
+            animate('0.6s 300ms ease-in')
+        ])
+    ])
+
+export const ShowOpacity =
+    trigger('Show', [
+        state('show', style({ opacity: 1 })),
+        transition(':enter', [
+            style({ opacity: 0 }),
+            animate('1s')
+        ])
+    ])
+

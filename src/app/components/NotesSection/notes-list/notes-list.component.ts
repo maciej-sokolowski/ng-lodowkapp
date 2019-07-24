@@ -2,13 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { NoteService } from '../../../services/note.service';
 import { UserService } from '../../../services/user.service';
 import { PushNotificationService } from '../../../services/push-notification.service';
+import { deleteItem } from '../../../animations'
 
 
 
 @Component({
   selector: 'app-notes-list',
   templateUrl: './notes-list.component.html',
-  styleUrls: ['./notes-list.component.scss']
+  styleUrls: ['./notes-list.component.scss'],
+  animations: [
+    deleteItem
+  ]
 })
 export class NotesListComponent implements OnInit {
 
