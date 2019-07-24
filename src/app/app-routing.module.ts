@@ -10,6 +10,7 @@ import { NotesListComponent } from './components/NotesSection/notes-list/notes-l
 import { AuthGuard } from './guards/auth.guard'
 import { ActivitiesListComponent } from './components/ActivitiesSection/activities-list/activities-list.component';
 import { ParentAuthGuard } from './guards/parent-auth.guard';
+import { ChildAuthGuard } from './guards/child-auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'start', pathMatch: 'full' },
@@ -19,7 +20,7 @@ const routes: Routes = [
   { path: 'main', component: MainComponent, canActivate: [AuthGuard] },
   { path: 'fridge', component: FridgeComponent, canActivate: [AuthGuard] },
   { path: 'youtube', component: YoutubePlayerComponent, canActivate: [AuthGuard] },
-  { path: 'canvas', component: CanvasSectionComponent, canActivate: [AuthGuard] },
+  { path: 'canvas', component: CanvasSectionComponent, canActivate: [ChildAuthGuard] },
   { path: 'notes', component: NotesListComponent, canActivate: [AuthGuard] },
   { path: 'activities', component: ActivitiesListComponent, canActivate: [AuthGuard] }
 ];

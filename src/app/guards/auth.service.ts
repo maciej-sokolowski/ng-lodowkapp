@@ -14,20 +14,25 @@ export class AuthService {
     } else {
       return this.user.getLoggedUser()[0].isLogged;
     }
-
-
   }
 
-  isParent() {
+  userTypeAuth(type: string) {
     let isAnyoneLogged: boolean;
     if (this.user.getLoggedUser()[0] === undefined) {
       console.log('nikt nie zalogowany');
       isAnyoneLogged = false;
       return;
-    } else if (this.user.getLoggedUser()[0].type === 'PARENT') {
+    } else if (this.user.getLoggedUser()[0].type === type) {
       isAnyoneLogged = true;
     }
-
     return ((this.user.getItems().value.length === 0) || (isAnyoneLogged));
+  }
+
+  isParent() {
+    return this.userTypeAuth('PARENT')
+  }
+
+  isChild() {
+    return this.userTypeAuth('CHILDREN')
   }
 }
