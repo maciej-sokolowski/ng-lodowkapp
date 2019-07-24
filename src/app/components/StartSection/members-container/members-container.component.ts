@@ -2,10 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/interfaces/Models/user';
 import { Router } from '@angular/router';
-<<<<<<< HEAD
 import { fadeIn, ShowOpacity } from 'src/app/animations';
-=======
->>>>>>> develop
 
 
 @Component({
