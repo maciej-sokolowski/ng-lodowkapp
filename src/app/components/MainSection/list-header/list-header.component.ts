@@ -1,5 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { listItem } from '../../../animations'
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {listItem} from '../../../animations';
+import {Activity} from '../../../interfaces/Models/activity';
+import {Note} from '../../../interfaces/Models/note';
 
 @Component({
   selector: 'app-list-header',
@@ -11,26 +13,18 @@ import { listItem } from '../../../animations'
 })
 export class ListHeaderComponent implements OnInit {
 
-  @Input()
-  canAddListItem = false;
+  constructor() {
+  }
 
-  @Input()
-  headerTitle = '';
-
-  @Input()
-  route = '';
-
-  @Output()
-  popupOpenEvent = new EventEmitter();
+  @Input() canAddListItem = false;
+  @Input() headerTitle = '';
+  @Input() route = '';
+  @Output() popupOpenEvent = new EventEmitter();
+  @Input() items: Activity[] | Note[];
 
   openPopup() {
     this.popupOpenEvent.emit(true);
   }
-
-  @Input()
-  items: any;
-
-  constructor() { }
 
 
   ngOnInit() {
