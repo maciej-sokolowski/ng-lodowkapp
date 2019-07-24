@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
 import { ImageService } from 'src/app/services/image.service';
 import { Image } from 'src/app/interfaces/Models/image';
 import { UserService } from 'src/app/services/user.service';
@@ -10,7 +10,7 @@ import { User } from 'src/app/interfaces/Models/user';
   templateUrl: './canvas-section.component.html',
   styleUrls: ['./canvas-section.component.scss']
 })
-export class CanvasSectionComponent implements OnInit {
+export class CanvasSectionComponent implements OnInit, AfterViewInit {
 
   @ViewChild('myCanvas', { static: false }) myCanvas: ElementRef;
   public ctx: CanvasRenderingContext2D;
