@@ -1,8 +1,8 @@
-import {UserService} from 'src/app/services/user.service';
-import {NoteService} from '../../../services/note.service';
-import {ActivityService} from '../../../services/activity.service';
-import {Component, OnInit, Input} from '@angular/core';
-import {WidgetMemoryService} from '../../../services/widget-memory.service';
+import { UserService } from 'src/app/services/user.service';
+import { NoteService } from '../../../services/note.service';
+import { ActivityService } from '../../../services/activity.service';
+import { Component, OnInit, Input } from '@angular/core';
+import { WidgetMemoryService } from '../../../services/widget-memory.service';
 
 @Component({
   selector: 'app-main',
@@ -32,7 +32,7 @@ export class MainComponent implements OnInit {
   products: any;
 
   constructor(private userService: UserService, private noteService: NoteService,
-              private activitysService: ActivityService, private widgetMemo: WidgetMemoryService) {
+    private activitysService: ActivityService, private widgetMemo: WidgetMemoryService) {
     widgetMemo.getWidgetsSet().subscribe(set => this.widgets = set);
 
   }
@@ -92,7 +92,7 @@ export class MainComponent implements OnInit {
 
 
   initList() {
-    this.target = <HTMLInputElement> event.target;
+    this.target = <HTMLInputElement>event.target;
     this.placeholderId = this.target.parentElement.getAttribute('id');
 
     if (this.placeholderId === 'widget-4' || this.placeholderId === 'widget-5') {
@@ -168,6 +168,10 @@ export class MainComponent implements OnInit {
 
 
   contextMenu(event) {
-    this.displayMenu = !this.displayMenu;
+    if (!this.allWidgetsAssigned) {
+      return
+    } else {
+      this.displayMenu = !this.displayMenu;
+    }
   }
 }
