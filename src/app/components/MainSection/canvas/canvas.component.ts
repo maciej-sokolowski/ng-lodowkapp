@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ImageService } from 'src/app/services/image.service';
-import { Image } from 'src/app/interfaces/Models/image';
+import {Component, OnInit, Input} from '@angular/core';
+import {ImageService} from 'src/app/services/image.service';
+import {Image} from 'src/app/interfaces/Models/image';
 
 @Component({
   selector: 'app-canvas',
@@ -16,21 +16,22 @@ export class CanvasComponent implements OnInit {
   myImage: Image;
   myImageUrl: string;
 
-  isChild: boolean;  
-  isEmpty: boolean = true;
+  isChild: boolean;
+  isEmpty = true;
 
-  constructor(private imageService: ImageService) { }
+  constructor(private imageService: ImageService) {
+  }
 
   ngOnInit() {
     this.userTypeVerification();
     this.userImageVerification();
   }
 
-  userTypeVerification(){
-    this.userType = this.currentUser[0]["type"];
-    this.userId = this.currentUser[0]["id"];
+  userTypeVerification() {
+    this.userType = this.currentUser[0]['type'];
+    this.userId = this.currentUser[0]['id'];
 
-    if (this.userType === "CHILDREN") {
+    if (this.userType === 'CHILDREN') {
       this.isChild = true;
     } else {
       this.isChild = false;
@@ -39,13 +40,13 @@ export class CanvasComponent implements OnInit {
 
   userImageVerification() {
     this.imageService.getItems().subscribe(items => this.allImages = items);
-    this.myImage = this.allImages.find(item => item["userId"] === this.userId);
+    this.myImage = this.allImages.find(item => item['userId'] === this.userId);
     if (this.myImage) {
-      if (this.myImage["isEmpty"] === true) {
+      if (this.myImage['isEmpty'] === true) {
         this.isEmpty = true;
       } else {
         this.isEmpty = false;
-        this.myImageUrl = this.myImage["imageUrl"];
+        this.myImageUrl = this.myImage['imageUrl'];
       }
     }
   }

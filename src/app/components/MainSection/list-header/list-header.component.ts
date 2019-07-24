@@ -16,20 +16,11 @@ export class ListHeaderComponent implements OnInit {
   constructor() {
   }
 
-  @Input()
-  canAddListItem = false;
-
-  @Input()
-  headerTitle = '';
-
-  @Input()
-  route = '';
-
-  @Output()
-  popupOpenEvent = new EventEmitter();
-
-  @Input()
-  items: Activity[] | Note[];
+  @Input() canAddListItem = false;
+  @Input() headerTitle = '';
+  @Input() route = '';
+  @Output() popupOpenEvent = new EventEmitter();
+  @Input() items: Activity[] | Note[];
 
   openPopup() {
     this.popupOpenEvent.emit(true);
