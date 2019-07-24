@@ -4,6 +4,7 @@ import {ActivityService} from '../../../services/activity.service';
 import {Component, OnInit, Input, DoCheck} from '@angular/core';
 import {WidgetMemoryService} from '../../../services/widget-memory.service';
 
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -166,6 +167,10 @@ export class MainComponent implements OnInit, DoCheck {
   }
 
   contextMenu(event) {
-    this.displayMenu = !this.displayMenu;
+    if (!this.allWidgetsAssigned) {
+      return;
+    } else {
+      this.displayMenu = !this.displayMenu;
+    }
   }
 }
