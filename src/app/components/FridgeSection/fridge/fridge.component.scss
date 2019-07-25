@@ -28,26 +28,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-
 
   &__back {
     position: absolute;
-    top: -35px;
-    left: 5px;
+    top: 0;
+    left: 30px;
     background-color: #00C3FF;
     border: none;
     border-radius: 10px;
     outline: none;
     color: #fff;
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     font-size: 30px;
-    transition: .1s;
-
-    &:active {
-      transform: translateY(2px);
-    }
+    margin: 20px auto;
   }
 
   &__btn {
@@ -58,11 +52,8 @@
     border: 1px solid #00C3FF;
     font-size: 24px;
     line-height: 33px;
-    font-family: "Open Sans", sans-serif;
-    font-weight: normal;
     text-align: center;
     outline: none;
-
 
     &:first-child {
       border-top-left-radius: 10px;
