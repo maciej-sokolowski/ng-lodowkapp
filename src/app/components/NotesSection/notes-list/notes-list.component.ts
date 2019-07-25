@@ -35,7 +35,7 @@ export class NotesListComponent implements OnInit, DoCheck {
 
     const notSortedNotes = this.noteService.getItemsByUserId(this.userId);
 
-    const sortedNotes = notSortedNotes.sort(function(firstNote, secondNote) {
+    const sortedNotes = notSortedNotes.sort((firstNote, secondNote) => {
       return firstNote.date > secondNote.date ? -1 : firstNote.date < secondNote.date ? 1 : 0;
     });
     this.notes = sortedNotes;
