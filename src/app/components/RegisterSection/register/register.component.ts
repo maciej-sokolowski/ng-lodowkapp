@@ -107,7 +107,6 @@ export class RegisterComponent implements OnInit {
       this.activateBtn();
       this.userNamee = user;
     } else if (user.length === 0) {
-      // console.log(user.length);
       this.userNamee = '';
       this.setButtonStatus(this.registerStep);
     }

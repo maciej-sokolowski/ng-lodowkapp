@@ -1,16 +1,13 @@
 <div class="fridge-wrapper">
   <h1 class="fridge-wrapper__header">Your products</h1>
   <div class="nav-buttons">
-    <button class="nav-buttons__btn"
-            [class.nav-buttons__btn--activated]="active === 1"
-            (click)="setCameraVisible()">
+    <button class="nav-buttons__btn" [class.nav-buttons__btn--activated]="active === 1" (click)="setCameraVisible()">
       Fridge
     </button>
-    <button class="nav-buttons__back" routerLink="/main"><</button>
-    <button class="nav-buttons__btn"
-            [class.nav-buttons__btn--activated]="active === 2"
-            (click)="setListVisible()">
-      List
+    <button class="nav-buttons__back" routerLink="/main">
+      <</button> <button class="nav-buttons__btn" [class.nav-buttons__btn--activated]="active === 2"
+        (click)="setListVisible()">
+        List
     </button>
 
   </div>
