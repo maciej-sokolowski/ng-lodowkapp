@@ -1,6 +1,7 @@
 .background {
   width: 1080px;
   min-height: 1920px;
+  margin: 0 auto;
   background-image: url("~src/assets/fridgeBackground.png");
   background-attachment: fixed;
   background-size: 270%;
@@ -15,6 +16,7 @@
   justify-content: center;
   flex-direction: column;
   padding: 81px 100px 120px 100px;
+  position: relative;
 
   &__header {
     font-size: 46px;
