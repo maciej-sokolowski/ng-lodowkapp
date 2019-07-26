@@ -1,15 +1,16 @@
-import {UserService} from 'src/app/services/user.service';
-import {NoteService} from '../../../services/note.service';
-import {ActivityService} from '../../../services/activity.service';
-import {Component, OnInit, Input} from '@angular/core';
-import {WidgetMemoryService} from '../../../services/widget-memory.service';
+import { UserService } from 'src/app/services/user.service';
+import { NoteService } from '../../../services/note.service';
+import { ActivityService } from '../../../services/activity.service';
+import { Component, OnInit, Input, DoCheck } from '@angular/core';
+import { WidgetMemoryService } from '../../../services/widget-memory.service';
+
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  styleUrls: ['./main.component.scss'],
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, DoCheck {
 
   isOpen: boolean;
   emitIsSmallWidget: boolean;
@@ -18,11 +19,12 @@ export class MainComponent implements OnInit {
   placeholderId: string;
   target: any;
   currentUser;
-  displayMenu: boolean = true;
+  displayMenu = true;
   isPopupOpen: boolean;
   headerTitleNotes: string;
   headerTitleActivities: string;
   widgets: object;
+  allWidgetsAssigned = false;
 
 
   @Input()
@@ -31,7 +33,7 @@ export class MainComponent implements OnInit {
   products: any;
 
   constructor(private userService: UserService, private noteService: NoteService,
-              private activitysService: ActivityService, private widgetMemo: WidgetMemoryService) {
+    private activitysService: ActivityService, private widgetMemo: WidgetMemoryService) {
     widgetMemo.getWidgetsSet().subscribe(set => this.widgets = set);
 
   }
@@ -46,6 +48,12 @@ export class MainComponent implements OnInit {
     this.getNotes();
     this.getActivities();
     this.checkPlaceholders();
+    this.areAllWidgetsAssigned();
+  }
+
+  ngDoCheck() {
+    this.getNotes();
+    this.getActivities();
   }
 
   getLoggedUser() {
@@ -59,7 +67,7 @@ export class MainComponent implements OnInit {
   getNotes() {
     const notSortedNotes = this.noteService.getItemsByUserId(this.userId);
 
-    const sortedNotes = notSortedNotes.sort(function(firstNote, secondNote) {
+    const sortedNotes = notSortedNotes.sort((firstNote, secondNote) => {
       return firstNote.date > secondNote.date ? -1 : firstNote.date < secondNote.date ? 1 : 0;
     });
     this.notes = sortedNotes;
@@ -74,7 +82,7 @@ export class MainComponent implements OnInit {
 
     const notSortedActivities = tempActNote.concat(tempActFridge);
 
-    const sortedActivities = notSortedActivities.sort(function(firstActi, secondActi) {
+    const sortedActivities = notSortedActivities.sort((firstActi, secondActi) => {
       return firstActi.date > secondActi.date ? -1 : firstActi.date < secondActi.date ? 1 : 0;
     });
 
@@ -85,7 +93,7 @@ export class MainComponent implements OnInit {
 
 
   initList() {
-    this.target = <HTMLInputElement> event.target;
+    this.target = <HTMLInputElement>event.target;
     this.placeholderId = this.target.parentElement.getAttribute('id');
 
     if (this.placeholderId === 'widget-4' || this.placeholderId === 'widget-5') {
@@ -102,6 +110,16 @@ export class MainComponent implements OnInit {
     this.isOpen = true;
   }
 
+  areAllWidgetsAssigned() {
+    for (let widget in this.widgets) {
+      if (this.widgets[widget] !== '') {
+        this.allWidgetsAssigned = true;
+      } else {
+        return this.allWidgetsAssigned = false;
+      }
+    }
+  }
+
   onClose(getEmiter) {
     this.isOpen = false;
     let widgetToAssign: string;
@@ -114,9 +132,9 @@ export class MainComponent implements OnInit {
       this.emitLargeWidgetsList.splice(getEmiter[0], 1);
     }
 
-    let widgetPlaceholder = document.getElementById(this.placeholderId);
-    let placeholderSpan = widgetPlaceholder.childNodes[0];
-    let placeholderDescription = widgetPlaceholder.childNodes[1];
+    const widgetPlaceholder = document.getElementById(this.placeholderId);
+    const placeholderSpan = widgetPlaceholder.childNodes[0];
+    const placeholderDescription = widgetPlaceholder.childNodes[1];
 
     this.widgets[this.placeholderId] = widgetToAssign;
     this.widgetMemo.updateWidgetSet(this.widgets);
@@ -125,6 +143,9 @@ export class MainComponent implements OnInit {
     widgetPlaceholder.removeChild(placeholderDescription);
     widgetPlaceholder.style.border = 'none';                   // 3 linijki wyżej
     widgetPlaceholder.style.opacity = '1';
+
+    this.areAllWidgetsAssigned();
+
   }
 
 
@@ -137,15 +158,17 @@ export class MainComponent implements OnInit {
       if (this.widgets[placeholderId] !== '') {
         widgetPlaceholder.removeChild(placeholderSpan);
         widgetPlaceholder.removeChild(placeholderDescription);
-        widgetPlaceholder.style.border = 'none';                   // 3 linijki wyżej
+        widgetPlaceholder.style.border = 'none';
         widgetPlaceholder.style.opacity = '1';
-
       }
     });
   }
 
-
   contextMenu(event) {
-    this.displayMenu = !this.displayMenu;
+    if (!this.allWidgetsAssigned) {
+      return;
+    } else {
+      this.displayMenu = !this.displayMenu;
+    }
   }
 }

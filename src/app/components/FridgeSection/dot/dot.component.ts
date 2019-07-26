@@ -40,20 +40,22 @@ export class DotComponent implements OnInit {
     }
   }
 
-  changeLabelVisibility() {
+  changeLabelVisible() {
     if (this.ActiveLabelID === '') {
       this.ActiveLabelID = this.product.id;
       this.visibleLabel = Visible.YES;
       this.cloudActiveNotification.emit(true);
-    } else {
-      if (this.ActiveLabelID === this.product.id) {
-        this.ActiveLabelID = '';
-        this.visibleLabel = Visible.NOT;
-        this.cloudActiveNotification.emit(false);
-      }
     }
-
   }
+
+  changeLabelInvisible() {
+    if (this.ActiveLabelID === this.product.id) {
+      this.ActiveLabelID = '';
+      this.visibleLabel = Visible.NOT;
+      this.cloudActiveNotification.emit(false);
+    }
+  }
+
 
   removeProduct() {
     if (this.product.name !== undefined) {

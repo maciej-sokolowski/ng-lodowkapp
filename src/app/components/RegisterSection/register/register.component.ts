@@ -1,13 +1,15 @@
-import {Component, OnInit} from '@angular/core';
-import {User} from 'src/app/interfaces/Models/user';
-import {UserService} from 'src/app/services/user.service';
-import {v4 as uuid} from 'uuid';
+import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/interfaces/Models/user';
+import { UserService } from 'src/app/services/user.service';
+import { v4 as uuid } from 'uuid';
+import { fadeIn, ShowOpacity } from 'src/app/animations';
 
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss', './../registerinput/registerinput.component.scss']
+  styleUrls: ['./register.component.scss', './../registerinput/registerinput.component.scss'],
+  animations: [fadeIn, ShowOpacity]
 })
 export class RegisterComponent implements OnInit {
 
@@ -105,7 +107,6 @@ export class RegisterComponent implements OnInit {
       this.activateBtn();
       this.userNamee = user;
     } else if (user.length === 0) {
-      // console.log(user.length);
       this.userNamee = '';
       this.setButtonStatus(this.registerStep);
     }

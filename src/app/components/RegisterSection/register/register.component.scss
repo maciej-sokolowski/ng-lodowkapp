@@ -3,7 +3,7 @@
   width: 1080px;
   height: 1920px;
   display: flex;
-  // margin: 160px auto 170px auto;
+  margin: 0 auto 0 auto;
   text-align: center;
   color: #5F7891;
   flex-direction: column;
@@ -13,10 +13,6 @@
   background-image: url("src/assets/pexels-photo-1640777.png");
   background-repeat: no-repeat;
   background-position: 30% 50%;
-
-  // @media(orientation: landscape) {
-  //   height: 1080px;
-  // }
 
   .header-container {
     margin-top: 150px;

@@ -3,9 +3,33 @@
   height: 1920px;
   background-image: url("src/assets/pexels-photo-1640777.png");
   background-repeat: no-repeat;
-	background-position: 72% 0%;
+  background-position: 72% 0%;
   background-size: 270%;
+  margin: 0 auto;
+  position: relative;
+
+  &__button {
+    background-color: #00C3FF;
+    border: none;
+    border-radius: 10px;
+    width: 200px;
+    height: 50px;
+    outline: none;
+    margin: 20px auto;
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    line-height: 60px;
+    position: absolute;
+    top: 0;
+    left: 30px;
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+  }
 }
+
 
 .canvas-wrapper {
   height: 800px;
@@ -14,12 +38,15 @@
   position: absolute;
   left: 120px;
   top: 120px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .canvas {
-  background-color: rgb(245, 245, 245);
+  background-color: rgb(255, 255, 255);
   border-radius: 10px;
-  box-shadow: 15px 15px 15px #888888;
+  box-shadow: 1px 24px 42px -8px rgba(0, 0, 0, 0.75);
+
 }
 
 .buttons-wrapper {
@@ -34,7 +61,7 @@
 
 .button {
   border-style: none;
-  width:165px;
+  width: 165px;
   height: 70px;
   font-size: 24px;
   border-radius: 10px;

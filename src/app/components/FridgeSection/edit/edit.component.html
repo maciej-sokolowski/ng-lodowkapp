@@ -2,8 +2,8 @@
   <form class="edit_box__form" action="" [formGroup]="nameDate" (keyup.enter)="emitDateAndName(nameDate)">
     <div class="edit_box__input-container">
       <input class="edit_box__input"
-             [ngClass]="name.valid? 'edit_box__input' : 'edit_box__input edit_box__input--invalid'" id="title"
-             placeholder="Product name" type="text" formControlName="name" required>
+        [ngClass]="name.valid? 'edit_box__input' : 'edit_box__input edit_box__input--invalid'" id="title"
+        placeholder="Product name" type="text" formControlName="name" required>
       <div *ngIf="name.invalid && (name.dirty || name.touched)" class="edit_box__validator">
         <div *ngIf="name.errors.required">
           Name is required
@@ -18,8 +18,8 @@
     </div>
     <div class="edit_box__input-container">
       <input class="edit_box__input"
-             [ngClass]="expiry.valid? 'edit_box__input' : 'edit_box__input edit_box__input--invalid'" id="date"
-             placeholder="Expiry date" type="text" formControlName="expiry">
+        [ngClass]="expiry.valid? 'edit_box__input' : 'edit_box__input edit_box__input--invalid'" id="date"
+        placeholder="Expiry date" type="text" formControlName="expiry">
       <div *ngIf="expiry.invalid && (expiry.dirty || expiry.touched)" class="edit_box__validator">
         <div *ngIf="expiry.errors.required; else isPatternValid">
           Expiry date is required

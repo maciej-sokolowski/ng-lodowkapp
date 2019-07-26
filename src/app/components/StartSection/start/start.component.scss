@@ -5,7 +5,9 @@
   background-image: url("src/assets/pexels-photo-1640777.png");
   background-repeat: no-repeat;
   background-position: 30% 50%;
-  border: 1px solid black;
+  background-attachment: fixed;
+  margin: 0 auto;
+
 
   &__headline {
     width: 800px;

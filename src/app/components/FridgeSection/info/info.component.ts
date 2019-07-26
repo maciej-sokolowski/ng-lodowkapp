@@ -31,7 +31,6 @@ export class InfoComponent implements OnInit {
   }
 
   private setLabel() {
-    // console.log('change colors');
     const timeBetweenExpiry = this.parsedDate - Date.now().valueOf();
 
     if (timeBetweenExpiry >= 10 * this.dayTime) {

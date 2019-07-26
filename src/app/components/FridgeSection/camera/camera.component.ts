@@ -45,7 +45,6 @@ export class CameraComponent implements OnInit, OnDestroy {
         dotColor: '#bbaeb2'
       };
       this.prService.insertItem(product);
-      // console.log(this.products);
     }
   }
 

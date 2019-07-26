@@ -12,7 +12,7 @@
       [userType]="user.type" [PIN]="user.pin">
     </app-registersumm>
   </div>
-  <a routerLink="/register" class="members-container__card">
+  <a [@FadeIn]="'up'" *ngIf="users.length===0" routerLink="/register" class="members-container__card">
     <span class="members-container__card-button"></span>
     <p class="members-container__card-description">Add new<br>member</p>
   </a>
