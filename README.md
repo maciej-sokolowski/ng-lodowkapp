@@ -1,3 +1,17 @@
+This Fridge-app was created as an part of SoftwareHut internship by 4-person trainees team. In this project i have learned the basics of Angular and TypeScript.  
+
+I was responsible for:  
+-start section view with empty register card and container for registered users cards  
+-main section template with placeholders for widgets  
+-main section widgets list that appears when you click placeholder  
+-assignment widgets to selected places  
+-all stuff related with canvas:  
++ child canvas (where child can see his last picture)  
++ parent canvas (where parent can see all drawing of his children, if pictures exist)  
++ dedicated canvas drawing section (where children can drawing, use rubber, delete or save their pictures) 
+  
+
+
 # NgLodowkapp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.2.
